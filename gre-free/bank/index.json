@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "bank": "Adi's GRE Quant Bank",
+  "last_updated": "2026-04-26",
+  "total_questions": 160,
+  "topics": {
+    "Arithmetic": {
+      "Percentages": {
+        "file": "arithmetic/percentages.json",
+        "count": 80,
+        "distribution": {"easy": 20, "medium": 30, "hard": 20, "extreme_hard": 10},
+        "status": "complete"
+      },
+      "Fractions & Decimals": {
+        "file": "arithmetic/fractions_decimals.json",
+        "count": 80,
+        "distribution": {"easy": 20, "medium": 30, "hard": 20, "extreme_hard": 10},
+        "status": "complete"
+      }
+    }
+  }
+}

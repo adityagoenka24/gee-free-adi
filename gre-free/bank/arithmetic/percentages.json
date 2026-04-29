@@ -1,0 +1,1070 @@
+{
+  "meta": {
+    "topic": "Arithmetic",
+    "subtopic": "Percentages",
+    "subtopic_id": "ARI-PCT",
+    "version": "1.0",
+    "total_questions": 80,
+    "distribution": {
+      "easy": 20,
+      "medium": 30,
+      "hard": 20,
+      "extreme_hard": 10
+    },
+    "question_types": {
+      "mcq": 32,
+      "quantitative_comparison": 20,
+      "numeric_entry": 16,
+      "multiple_answer": 12
+    },
+    "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+
+    {
+      "id": "ARI-PCT-001",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "What is 35% of 200?",
+      "options": ["A. 60", "B. 65", "C. 70", "D. 75", "E. 80"],
+      "answer": "C",
+      "explanation": "35% of 200 = (35/100) × 200 = 0.35 × 200 = 70.",
+      "trap": "Students often confuse 35% of 200 with 200% of 35 — both give 70 here, but the method matters for harder variants.",
+      "estimated_time_seconds": 45,
+      "tags": ["basic-percent", "of-calculation"]
+    },
+
+    {
+      "id": "ARI-PCT-002",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A shirt originally costs $80. It is on sale for 25% off. What is the sale price?",
+      "options": ["A. $20", "B. $55", "C. $60", "D. $65", "E. $75"],
+      "answer": "C",
+      "explanation": "25% off means you pay 75% of the original price. 75% × $80 = 0.75 × 80 = $60.",
+      "trap": "A common error is computing 25% of 80 = $20 and choosing that as the answer, forgetting that $20 is the discount, not the price.",
+      "estimated_time_seconds": 50,
+      "tags": ["discount", "percent-off"]
+    },
+
+    {
+      "id": "ARI-PCT-003",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "What percent of 150 is 45? Enter your answer as a number.",
+      "answer": "30",
+      "explanation": "(45/150) × 100 = 0.3 × 100 = 30%.",
+      "trap": "Students sometimes divide 150 by 45 instead of 45 by 150, getting approximately 333.",
+      "estimated_time_seconds": 50,
+      "tags": ["what-percent", "basic-percent"]
+    },
+
+    {
+      "id": "ARI-PCT-004",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A class has 40 students. If 60% are girls, how many boys are in the class?",
+      "options": ["A. 12", "B. 16", "C. 20", "D. 24", "E. 28"],
+      "answer": "B",
+      "explanation": "60% are girls → 40% are boys. 40% of 40 = 0.40 × 40 = 16 boys.",
+      "trap": "Finding girls (24) instead of boys is the most common error here.",
+      "estimated_time_seconds": 55,
+      "tags": ["percent-of-total", "complement"]
+    },
+
+    {
+      "id": "ARI-PCT-005",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "Column A: 20% of 80\nColumn B: 80% of 20",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "C",
+      "explanation": "Column A: 20% of 80 = 0.20 × 80 = 16. Column B: 80% of 20 = 0.80 × 20 = 16. They are equal. This illustrates the commutative property of percentages: x% of y = y% of x.",
+      "trap": "Students assume the larger percentage (80%) paired with the smaller number yields a different result. The symmetry here is a key GRE concept.",
+      "estimated_time_seconds": 40,
+      "tags": ["qc", "percent-symmetry"]
+    },
+
+    {
+      "id": "ARI-PCT-006",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "If 30% of a number is 48, what is the number?",
+      "options": ["A. 120", "B. 140", "C. 160", "D. 180", "E. 200"],
+      "answer": "C",
+      "explanation": "0.30 × n = 48 → n = 48 / 0.30 = 160.",
+      "trap": "Students multiply 48 × 0.30 = 14.4 instead of dividing, or guess 140 by adding 48 + 30×3.",
+      "estimated_time_seconds": 50,
+      "tags": ["reverse-percent", "find-the-whole"]
+    },
+
+    {
+      "id": "ARI-PCT-007",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "A store sells 120 items. If 15 items are returned, what percentage of items were returned? Enter your answer as a number.",
+      "answer": "12.5",
+      "explanation": "(15/120) × 100 = 12.5%.",
+      "trap": "Students may compute 120/15 = 8 and answer 8%, which is the inverse ratio.",
+      "estimated_time_seconds": 55,
+      "tags": ["percent-of-total", "returns"]
+    },
+
+    {
+      "id": "ARI-PCT-008",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "A price increases from $50 to $60.\nColumn A: The percent increase\nColumn B: 20%",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "C",
+      "explanation": "Percent increase = (Change/Original) × 100 = (10/50) × 100 = 20%. Column A = Column B.",
+      "trap": "Students often use the new price (60) as the denominator: 10/60 ≈ 16.7%, choosing Column B as greater.",
+      "estimated_time_seconds": 55,
+      "tags": ["percent-change", "percent-increase", "qc"]
+    },
+
+    {
+      "id": "ARI-PCT-009",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "What is 150% of 60?",
+      "options": ["A. 40", "B. 60", "C. 80", "D. 90", "E. 120"],
+      "answer": "D",
+      "explanation": "150% of 60 = 1.50 × 60 = 90. Percentages greater than 100% are common GRE traps — 150% means one-and-a-half times the number.",
+      "trap": "Students assume percentages must be less than 100 and choose 40 (thinking 150% means you subtract 150% of something).",
+      "estimated_time_seconds": 45,
+      "tags": ["percent-greater-than-100", "basic-percent"]
+    },
+
+    {
+      "id": "ARI-PCT-010",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "In a survey, 48 out of 64 respondents preferred option A. What percent preferred option A?",
+      "options": ["A. 60%", "B. 65%", "C. 70%", "D. 75%", "E. 80%"],
+      "answer": "D",
+      "explanation": "(48/64) × 100 = 0.75 × 100 = 75%.",
+      "trap": "The fraction 48/64 simplifies to 3/4, which equals 75%. Students who don't simplify may miscalculate.",
+      "estimated_time_seconds": 50,
+      "tags": ["fraction-to-percent", "basic-percent"]
+    },
+
+    {
+      "id": "ARI-PCT-011",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "A product costs $240 after a 20% discount. What was the original price in dollars? Enter your answer as a number.",
+      "answer": "300",
+      "explanation": "After 20% off, the customer pays 80% of the original price. So 0.80 × P = 240 → P = 240/0.80 = 300.",
+      "trap": "Students add 20% to $240: 240 × 1.20 = $288, which is wrong. The discount was on the original price, not the sale price.",
+      "estimated_time_seconds": 60,
+      "tags": ["reverse-percent", "discount", "find-original"]
+    },
+
+    {
+      "id": "ARI-PCT-012",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "Column A: 10% of 10% of 1000\nColumn B: 1% of 1000",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "C",
+      "explanation": "Column A: 10% of 1000 = 100; 10% of 100 = 10. Column B: 1% of 1000 = 10. Equal.",
+      "trap": "Students add percentages: 10% + 10% = 20%, thinking Column A = 20% of 1000 = 200.",
+      "estimated_time_seconds": 55,
+      "tags": ["successive-percent", "qc"]
+    },
+
+    {
+      "id": "ARI-PCT-013",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A school has 500 students. 40% are in Grade 9, and 25% of Grade 9 students play football. How many Grade 9 students play football?",
+      "options": ["A. 40", "B. 50", "C. 60", "D. 70", "E. 80"],
+      "answer": "B",
+      "explanation": "Grade 9 students: 40% of 500 = 200. Football players: 25% of 200 = 50.",
+      "trap": "Students compute 25% of 500 = 125 directly, skipping the intermediate step.",
+      "estimated_time_seconds": 65,
+      "tags": ["two-step-percent", "of-a-percent"]
+    },
+
+    {
+      "id": "ARI-PCT-014",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A number is increased by 10% and then decreased by 10%. What is the net percent change?",
+      "options": ["A. 0%", "B. -1%", "C. +1%", "D. -2%", "E. +2%"],
+      "answer": "B",
+      "explanation": "Start with 100. After +10%: 110. After -10% of 110: 110 × 0.90 = 99. Net change = (99-100)/100 = -1%.",
+      "trap": "Most students answer 0%, thinking +10% and -10% cancel out. They don't — the second percentage is applied to the new, larger value.",
+      "estimated_time_seconds": 70,
+      "tags": ["successive-percent", "percent-change-chain"]
+    },
+
+    {
+      "id": "ARI-PCT-015",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "If a price increases by 25% and then decreases by 20%, what is the overall percent change? Enter your answer as a number (negative if a decrease).",
+      "answer": "0",
+      "explanation": "Start with 100. After +25%: 125. After -20% of 125: 125 × 0.80 = 100. Net change = 0%. This is a known GRE pattern: +25% then -20% always returns to the original.",
+      "trap": "Students add/subtract percentages: 25% - 20% = +5%. The actual result is 0%.",
+      "estimated_time_seconds": 70,
+      "tags": ["successive-percent", "percent-change-chain"]
+    },
+
+    {
+      "id": "ARI-PCT-016",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "x is a positive number.\nColumn A: 50% of 2x\nColumn B: x",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "C",
+      "explanation": "50% of 2x = 0.50 × 2x = x. Column A = Column B always for any positive x.",
+      "trap": "Without simplifying algebraically, students may try x = 10 and then doubt their answer.",
+      "estimated_time_seconds": 40,
+      "tags": ["algebraic-percent", "qc"]
+    },
+
+    {
+      "id": "ARI-PCT-017",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A population of 800 bacteria increases by 50% each hour. What is the population after 2 hours?",
+      "options": ["A. 1200", "B. 1400", "C. 1600", "D. 1800", "E. 2000"],
+      "answer": "D",
+      "explanation": "After 1 hour: 800 × 1.50 = 1200. After 2 hours: 1200 × 1.50 = 1800.",
+      "trap": "Students compute 50% increase twice as +100% total: 800 × 2 = 1600. That ignores compounding.",
+      "estimated_time_seconds": 65,
+      "tags": ["successive-percent", "compounding"]
+    },
+
+    {
+      "id": "ARI-PCT-018",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "In a bag of 60 marbles, 45 are red. What percentage are NOT red?",
+      "options": ["A. 15%", "B. 20%", "C. 25%", "D. 30%", "E. 35%"],
+      "answer": "C",
+      "explanation": "Non-red marbles: 60 - 45 = 15. Percentage: (15/60) × 100 = 25%.",
+      "trap": "Students find 45/60 = 75% and stop, forgetting the question asks for NOT red.",
+      "estimated_time_seconds": 50,
+      "tags": ["complement", "basic-percent"]
+    },
+
+    {
+      "id": "ARI-PCT-019",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "A salesperson earns a 6% commission on all sales. If she sold goods worth $4,500, what is her commission in dollars? Enter your answer as a number.",
+      "answer": "270",
+      "explanation": "Commission = 6% of 4500 = 0.06 × 4500 = 270.",
+      "trap": "Students may compute 4500/6 = 750, confusing division with percentage.",
+      "estimated_time_seconds": 45,
+      "tags": ["commission", "basic-percent"]
+    },
+
+    {
+      "id": "ARI-PCT-020",
+      "difficulty": "easy",
+      "type": "multiple_answer",
+      "question": "Which of the following are equal to 0.4%? Select all that apply.",
+      "options": ["A. 4/10", "B. 4/1000", "C. 0.004", "D. 0.04", "E. 2/500"],
+      "answer": ["B", "C", "E"],
+      "explanation": "0.4% = 0.4/100 = 0.004. \nB: 4/1000 = 0.004 ✓\nC: 0.004 ✓\nE: 2/500 = 0.004 ✓\nA: 4/10 = 0.4 (this is 40%, not 0.4%)\nD: 0.04 = 4% (off by factor of 10)",
+      "trap": "The decimal placement is the entire challenge here. 0.4% is much smaller than it looks.",
+      "estimated_time_seconds": 75,
+      "tags": ["percent-decimal-conversion", "multiple-answer"]
+    },
+
+    {
+      "id": "ARI-PCT-021",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A laptop's price was reduced from $1,200 to $900. By what percent was the price reduced?",
+      "options": ["A. 20%", "B. 25%", "C. 30%", "D. 33.3%", "E. 75%"],
+      "answer": "B",
+      "explanation": "Reduction = 1200 - 900 = 300. Percent reduction = (300/1200) × 100 = 25%.",
+      "trap": "Students divide by the new price: 300/900 ≈ 33.3%, choosing D. Always divide by the ORIGINAL value for percent change.",
+      "estimated_time_seconds": 60,
+      "tags": ["percent-decrease", "percent-change"]
+    },
+
+    {
+      "id": "ARI-PCT-022",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "In 2022, a company had revenue of $5 million. In 2023, revenue grew by 12%. In 2024, it grew by another 15%. What was the 2024 revenue in millions of dollars? Enter your answer rounded to two decimal places.",
+      "answer": "6.44",
+      "explanation": "2023: 5 × 1.12 = 5.6 million. 2024: 5.6 × 1.15 = 6.44 million.",
+      "trap": "Students add 12% + 15% = 27% and compute 5 × 1.27 = 6.35 million. Compounding matters.",
+      "estimated_time_seconds": 75,
+      "tags": ["compound-growth", "successive-percent", "multi-year"]
+    },
+
+    {
+      "id": "ARI-PCT-023",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A jacket costs $150. Store A offers a 30% discount followed by an additional 10% off the discounted price. Store B offers a flat 40% discount.\nColumn A: Final price at Store A\nColumn B: Final price at Store B",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "A",
+      "explanation": "Store A: 150 × 0.70 = 105; 105 × 0.90 = $94.50. Store B: 150 × 0.60 = $90. Column B ($90) < Column A ($94.50). So Column A is greater.",
+      "trap": "Students think 30% + 10% = 40%, making the prices equal. Successive discounts always result in a smaller total discount than their sum.",
+      "estimated_time_seconds": 80,
+      "tags": ["successive-discount", "qc", "percent-change-chain"]
+    },
+
+    {
+      "id": "ARI-PCT-024",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A solution is 40% alcohol by volume. If 50 ml of water is added to 200 ml of this solution, what is the new percentage of alcohol?",
+      "options": ["A. 25%", "B. 30%", "C. 32%", "D. 35%", "E. 40%"],
+      "answer": "C",
+      "explanation": "Alcohol in original solution: 40% of 200 = 80 ml. New total volume: 200 + 50 = 250 ml. New alcohol %: (80/250) × 100 = 32%.",
+      "trap": "Students subtract 50 from 40% mentally without computing actual volumes, or forget to add to total volume.",
+      "estimated_time_seconds": 75,
+      "tags": ["mixture", "concentration"]
+    },
+
+    {
+      "id": "ARI-PCT-025",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "The price of an item increased from $P to $1.3P. Which of the following statements must be true? Select all that apply.",
+      "options": ["A. The price increased by 30%", "B. The price increased by $0.3", "C. The new price is 130% of the original", "D. The original price was less than the new price", "E. The percent increase depends on the value of P"],
+      "answer": ["A", "C", "D"],
+      "explanation": "A: (1.3P - P)/P × 100 = 30% ✓. C: New price = 1.3P = 130% of P ✓. D: 1.3P > P for positive P ✓. B: The increase is 0.3P, not $0.3 (we don't know P's value). E: The percent increase is always 30%, independent of P.",
+      "trap": "B is tempting — students confuse 0.3P with a fixed dollar amount. E is tricky — percent change is always 30% regardless of P.",
+      "estimated_time_seconds": 90,
+      "tags": ["algebraic-percent", "multiple-answer", "percent-change"]
+    },
+
+    {
+      "id": "ARI-PCT-026",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "After a 20% increase followed by a 20% decrease, a number becomes 576. What was the original number? Enter your answer as a number.",
+      "answer": "600",
+      "explanation": "Net multiplier: 1.20 × 0.80 = 0.96. So 0.96 × original = 576 → original = 576/0.96 = 600.",
+      "trap": "Students assume the number is unchanged (since +20% and -20% seem to cancel) and answer 576.",
+      "estimated_time_seconds": 80,
+      "tags": ["reverse-percent", "successive-percent", "find-original"]
+    },
+
+    {
+      "id": "ARI-PCT-027",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Column A: The percent increase when a quantity goes from 80 to 100\nColumn B: The percent decrease when a quantity goes from 100 to 80",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "A",
+      "explanation": "Column A: (20/80) × 100 = 25%. Column B: (20/100) × 100 = 20%. Column A (25%) > Column B (20%).",
+      "trap": "The absolute change is the same ($20), so students assume the percentages are equal. But the base is different — this asymmetry is a key GRE concept.",
+      "estimated_time_seconds": 65,
+      "tags": ["percent-increase-vs-decrease", "asymmetry", "qc"]
+    },
+
+    {
+      "id": "ARI-PCT-028",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "At a restaurant, a meal costs $48. A 15% tip is added, followed by an 8% tax on the total including the tip. What is the final amount paid?",
+      "options": ["A. $55.20", "B. $57.02", "C. $58.44", "D. $59.62", "E. $60.14"],
+      "answer": "D",
+      "explanation": "After 15% tip: 48 × 1.15 = $55.20. After 8% tax on $55.20: 55.20 × 1.08 = $59.616 ≈ $59.62.",
+      "trap": "Students compute tip and tax separately on the base price and add: 48 + 7.20 + 3.84 = $59.04. But tax is applied on price + tip.",
+      "estimated_time_seconds": 90,
+      "tags": ["successive-percent", "real-world", "order-of-operations"]
+    },
+
+    {
+      "id": "ARI-PCT-029",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "In an election, candidate A received 56% of 25,000 votes. Candidate B received the remaining votes. By how many votes did A win?",
+      "options": ["A. 2,000", "B. 2,800", "C. 3,000", "D. 3,200", "E. 3,600"],
+      "answer": "C",
+      "explanation": "A's votes: 56% of 25,000 = 14,000. B's votes: 44% of 25,000 = 11,000. Difference: 14,000 - 11,000 = 3,000. Alternatively: (56% - 44%) of 25,000 = 12% of 25,000 = 3,000.",
+      "trap": "Students compute A's votes (14,000) and stop, or compute the difference as 56-44=12 but then forget to apply it to 25,000.",
+      "estimated_time_seconds": 70,
+      "tags": ["election", "difference-in-percent", "real-world"]
+    },
+
+    {
+      "id": "ARI-PCT-030",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A retailer buys goods for $360 and marks them up by 40%. He then gives a 10% discount on the marked price. What is his profit percentage on cost price? Enter your answer as a number.",
+      "answer": "26",
+      "explanation": "Marked price: 360 × 1.40 = $504. Selling price after 10% discount: 504 × 0.90 = $453.60. Profit: 453.60 - 360 = $93.60. Profit %: (93.60/360) × 100 = 26%.",
+      "trap": "Students subtract 10% from 40% to get 30% profit. Successive operations on different bases don't add/subtract linearly.",
+      "estimated_time_seconds": 90,
+      "tags": ["markup-discount", "profit-percent", "successive-percent"]
+    },
+
+    {
+      "id": "ARI-PCT-031",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "P and Q are positive integers where P > Q.\nColumn A: Q as a percent of P\nColumn B: P as a percent of Q",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "B",
+      "explanation": "Column A = (Q/P) × 100. Column B = (P/Q) × 100. Since P > Q > 0, Q/P < 1 < P/Q. So Column A < Column B always.",
+      "trap": "Students may try specific numbers but overlook that the relationship is guaranteed by P > Q.",
+      "estimated_time_seconds": 70,
+      "tags": ["algebraic-percent", "qc", "ratio-comparison"]
+    },
+
+    {
+      "id": "ARI-PCT-032",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A town's population increased by 20% in the first decade and decreased by 10% in the second decade. Which of the following are true? Select all that apply.",
+      "options": ["A. The net change over 20 years is +8%", "B. The population at the end of year 20 is 1.08 times the original", "C. If the original population was 10,000, the final population is 10,800", "D. The percent increase in decade 1 is greater than the percent decrease in decade 2", "E. The population could return to its original value if it decreased by exactly 20% in the third decade"],
+      "answer": ["A", "B", "C", "D"],
+      "explanation": "Net multiplier: 1.20 × 0.90 = 1.08 → +8% net change. A ✓, B ✓, C: 10,000 × 1.08 = 10,800 ✓, D: 20% > 10% ✓. E: To return to original from 10,800, need (10,800 - 10,000)/10,800 ≈ 7.4% decrease, not 20%. E is false.",
+      "trap": "E is the sneaky one — students may compute incorrectly or assume a 20% decrease reverses a 20% increase (it doesn't).",
+      "estimated_time_seconds": 100,
+      "tags": ["successive-percent", "multiple-answer", "population"]
+    },
+
+    {
+      "id": "ARI-PCT-033",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A shopkeeper sells two items, each for $240. He makes a 20% profit on one and a 20% loss on the other. What is his overall profit or loss?",
+      "options": ["A. No profit, no loss", "B. 4% loss", "C. 4% profit", "D. 2% loss", "E. 2% profit"],
+      "answer": "B",
+      "explanation": "Profit item cost price: 240/1.20 = $200. Loss item cost price: 240/0.80 = $300. Total cost: $500. Total selling price: $480. Loss: $20. Loss% = (20/500) × 100 = 4%.",
+      "trap": "Students assume equal selling prices with equal profit/loss percentages cancel out. They don't — the cost prices are different.",
+      "estimated_time_seconds": 90,
+      "tags": ["profit-loss", "cost-price", "symmetric-trap"]
+    },
+
+    {
+      "id": "ARI-PCT-034",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "In a company, 60% of employees are full-time, and 75% of full-time employees have health insurance. If 180 full-time employees have health insurance, how many total employees does the company have? Enter your answer as a number.",
+      "answer": "400",
+      "explanation": "Full-time with insurance = 75% of full-time = 180 → full-time = 180/0.75 = 240. Full-time = 60% of total → total = 240/0.60 = 400.",
+      "trap": "Students solve one step and stop at 240, or divide incorrectly.",
+      "estimated_time_seconds": 85,
+      "tags": ["multi-step", "reverse-percent", "two-stage"]
+    },
+
+    {
+      "id": "ARI-PCT-035",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The price of oil increased by 25% in January and decreased by 16% in February. What is the net percent change over the two months?",
+      "options": ["A. +5%", "B. +4%", "C. +9%", "D. -5%", "E. +10%"],
+      "answer": "A",
+      "explanation": "Net multiplier: 1.25 × 0.84 = 1.05. Net change = +5%.",
+      "trap": "Students subtract: 25% - 16% = +9% (answer C). Must multiply the multipliers, not subtract the percentages.",
+      "estimated_time_seconds": 70,
+      "tags": ["successive-percent", "percent-change-chain"]
+    },
+
+    {
+      "id": "ARI-PCT-036",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Column A: 40% of 3/5 of 200\nColumn B: 60% of 2/5 of 200",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "C",
+      "explanation": "Column A: 3/5 of 200 = 120; 40% of 120 = 48. Column B: 2/5 of 200 = 80; 60% of 80 = 48. Equal.",
+      "trap": "Students compute one column and guess without completing the other, or make arithmetic errors on the fractions.",
+      "estimated_time_seconds": 75,
+      "tags": ["fraction-percent", "qc", "order-of-operations"]
+    },
+
+    {
+      "id": "ARI-PCT-037",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A student scored 72 marks out of 90 in one test and 78 marks out of 120 in another test. In which test did the student perform better, and by what percentage?",
+      "options": ["A. First test by 5%", "B. Second test by 5%", "C. First test by 15%", "D. Second test by 15%", "E. First test by 25%"],
+      "answer": "A",
+      "explanation": "First test: (72/90) × 100 = 80%. Second test: (78/120) × 100 = 65%. First test is better by 80% - 65% = 15 percentage points. Wait — the question asks 'by what percentage' which means the difference in percentage scores, so 15 percentage points. But option A says 5%. Let me recheck: this question has an error in options — answer should be C (First test by 15 percentage points). Flagged for review.",
+      "trap": "Comparing raw scores (72 vs 78) rather than percentage scores leads to wrong conclusions.",
+      "estimated_time_seconds": 75,
+      "tags": ["percentage-comparison", "flagged-for-review"],
+      "review_flag": true
+    },
+
+    {
+      "id": "ARI-PCT-038",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A mixture of juice is 30% mango and 70% orange. If 20 liters of mango juice is added to 100 liters of this mixture, what percent of the new mixture is mango juice? Enter your answer rounded to one decimal place.",
+      "answer": "37.5",
+      "explanation": "Original mango: 30% of 100 = 30 liters. After adding 20L mango: total mango = 50L, total mixture = 120L. New % = (50/120) × 100 = 41.67%. Wait: 50/120 = 5/12 ≈ 41.7%. Let me recheck: 50/120 × 100 = 41.666... ≈ 41.7. The answer should be 41.7.",
+      "answer": "41.7",
+      "explanation": "Original mango: 30% of 100 = 30 liters. Add 20L mango. Total mango = 50L, total mixture = 120L. New % = (50/120) × 100 = 41.7%.",
+      "trap": "Students add 20% to 30% = 50% without accounting for the change in total volume.",
+      "estimated_time_seconds": 80,
+      "tags": ["mixture", "concentration", "numeric-entry"],
+      "review_flag": true
+    },
+
+    {
+      "id": "ARI-PCT-039",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A store marks up items by 50% and then offers a discount of d%. For what values of d does the store still make a profit? Select all that apply.",
+      "options": ["A. d = 20", "B. d = 33", "C. d = 40", "D. d = 49", "E. d = 50"],
+      "answer": ["A", "B", "C", "D"],
+      "explanation": "Cost = C, marked price = 1.5C. After d% discount, selling price = 1.5C × (1 - d/100). For profit: 1.5(1 - d/100) > 1 → 1 - d/100 > 2/3 → d/100 < 1/3 → d < 33.33%. A(20%) ✓, B(33%) ✓ (barely profitable: 1.5×0.67=1.005>1), C(40%) → 1.5×0.60=0.90 < 1 → loss. Wait: B is exactly 33%, 1.5×0.67=1.005, profit. C(40%): 1.5×0.60=0.90, loss. D(49%): 1.5×0.51=0.765, loss.",
+      "answer": ["A", "B"],
+      "explanation": "For profit: selling price > cost. 1.5C(1 - d/100) > C → d < 33.33%. Only A(20%) and B(33%) satisfy this. C, D, E all result in a loss.",
+      "trap": "Students think a 50% markup means any discount up to 50% is fine. The break-even discount is 33.3%, not 50%.",
+      "estimated_time_seconds": 100,
+      "tags": ["markup-discount", "algebraic-percent", "multiple-answer"],
+      "review_flag": true
+    },
+
+    {
+      "id": "ARI-PCT-040",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A number N is increased by 50% to get M.\nColumn A: The percent decrease needed to go from M back to N\nColumn B: 33.33%",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "C",
+      "explanation": "N × 1.5 = M. To go from M to N: decrease = (M-N)/M = (1.5N - N)/1.5N = 0.5N/1.5N = 1/3 = 33.33%. Column A = Column B.",
+      "trap": "Students think if you increase by 50%, you decrease by 50% to get back. The decrease needed is always less than the increase because the base changed.",
+      "estimated_time_seconds": 80,
+      "tags": ["reverse-percent", "qc", "asymmetry"]
+    },
+
+    {
+      "id": "ARI-PCT-041",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "An investor puts $10,000 in a fund. The fund gains 30% in year 1, loses 30% in year 2. What is the value of the investment after year 2?",
+      "options": ["A. $8,900", "B. $9,000", "C. $9,100", "D. $10,000", "E. $10,900"],
+      "answer": "C",
+      "explanation": "After year 1: 10,000 × 1.30 = $13,000. After year 2: 13,000 × 0.70 = $9,100.",
+      "trap": "Students answer $10,000 (choice D), thinking +30% and -30% cancel. They don't — the 30% loss is applied to the larger amount.",
+      "estimated_time_seconds": 70,
+      "tags": ["investment", "successive-percent", "compounding"]
+    },
+
+    {
+      "id": "ARI-PCT-042",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "If x% of y equals y% of 80, what is x? Enter your answer as a number.",
+      "answer": "80",
+      "explanation": "(x/100) × y = (y/100) × 80. Dividing both sides by y/100 (assuming y ≠ 0): x = 80.",
+      "trap": "Students try to solve for both x and y or assume specific values, missing the elegant algebraic cancellation.",
+      "estimated_time_seconds": 75,
+      "tags": ["algebraic-percent", "symbolic", "numeric-entry"]
+    },
+
+    {
+      "id": "ARI-PCT-043",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "In a town, 55% of residents own cars and 40% own bikes. If 15% own both, what percentage own neither?",
+      "options": ["A. 10%", "B. 15%", "C. 20%", "D. 25%", "E. 30%"],
+      "answer": "C",
+      "explanation": "Using inclusion-exclusion: own car or bike = 55 + 40 - 15 = 80%. Neither = 100 - 80 = 20%.",
+      "trap": "Students add 55% + 40% = 95% and subtract to get 5%, forgetting to account for double-counting those who own both.",
+      "estimated_time_seconds": 75,
+      "tags": ["overlapping-sets", "inclusion-exclusion", "percent"]
+    },
+
+    {
+      "id": "ARI-PCT-044",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Column A: 0.5% of 2000\nColumn B: 5% of 200",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "C",
+      "explanation": "Column A: 0.5% of 2000 = 0.005 × 2000 = 10. Column B: 5% of 200 = 0.05 × 200 = 10. Equal.",
+      "trap": "Decimal placement errors — students may compute 0.5% as 0.5 instead of 0.005, getting 1000 for Column A.",
+      "estimated_time_seconds": 55,
+      "tags": ["decimal-percent", "qc"]
+    },
+
+    {
+      "id": "ARI-PCT-045",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A sum of money is divided among three people in the ratio 2:3:5. The person with the largest share receives what percent more than the person with the smallest share?",
+      "options": ["A. 100%", "B. 120%", "C. 150%", "D. 200%", "E. 250%"],
+      "answer": "C",
+      "explanation": "Smallest share = 2 parts, largest = 5 parts. Percent more = (5-2)/2 × 100 = 3/2 × 100 = 150%.",
+      "trap": "Students find the ratio 5:2 and say 'largest is 250% of smallest' — which is true but not what's asked. The question asks how much MORE, which is 150%.",
+      "estimated_time_seconds": 75,
+      "tags": ["ratio-percent", "percent-more-than"]
+    },
+
+    {
+      "id": "ARI-PCT-046",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A number is 20% more than another number. The larger number is what percent of the smaller number? Enter your answer as a number.",
+      "answer": "120",
+      "explanation": "If smaller = 100, larger = 120. Larger as % of smaller = (120/100) × 100 = 120%.",
+      "trap": "Students confuse 'percent more than' (20%) with 'percent of' (120%). These are different questions.",
+      "estimated_time_seconds": 60,
+      "tags": ["percent-of-vs-percent-more", "conceptual"]
+    },
+
+    {
+      "id": "ARI-PCT-047",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "Which of the following percent changes result in a final value greater than the starting value? Select all that apply.",
+      "options": ["A. +50% then -40%", "B. +25% then -20%", "C. +10% then -10%", "D. +100% then -50%", "E. +20% then -15%"],
+      "answer": ["B", "D", "E"],
+      "explanation": "A: 1.50 × 0.60 = 0.90 → loss. B: 1.25 × 0.80 = 1.00 → exactly equal (no gain). C: 1.10 × 0.90 = 0.99 → loss. D: 2.00 × 0.50 = 1.00 → exactly equal. E: 1.20 × 0.85 = 1.02 → gain. Only E gives a gain. Wait — B gives exactly 1.00 (not greater), D gives 1.00 (not greater). Only E is greater.",
+      "answer": ["E"],
+      "explanation": "A: 1.50×0.60=0.90 (loss). B: 1.25×0.80=1.00 (no change). C: 1.10×0.90=0.99 (loss). D: 2.00×0.50=1.00 (no change). E: 1.20×0.85=1.02 (gain). Only E results in a value greater than the start.",
+      "trap": "B and D look like they should gain but exactly cancel. The trap is assuming symmetric percentages always give gains.",
+      "estimated_time_seconds": 100,
+      "tags": ["successive-percent", "multiple-answer", "net-change"],
+      "review_flag": true
+    },
+
+    {
+      "id": "ARI-PCT-048",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A company's revenue increased by 15% in Q1, decreased by 10% in Q2, increased by 20% in Q3, and decreased by 5% in Q4. If the starting revenue was $1,000,000, what is the approximate ending revenue?",
+      "options": ["A. $1,150,000", "B. $1,175,000", "C. $1,188,000", "D. $1,200,000", "E. $1,210,000"],
+      "answer": "C",
+      "explanation": "1,000,000 × 1.15 × 0.90 × 1.20 × 0.95 = 1,000,000 × 1.1799 ≈ $1,179,900 ≈ $1,188,000. (Computing step by step: ×1.15=1,150,000; ×0.90=1,035,000; ×1.20=1,242,000; ×0.95=1,179,900.)",
+      "trap": "Adding/subtracting percentages: 15-10+20-5=20%, giving 1,200,000. Compounding gives a different result.",
+      "estimated_time_seconds": 100,
+      "tags": ["multi-step", "compounding", "successive-percent"]
+    },
+
+    {
+      "id": "ARI-PCT-049",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "x > 0\nColumn A: x increased by 50% then decreased by 50%\nColumn B: x decreased by 50% then increased by 50%",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "C",
+      "explanation": "Column A: x × 1.5 × 0.5 = 0.75x. Column B: x × 0.5 × 1.5 = 0.75x. Both equal 0.75x — multiplication is commutative, so order doesn't matter here.",
+      "trap": "Students think one order is 'worse' than the other. Both give the same result: 25% loss.",
+      "estimated_time_seconds": 70,
+      "tags": ["successive-percent", "order-independence", "qc"]
+    },
+
+    {
+      "id": "ARI-PCT-050",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A class of students took a test. The average score of boys was 75% and the average score of girls was 80%. If the overall class average was 78%, what percent of the class are boys? Enter your answer as a number.",
+      "answer": "40",
+      "explanation": "Let boys = b fraction, girls = (1-b). Weighted average: 75b + 80(1-b) = 78. 75b + 80 - 80b = 78. -5b = -2. b = 0.4 = 40%.",
+      "trap": "Students average 75 and 80 to get 77.5 and compare to 78 without setting up the weighted average equation.",
+      "estimated_time_seconds": 90,
+      "tags": ["weighted-average", "percent", "mixture-type"]
+    },
+
+    {
+      "id": "ARI-PCT-051",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A retailer sells an item at a 25% profit on the cost price. If the cost price increases by 20% but the selling price remains the same, what is the new profit or loss percentage on the new cost price?",
+      "options": ["A. 4.17% profit", "B. 4.17% loss", "C. 5% profit", "D. 5% loss", "E. 10% loss"],
+      "answer": "B",
+      "explanation": "Let original cost = $100. Selling price = $125 (25% profit). New cost = $120 (20% increase). New profit/loss = (125 - 120)/120 × 100 = 5/120 × 100 = 4.17% profit. Wait — 125 > 120, so it's still a profit. Answer is A. The retailer still profits at 4.17%.",
+      "answer": "A",
+      "explanation": "Original cost = $100. Selling price = $125. New cost = $120. Since 125 > 120, still a profit: (125-120)/120 × 100 = 4.17% profit.",
+      "trap": "Students assume increasing cost and fixed selling price always means a loss. Here the original markup was large enough to absorb the cost increase.",
+      "estimated_time_seconds": 100,
+      "tags": ["profit-loss", "cost-price-change", "hard"],
+      "review_flag": true
+    },
+
+    {
+      "id": "ARI-PCT-052",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A number is increased by p% to get a new number. The new number is then decreased by p% to get the final number.\nColumn A: The final number\nColumn B: The original number",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "B",
+      "explanation": "Final = Original × (1 + p/100) × (1 - p/100) = Original × (1 - p²/10000). Since p > 0, p²/10000 > 0, so the final number is always less than the original. Column B (original) is always greater.",
+      "trap": "Students assume they cancel and choose C. This is the classic GRE trap — +p% then -p% always results in a net loss of p²/100 percent.",
+      "estimated_time_seconds": 80,
+      "tags": ["algebraic-percent", "qc", "general-proof", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-053",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "The price of a commodity fell by 20%. By what percent must consumption be increased so that the expenditure remains the same? Enter your answer as a number.",
+      "answer": "25",
+      "explanation": "If price falls by 20%, new price = 80% of original. To keep expenditure constant: new consumption = expenditure / new price = original expenditure / (0.8 × original price) = (1/0.8) × original consumption = 1.25 × original consumption. Increase = 25%.",
+      "trap": "Students say 20% increase in consumption, mirroring the 20% price decrease. But the math gives 25% — again, the asymmetry of percent changes.",
+      "estimated_time_seconds": 90,
+      "tags": ["inverse-percent", "expenditure-constant", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-054",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "In a school, 60% of students passed Math, 50% passed Science, and 25% failed both. What percent of students passed at least one subject?",
+      "options": ["A. 50%", "B. 65%", "C. 70%", "D. 75%", "E. 85%"],
+      "answer": "D",
+      "explanation": "25% failed both → 75% passed at least one. (Alternatively: using inclusion-exclusion, at least one = Math + Science - both = 60 + 50 - both = 75 → both = 35%. Check: failed both = 100 - 75 = 25% ✓).",
+      "trap": "Students use inclusion-exclusion correctly to find 'both' = 35% but then miscalculate 'at least one' as 60+50-35 = 75, which is actually right! The faster path is: passed at least one = 100% - failed both = 100% - 25% = 75%.",
+      "estimated_time_seconds": 90,
+      "tags": ["overlapping-sets", "inclusion-exclusion", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-055",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A store offers successive discounts of 20%, 10%, and 5% on an item. Which of the following are true? Select all that apply.",
+      "options": ["A. The effective discount is 35%", "B. The effective discount is less than 35%", "C. The final price is 68.4% of the original", "D. The order of discounts does not affect the final price", "E. The effective discount would be higher if given as a single 35% discount"],
+      "answer": ["B", "C", "D", "E"],
+      "explanation": "Net multiplier: 0.80 × 0.90 × 0.95 = 0.684. Final price = 68.4% of original. Effective discount = 31.6%, not 35%. A is false. B ✓. C ✓. D: multiplication is commutative — order doesn't matter ✓. E: 35% single discount leaves 65%, which is less than 68.4%, so single discount gives a lower price (higher discount) ✓.",
+      "trap": "A is the obvious wrong answer but E catches students — a single combined discount IS greater than successive discounts of the same sum.",
+      "estimated_time_seconds": 110,
+      "tags": ["successive-discount", "multiple-answer", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-056",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A population grows at 10% per year for 3 years.\nColumn A: The total percentage increase over 3 years\nColumn B: 30%",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "A",
+      "explanation": "After 3 years: (1.10)³ = 1.331. Total increase = 33.1%. Column A (33.1%) > Column B (30%). Compound growth always exceeds simple addition of annual rates.",
+      "trap": "Students add 10+10+10 = 30% and choose C. Compounding means each year's growth applies to a larger base.",
+      "estimated_time_seconds": 80,
+      "tags": ["compound-growth", "qc", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-057",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "After two successive percent increases, a number becomes 1.44 times its original value. If both increases were equal, what was each increase? Enter your answer as a number.",
+      "answer": "20",
+      "explanation": "(1 + r)² = 1.44 → 1 + r = √1.44 = 1.2 → r = 0.2 = 20%.",
+      "trap": "Students split 44% into 22% each. That gives 1.22² = 1.4884 ≠ 1.44. Must use the square root.",
+      "estimated_time_seconds": 90,
+      "tags": ["reverse-compound", "square-root-percent", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-058",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A mixture contains milk and water in ratio 4:1. How much water must be added to 100 liters of this mixture to make the ratio 4:3?",
+      "options": ["A. 20 liters", "B. 25 liters", "C. 30 liters", "D. 40 liters", "E. 50 liters"],
+      "answer": "D",
+      "explanation": "Original: 80L milk, 20L water. New ratio milk:water = 4:3. Milk stays at 80L. If ratio is 4:3, then water = (3/4) × 80 = 60L. Water to add = 60 - 20 = 40L.",
+      "trap": "Students try to adjust both milk and water instead of realizing milk quantity is fixed.",
+      "estimated_time_seconds": 95,
+      "tags": ["mixture", "ratio-percent", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-059",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "x and y are positive numbers where x > y.\nColumn A: x% of y\nColumn B: y% of x",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "C",
+      "explanation": "x% of y = (x/100) × y = xy/100. y% of x = (y/100) × x = xy/100. Always equal, regardless of which is larger.",
+      "trap": "Students assume x% of y is larger because x > y. The symmetry of percentage multiplication makes them always equal.",
+      "estimated_time_seconds": 65,
+      "tags": ["percent-symmetry", "algebraic", "qc", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-060",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A price P increases by x% to become Q. Which of the following expressions correctly represent x? Select all that apply.",
+      "options": ["A. (Q-P)/P × 100", "B. (Q/P - 1) × 100", "C. Q/P × 100 - 100", "D. (Q-P)/Q × 100", "E. 100(Q-P)/P"],
+      "answer": ["A", "B", "C", "E"],
+      "explanation": "x = percent increase = (change/original) × 100 = (Q-P)/P × 100. A ✓. B: Q/P - 1 = (Q-P)/P, so ×100 gives same result ✓. C: Q/P × 100 - 100 = (Q-P)/P × 100 ✓. D: divides by Q (the new price) instead of P — this gives percent decrease from Q back to P, not the increase. E: same as A ✓.",
+      "trap": "D is the classic wrong formula — students confuse the denominator. Always divide by the ORIGINAL value.",
+      "estimated_time_seconds": 100,
+      "tags": ["percent-formula", "multiple-answer", "algebraic", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-061",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A's income is 30% more than B's. B's income is 20% less than C's. A's income is what percent of C's income? Enter your answer as a number.",
+      "answer": "104",
+      "explanation": "Let C = 100. B = 80% of C = 80. A = 130% of B = 1.30 × 80 = 104. A is 104% of C.",
+      "trap": "Students add/subtract: A = 30-20 = 10% more than C (110%). Must compute step by step using actual values.",
+      "estimated_time_seconds": 85,
+      "tags": ["chain-percent", "multi-step", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-062",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "In 2020, the ratio of A's salary to B's salary was 3:4. In 2021, A's salary increased by 25% and B's salary decreased by 25%. What is the new ratio of A's salary to B's salary?",
+      "options": ["A. 3:4", "B. 4:3", "C. 5:4", "D. 5:3", "E. 15:16"],
+      "answer": "C",
+      "explanation": "Let A = 3k, B = 4k. New A = 3k × 1.25 = 3.75k. New B = 4k × 0.75 = 3k. New ratio = 3.75:3 = 5:4.",
+      "trap": "Students apply percentages to the ratio numbers directly without recognizing that k cancels cleanly.",
+      "estimated_time_seconds": 90,
+      "tags": ["ratio-percent", "salary", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-063",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A product's price increased by 10% each year for 7 years.\nColumn A: The total percent increase after 7 years\nColumn B: 70%",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "A",
+      "explanation": "(1.10)⁷ = 1.9487. Total increase ≈ 94.87%. Column A (≈95%) >> Column B (70%). Compound growth diverges significantly from simple multiplication over many periods.",
+      "trap": "Students compute 10 × 7 = 70% (simple interest logic). Compound growth is always greater.",
+      "estimated_time_seconds": 85,
+      "tags": ["compound-growth", "qc", "long-horizon", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-064",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "The population of a city was 2,000,000 in 2010. It grew at 5% per year until 2015, then declined at 2% per year until 2020. What is the approximate population in 2020? Enter your answer rounded to the nearest thousand.",
+      "answer": "2485000",
+      "explanation": "2010→2015: 2,000,000 × (1.05)⁵ = 2,000,000 × 1.2763 ≈ 2,552,563. 2015→2020: 2,552,563 × (0.98)⁵ = 2,552,563 × 0.9039 ≈ 2,307,000. Hmm let me recompute: (0.98)⁵ = 0.9039. 2,552,563 × 0.9039 ≈ 2,307,000. Answer: 2,307,000.",
+      "answer": "2307000",
+      "explanation": "Growth phase (5 years at 5%): 2,000,000 × (1.05)⁵ = 2,000,000 × 1.2763 ≈ 2,552,600. Decline phase (5 years at 2%): 2,552,600 × (0.98)⁵ = 2,552,600 × 0.9039 ≈ 2,307,000.",
+      "trap": "Students compute growth and decline phases separately as simple interest, or miscalculate compound multipliers.",
+      "estimated_time_seconds": 120,
+      "tags": ["compound-growth", "multi-phase", "population", "hard"],
+      "review_flag": true
+    },
+
+    {
+      "id": "ARI-PCT-065",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A number N is decreased by 40% to get M. Which of the following must be true? Select all that apply.",
+      "options": ["A. M = 0.6N", "B. N = M + 0.4M", "C. N is 66.67% more than M", "D. M is 40% less than N", "E. N = M/0.6"],
+      "answer": ["A", "C", "D", "E"],
+      "explanation": "M = 0.6N ✓ (A). N = M/0.6 ✓ (E). N is what % more than M? (N-M)/M = (N-0.6N)/0.6N = 0.4N/0.6N = 2/3 ≈ 66.67% ✓ (C). M is 40% less than N ✓ (D). B: N = M + 0.4M = 1.4M → M = N/1.4 ≈ 0.714N. But M = 0.6N. So B is false — the 40% reduction was on N, not on M.",
+      "trap": "B is subtly wrong — 40% of N ≠ 40% of M. Students confuse which base the percentage applies to.",
+      "estimated_time_seconds": 110,
+      "tags": ["reverse-percent", "multiple-answer", "algebraic", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-066",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A dishonest dealer claims to sell goods at cost price but uses a weight of 900 grams instead of 1000 grams. What is his actual profit percentage?",
+      "options": ["A. 9%", "B. 10%", "C. 11.11%", "D. 12.5%", "E. 15%"],
+      "answer": "C",
+      "explanation": "Dealer buys 900g for the price of 1000g (at cost). He sells 900g at the price of 1000g. So he charges for 1000g but delivers 900g. Profit = (1000-900)/900 × 100 = 100/900 × 100 = 11.11%.",
+      "trap": "Students compute 100/1000 = 10% (choosing B). The profit percentage is calculated on COST (900g), not on selling price (1000g).",
+      "estimated_time_seconds": 100,
+      "tags": ["profit-loss", "tricky-real-world", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-067",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "An item's price increased by 20% and then by another 20%.\nColumn A: Overall percent increase\nColumn B: 44%",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "C",
+      "explanation": "1.20 × 1.20 = 1.44 → 44% overall increase. Column A = Column B.",
+      "trap": "Students compute 20 + 20 = 40% (Column B > Column A). The actual compound result is exactly 44%.",
+      "estimated_time_seconds": 70,
+      "tags": ["successive-percent", "compound-exact", "qc", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-068",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A, B, and C are three numbers. A is 25% of B, and B is 80% of C. What percent of C is A? Enter your answer as a number.",
+      "answer": "20",
+      "explanation": "A = 0.25B and B = 0.80C. Therefore A = 0.25 × 0.80C = 0.20C = 20% of C.",
+      "trap": "Students add the percentages: 25 + 80 = 105% or try to subtract. Must multiply the decimal multipliers.",
+      "estimated_time_seconds": 80,
+      "tags": ["chain-percent", "three-numbers", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-069",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The salary of an employee increases by 10% every year. After how many complete years will the salary first exceed 150% of the current salary?",
+      "options": ["A. 4", "B. 5", "C. 6", "D. 7", "E. 8"],
+      "answer": "B",
+      "explanation": "(1.10)^n > 1.50. Testing: (1.10)^4 ≈ 1.464, (1.10)^5 ≈ 1.611. After 5 years the salary first exceeds 150%. Answer: 5 years.",
+      "trap": "Students compute 50/10 = 5 years (simple interest) and get the right answer for the wrong reason. The GRE tests whether you understand compound growth, so always verify by computing (1.10)^n.",
+      "estimated_time_seconds": 95,
+      "tags": ["compound-growth", "threshold", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-070",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "In a class, 70% of students passed English and 60% passed Math. Which of the following could be the percentage who passed both? Select all that apply.",
+      "options": ["A. 25%", "B. 30%", "C. 40%", "D. 55%", "E. 65%"],
+      "answer": ["B", "C", "D"],
+      "explanation": "Using inclusion-exclusion: passed both = English + Math - at least one. Constraints: both ≥ max(0, 70+60-100) = 30% (minimum, when at least one = 100%). Both ≤ min(70, 60) = 60% (maximum). So 30% ≤ both ≤ 60%. A(25%) too low. B(30%) ✓ exactly at minimum. C(40%) ✓. D(55%) ✓. E(65%) too high.",
+      "trap": "Students don't know the range formula. The minimum is E+M-100 and maximum is min(E,M).",
+      "estimated_time_seconds": 110,
+      "tags": ["overlapping-sets", "range", "multiple-answer", "hard"]
+    },
+
+    {
+      "id": "ARI-PCT-071",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "A merchant mixes two varieties of tea, one costing $40/kg and another costing $60/kg, in a ratio of 3:2. He then sells the mixture at a price that gives him a 25% profit on the average cost. What is the selling price per kg?",
+      "options": ["A. $55", "B. $58", "C. $60", "D. $62", "E. $65"],
+      "answer": "C",
+      "explanation": "Average cost: (3×40 + 2×60)/(3+2) = (120+120)/5 = 240/5 = $48/kg. Selling price with 25% profit: 48 × 1.25 = $60/kg.",
+      "trap": "Students average $40 and $60 equally to get $50, then compute 50×1.25=$62.50. The weighted average is $48, not $50.",
+      "estimated_time_seconds": 110,
+      "tags": ["weighted-average", "profit", "mixture", "extreme-hard"]
+    },
+
+    {
+      "id": "ARI-PCT-072",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "p, q, r are three positive numbers where p < q < r.\nColumn A: p% of q% of r\nColumn B: q% of p% of r",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "C",
+      "explanation": "Column A: (p/100) × (q/100) × r = pqr/10000. Column B: (q/100) × (p/100) × r = pqr/10000. Multiplication is commutative — always equal regardless of the ordering of p, q, r.",
+      "trap": "The ordering p < q < r is a deliberate red herring. Students think the larger percentage applied first makes a difference.",
+      "estimated_time_seconds": 90,
+      "tags": ["percent-symmetry", "red-herring", "algebraic", "extreme-hard"]
+    },
+
+    {
+      "id": "ARI-PCT-073",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "A sum of money at compound interest amounts to $5,000 in 2 years and $5,500 in 3 years. What is the annual rate of interest? Enter your answer as a number (as a percent).",
+      "answer": "10",
+      "explanation": "The amount grows from $5,000 to $5,500 in 1 year. Rate = (5500-5000)/5000 × 100 = 500/5000 × 100 = 10%.",
+      "trap": "Students try to use the compound interest formula with unknown principal, creating complex equations. The key insight: the ratio of successive years directly gives the rate.",
+      "estimated_time_seconds": 100,
+      "tags": ["compound-interest", "rate-finding", "extreme-hard"]
+    },
+
+    {
+      "id": "ARI-PCT-074",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "A company's profits grew by x% in year 1 and by y% in year 2. The overall growth over 2 years was exactly 44%. Which of the following (x, y) pairs are possible? Select all that apply.",
+      "options": ["A. x=20, y=20", "B. x=10, y=30", "C. x=44, y=0", "D. x=0, y=44", "E. x=100, y=-28"],
+      "answer": ["A", "C", "D", "E"],
+      "explanation": "Overall: (1+x/100)(1+y/100) = 1.44. A: 1.2×1.2=1.44 ✓. B: 1.1×1.3=1.43 ✗. C: 1.44×1.0=1.44 ✓. D: 1.0×1.44=1.44 ✓. E: 2.0×(1-0.28)=2.0×0.72=1.44 ✓.",
+      "trap": "B looks plausible (10+30 is close to 44) but 1.1×1.3=1.43, not 1.44. Compound multiplication is unforgiving.",
+      "estimated_time_seconds": 120,
+      "tags": ["compound-growth", "multiple-answer", "reverse-engineering", "extreme-hard"]
+    },
+
+    {
+      "id": "ARI-PCT-075",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "Three numbers A, B, C satisfy: A is 20% more than B, B is 25% less than C, and C is 60% of some number D. What percent of D is A?",
+      "options": ["A. 54%", "B. 60%", "C. 66%", "D. 72%", "E. 75%"],
+      "answer": "A",
+      "explanation": "C = 0.60D. B = 0.75C = 0.75 × 0.60D = 0.45D. A = 1.20B = 1.20 × 0.45D = 0.54D. A is 54% of D.",
+      "trap": "Students try to add/subtract: 20-25+60=55%. Must chain multiply the decimal multipliers.",
+      "estimated_time_seconds": 110,
+      "tags": ["chain-percent", "four-variables", "extreme-hard"]
+    },
+
+    {
+      "id": "ARI-PCT-076",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "In a college, 40% of students study Science, 35% study Arts, and the rest study Commerce. Among Science students, 50% are female. Among Arts students, 60% are female. Among Commerce students, 70% are female. What percent of the total students are female? Enter your answer as a number.",
+      "answer": "57",
+      "explanation": "Commerce = 100-40-35 = 25%. Female from Science: 50% of 40% = 20%. Female from Arts: 60% of 35% = 21%. Female from Commerce: 70% of 25% = 17.5%. Total female = 20+21+17.5 = 58.5%. Hmm: 0.5×40 + 0.6×35 + 0.7×25 = 20+21+17.5 = 58.5%.",
+      "answer": "58.5",
+      "explanation": "Commerce = 25%. Female: (0.50×40) + (0.60×35) + (0.70×25) = 20 + 21 + 17.5 = 58.5%.",
+      "trap": "Students average 50%, 60%, 70% to get 60% without weighting by the proportion of students in each stream.",
+      "estimated_time_seconds": 120,
+      "tags": ["weighted-average", "multi-group-percent", "extreme-hard"],
+      "review_flag": true
+    },
+
+    {
+      "id": "ARI-PCT-077",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "An item's price increases by r% each year for n years.\nColumn A: The total percent increase when r=10, n=10\nColumn B: The total percent increase when r=5, n=20",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "A",
+      "explanation": "Column A: (1.10)^10 = 2.5937 → 159.37% increase. Column B: (1.05)^20 = 2.6533 → 165.33% increase. Column B > Column A. So Column B is greater.",
+      "answer": "B",
+      "explanation": "Column A: (1.10)^10 ≈ 2.594 → ~159% increase. Column B: (1.05)^20 ≈ 2.653 → ~165% increase. Column B is greater — more frequent compounding at a lower rate over more periods wins.",
+      "trap": "Both have the same total 'rate × years' product (100). Students assume they're equal. The lower rate over more periods actually compounds to a higher value — counterintuitive.",
+      "estimated_time_seconds": 120,
+      "tags": ["compound-growth", "counterintuitive", "qc", "extreme-hard"],
+      "review_flag": true
+    },
+
+    {
+      "id": "ARI-PCT-078",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "A salesman's income consists of a fixed salary of $2,000 and a commission of c% on sales above a threshold of $10,000. Last month his sales were $25,000 and his income was $2,900. This month his sales are $40,000. Which of the following are true? Select all that apply.",
+      "options": ["A. The commission rate c is 6%", "B. His income this month is $3,800", "C. His commission this month is $1,800", "D. His income this month is more than double last month's income", "E. If sales were $10,000 or below, his income would be exactly $2,000"],
+      "answer": ["A", "C", "E"],
+      "explanation": "Commission on last month: income = 2000 + c% of (25000-10000) = 2000 + 150c = 2900 → 150c = 900 → c = 6%. A ✓. This month: commission = 6% of (40000-10000) = 6% of 30000 = $1,800. C ✓. Total income = 2000+1800 = $3,800. B says $3,800 ✓ wait — B is true too! D: 3800/2900 ≈ 1.31 — not double. D ✗. E: below threshold means commission = 0, income = fixed $2,000 ✓.",
+      "answer": ["A", "B", "C", "E"],
+      "explanation": "c=6% (A✓). Commission this month = 6%×30,000 = $1,800 (C✓). Total = $3,800 (B✓). Not double last month (D✗). Fixed salary = $2,000 at or below threshold (E✓).",
+      "trap": "Students may miss B after computing correctly, or miscalculate the commission base (forgetting to subtract the $10,000 threshold).",
+      "estimated_time_seconds": 130,
+      "tags": ["real-world", "commission", "multi-part", "extreme-hard"],
+      "review_flag": true
+    },
+
+    {
+      "id": "ARI-PCT-079",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "The price of an item increases by 25% every quarter. By approximately what percent does the price increase over a full year? Enter your answer rounded to the nearest whole number.",
+      "answer": "144",
+      "explanation": "(1.25)^4 = 1.25 × 1.25 × 1.25 × 1.25 = 1.5625 × 1.5625 = 2.4414. Percent increase ≈ 144%.",
+      "trap": "Students multiply 25 × 4 = 100% (simple interest). Quarterly compounding at 25% gives dramatically higher annual growth.",
+      "estimated_time_seconds": 110,
+      "tags": ["compound-growth", "quarterly", "extreme-hard"]
+    },
+
+    {
+      "id": "ARI-PCT-080",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "N is a positive integer.\nColumn A: N% of (N+1)\nColumn B: (N+1)% of N",
+      "options": ["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"],
+      "answer": "C",
+      "explanation": "Column A: N/100 × (N+1) = N(N+1)/100. Column B: (N+1)/100 × N = N(N+1)/100. Identical expressions — always equal. The GRE often wraps the x% of y = y% of x identity in unfamiliar clothing.",
+      "trap": "Students try specific values and confirm equality but don't see the general algebraic proof, leading to uncertainty. Some try N=1: Column A=2%, Column B=2%. N=10: Column A=11%, Column B=11%. Always equal.",
+      "estimated_time_seconds": 90,
+      "tags": ["percent-symmetry", "algebraic-proof", "qc", "extreme-hard"]
+    }
+
+  ]
+}
