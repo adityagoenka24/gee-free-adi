@@ -2193,23 +2193,35 @@ function showUpgradePrompt(feature) {
 
   const modal = document.createElement('div');
   modal.id = 'upgrade-modal';
-  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';
   modal.innerHTML = `
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:36px;max-width:420px;width:100%;text-align:center;position:relative;">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#ff6584);border-radius:16px 16px 0 0;"></div>
-      <div style="font-size:36px;margin-bottom:12px;">🔒</div>
-      <div style="font-family:var(--font-display);font-size:22px;margin-bottom:8px;">Pro Feature</div>
-      <div style="font-size:14px;color:var(--text2);margin-bottom:24px;line-height:1.6;">
-        <strong>${feature}</strong> is available in the Pro version.<br><br>
-        Get access to the full question bank, Exam Mode, Hard & Extreme questions, Send to Tutor, and My Progress dashboard.
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px 36px;max-width:440px;width:100%;text-align:center;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.6);">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#a89aff,#ff6584);border-radius:20px 20px 0 0;"></div>
+
+      <div style="font-size:40px;margin-bottom:14px;">⚡</div>
+      <div style="font-family:var(--font-display);font-size:24px;margin-bottom:10px;">Unlock Pro</div>
+      <div style="font-size:14px;color:var(--text2);margin-bottom:8px;line-height:1.6;">
+        <strong style="color:var(--text);">${feature}</strong> is a Pro feature.
       </div>
-      <a href="mailto:goenka.aditya.kol@gmail.com?subject=GRE Pro Access Request&body=Hi Coach Aditya, I would like to upgrade to Pro access for the GRE Quant Logger. Please share the details."
-        style="display:inline-block;background:var(--accent);color:white;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:600;font-size:14px;margin-bottom:12px;">
-        📧 Contact Coach Aditya
+      <div style="font-size:13px;color:var(--text3);margin-bottom:28px;line-height:1.7;">
+        Get all 88 subtopics · 4,520+ questions · Exam Mode<br>
+        Hard & Extreme difficulty · My Progress · Send to Tutor
+      </div>
+
+      <a href="pricing.html?feature=${encodeURIComponent(feature)}" target="_blank"
+        style="display:block;background:linear-gradient(135deg,var(--accent),#a89aff);color:white;text-decoration:none;padding:14px 28px;border-radius:10px;font-weight:700;font-size:15px;margin-bottom:10px;box-shadow:0 4px 20px rgba(108,99,255,0.4);transition:opacity 0.2s;"
+        onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+        🚀 See Pricing — from ₹999
       </a>
-      <div style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:20px;">goenka.aditya.kol@gmail.com</div>
+
+      <a href="pricing.html?feature=${encodeURIComponent(feature)}" target="_blank"
+        style="display:block;background:linear-gradient(135deg,#f5c842,#f97316);color:#0a0a0f;text-decoration:none;padding:12px 28px;border-radius:10px;font-weight:700;font-size:14px;margin-bottom:20px;"
+        onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+        🎓 Pro + Tutor — ₹1,499/mo
+      </a>
+
       <button onclick="document.getElementById('upgrade-modal').remove()"
-        style="background:none;border:1px solid var(--border);color:var(--text2);padding:8px 24px;border-radius:8px;cursor:pointer;font-size:13px;">
+        style="background:none;border:1px solid var(--border);color:var(--text3);padding:8px 24px;border-radius:8px;cursor:pointer;font-size:13px;font-family:var(--font-body);">
         Maybe Later
       </button>
     </div>`;
