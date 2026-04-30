@@ -532,6 +532,7 @@ tr:hover td{background:rgba(108,99,255,0.04);}
 </style>
 </head>
 <body>
+
 <div class="app-wrapper">
 
   <div class="app-header">
@@ -546,8 +547,8 @@ tr:hover td{background:rgba(108,99,255,0.04);}
   </div>
 
   <div class="tabs">
+    <button class="tab-btn" id="tab-btn-session" onclick="switchTab('session',this)">✏️ New Session</button>
     <button class="tab-btn active" id="tab-btn-bank" onclick="switchTab('bank',this)">🎯 Practice from Bank</button>
-    <button class="tab-btn" id="tab-btn-session" onclick="switchTab('session',this)">📋 Manual Logger</button>
     <button class="tab-btn" id="tab-btn-progress" onclick="switchTab('progress',this)">📊 My Progress</button>
   </div>
 
@@ -1555,8 +1556,8 @@ function bankPopulateTopicDropdown() {
   topicEl.innerHTML = '<option value="">— Select Topic —</option>';
   Object.keys(BANK_INDEX.topics).sort().forEach(topic => {
     // Only show topic if it has at least one complete subtopic
-    const hasComplete = Object.values(BANK_INDEX.topics[topic])
-      .some(meta => meta.status === 'complete');
+    const subtopics = BANK_INDEX.topics[topic];
+    const hasComplete = Object.values(subtopics).some(s => s.status === 'complete');
     if (!hasComplete) return;
     const opt = document.createElement('option');
     opt.value = topic; opt.textContent = topic;
@@ -1609,10 +1610,9 @@ function bankTopicChanged(){
   document.getElementById('bank-avail-count').style.color='var(--text3)';
   document.getElementById('bank-start-btn').disabled=true;
   if(!topic||!BANK_INDEX||!BANK_INDEX.topics[topic])return;
-  // Only show subtopics that have questions (status = complete)
   Object.keys(BANK_INDEX.topics[topic]).sort().forEach(s=>{
-    const meta=BANK_INDEX.topics[topic][s];
-    if(meta.status!=='complete')return;
+    // Only show subtopics with questions available (status = complete)
+    if(BANK_INDEX.topics[topic][s].status !== 'complete') return;
     const o=document.createElement('option');o.value=s;o.textContent=s;sub.appendChild(o);
   });
   bankUpdateSummary();
@@ -2038,8 +2038,6 @@ function resetBankSession(){
 document.getElementById('session-date').value=new Date().toISOString().slice(0,10);
 // Load bank manifest on startup
 loadBankIndex();
-// Default to Practice from Bank tab
-switchTab('bank', document.getElementById('tab-btn-bank'));
 
 // ============================================================
 // FREE / PRO GATING
@@ -2106,7 +2104,7 @@ function applyFreeModeLimitations() {
   if (setupCardSession) {
     const banner2 = document.createElement('div');
     banner2.style.cssText = 'background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:12px;color:var(--text2);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;';
-    banner2.innerHTML = `<span>🎓 Free Tier — Manual session logging is always free</span><a href="pricing.html" style="color:var(--accent);text-decoration:none;font-family:var(--font-mono);font-size:11px;">Get Pro →</a>`;
+    banner2.innerHTML = `<span>🎓 Free Tier — Manual session logging is always free</span><a href="mailto:goenka.aditya.kol@gmail.com?subject=GRE Pro Access" style="color:var(--accent);text-decoration:none;font-family:var(--font-mono);font-size:11px;">Get Pro →</a>`;
     setupCardSession.insertBefore(banner2, setupCardSession.firstChild);
   }
 }
@@ -2137,9 +2135,8 @@ bankTopicChanged = function() {
   document.getElementById('bank-start-btn').disabled = true;
   if (!topic || !FREE_CONFIG.allowedSubtopics[topic]) return;
   FREE_CONFIG.allowedSubtopics[topic].forEach(s => {
-    // Only show subtopic if it exists in BANK_INDEX AND is complete
+    // Only show subtopic if it exists in BANK_INDEX
     if (!BANK_INDEX || !BANK_INDEX.topics[topic] || !BANK_INDEX.topics[topic][s]) return;
-    if (BANK_INDEX.topics[topic][s].status !== 'complete') return;
     const o = document.createElement('option');
     o.value = s; o.textContent = s;
     sub.appendChild(o);
@@ -2194,8 +2191,9 @@ switchTab = function(name, btn) {
   _origSwitchTab(name, btn);
 };
 
-// Show upgrade prompt modal — redirects to pricing page
+// Show upgrade prompt modal
 function showUpgradePrompt(feature) {
+  // Remove any existing prompt
   const existing = document.getElementById('upgrade-modal');
   if (existing) existing.remove();
 
@@ -2203,30 +2201,35 @@ function showUpgradePrompt(feature) {
   modal.id = 'upgrade-modal';
   modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';
   modal.innerHTML = `
-    <div style="background:var(--surface);border:1px solid rgba(108,99,255,0.3);border-radius:20px;padding:40px 36px;max-width:440px;width:100%;text-align:center;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#ff6584);"></div>
-      <div style="font-size:40px;margin-bottom:14px;">🔒</div>
-      <div style="font-family:var(--font-display);font-size:24px;margin-bottom:10px;">Pro Feature</div>
-      <div style="font-size:14px;color:var(--text2);margin-bottom:8px;line-height:1.65;">
-        <strong style="color:var(--text);">${feature}</strong> is available in the Pro plan.
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px 36px;max-width:440px;width:100%;text-align:center;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.6);">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#a89aff,#ff6584);border-radius:20px 20px 0 0;"></div>
+
+      <div style="font-size:40px;margin-bottom:14px;">⚡</div>
+      <div style="font-family:var(--font-display);font-size:24px;margin-bottom:10px;">Unlock Pro</div>
+      <div style="font-size:14px;color:var(--text2);margin-bottom:8px;line-height:1.6;">
+        <strong style="color:var(--text);">${feature}</strong> is a Pro feature.
       </div>
-      <div style="font-size:13px;color:var(--text3);margin-bottom:28px;line-height:1.6;">
-        Full question bank · All difficulties · Exam Mode · My Progress · Send to Tutor
+      <div style="font-size:13px;color:var(--text3);margin-bottom:28px;line-height:1.7;">
+        Get all 88 subtopics · 4,520+ questions · Exam Mode<br>
+        Hard & Extreme difficulty · My Progress · Send to Tutor
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <a href="pricing.html?feature=${encodeURIComponent(feature)}"
-          style="display:block;background:linear-gradient(135deg,var(--accent),#8b83ff);color:white;text-decoration:none;padding:14px 28px;border-radius:10px;font-weight:600;font-size:15px;box-shadow:0 8px 24px rgba(108,99,255,0.3);">
-          ⚡ See Pricing — from ₹999
-        </a>
-        <a href="mailto:goenka.aditya.kol@gmail.com?subject=GRE Pro Access&body=Hi Coach Aditya, I want to upgrade to Pro."
-          style="display:block;background:var(--surface2);color:var(--text2);text-decoration:none;padding:11px 28px;border-radius:10px;font-size:13px;border:1px solid var(--border);">
-          📧 Email Adi directly
-        </a>
-        <button onclick="document.getElementById('upgrade-modal').remove()"
-          style="background:none;border:none;color:var(--text3);padding:8px;cursor:pointer;font-size:13px;font-family:var(--font-body);">
-          Maybe later
-        </button>
-      </div>
+
+      <a href="pricing.html?feature=${encodeURIComponent(feature)}" target="_blank"
+        style="display:block;background:linear-gradient(135deg,var(--accent),#a89aff);color:white;text-decoration:none;padding:14px 28px;border-radius:10px;font-weight:700;font-size:15px;margin-bottom:10px;box-shadow:0 4px 20px rgba(108,99,255,0.4);transition:opacity 0.2s;"
+        onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+        🚀 See Pricing — from ₹999
+      </a>
+
+      <a href="pricing.html?feature=${encodeURIComponent(feature)}" target="_blank"
+        style="display:block;background:linear-gradient(135deg,#f5c842,#f97316);color:#0a0a0f;text-decoration:none;padding:12px 28px;border-radius:10px;font-weight:700;font-size:14px;margin-bottom:20px;"
+        onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+        🎓 Pro + Tutor — ₹1,499/mo
+      </a>
+
+      <button onclick="document.getElementById('upgrade-modal').remove()"
+        style="background:none;border:1px solid var(--border);color:var(--text3);padding:8px 24px;border-radius:8px;cursor:pointer;font-size:13px;font-family:var(--font-body);">
+        Maybe Later
+      </button>
     </div>`;
   document.body.appendChild(modal);
   modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
