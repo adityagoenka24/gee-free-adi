@@ -1554,6 +1554,10 @@ function bankPopulateTopicDropdown() {
   if (!topicEl || !BANK_INDEX) return;
   topicEl.innerHTML = '<option value="">— Select Topic —</option>';
   Object.keys(BANK_INDEX.topics).sort().forEach(topic => {
+    // Only show topic if it has at least one complete subtopic
+    const hasComplete = Object.values(BANK_INDEX.topics[topic])
+      .some(meta => meta.status === 'complete');
+    if (!hasComplete) return;
     const opt = document.createElement('option');
     opt.value = topic; opt.textContent = topic;
     topicEl.appendChild(opt);
@@ -1605,7 +1609,10 @@ function bankTopicChanged(){
   document.getElementById('bank-avail-count').style.color='var(--text3)';
   document.getElementById('bank-start-btn').disabled=true;
   if(!topic||!BANK_INDEX||!BANK_INDEX.topics[topic])return;
+  // Only show subtopics that have questions (status = complete)
   Object.keys(BANK_INDEX.topics[topic]).sort().forEach(s=>{
+    const meta=BANK_INDEX.topics[topic][s];
+    if(meta.status!=='complete')return;
     const o=document.createElement('option');o.value=s;o.textContent=s;sub.appendChild(o);
   });
   bankUpdateSummary();
@@ -2130,8 +2137,9 @@ bankTopicChanged = function() {
   document.getElementById('bank-start-btn').disabled = true;
   if (!topic || !FREE_CONFIG.allowedSubtopics[topic]) return;
   FREE_CONFIG.allowedSubtopics[topic].forEach(s => {
-    // Only show subtopic if it exists in BANK_INDEX
+    // Only show subtopic if it exists in BANK_INDEX AND is complete
     if (!BANK_INDEX || !BANK_INDEX.topics[topic] || !BANK_INDEX.topics[topic][s]) return;
+    if (BANK_INDEX.topics[topic][s].status !== 'complete') return;
     const o = document.createElement('option');
     o.value = s; o.textContent = s;
     sub.appendChild(o);
