@@ -564,6 +564,23 @@ tr:hover td{background:rgba(108,99,255,0.04);}
 /* ── Send to Tutor teaser ──────────────────────────────────────────── */
 .tutor-teaser{background:rgba(108,99,255,0.06);border:1px solid rgba(108,99,255,0.18);border-radius:10px;padding:14px 18px;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.65;text-align:left;}
 .tutor-teaser strong{color:var(--accent);}
+
+/* ── Exam Sidebar Layout ────────────────────────────────────────── */
+.exam-layout{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:start;}
+.exam-sidebar{position:sticky;top:80px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
+.exam-sidebar-title{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:12px;}
+.exam-sidebar .exam-dots-wrap{display:flex;flex-wrap:wrap;gap:6px;}
+.exam-sidebar .exam-dot{width:28px;height:28px;font-size:11px;}
+.exam-sidebar-unanswered{font-family:var(--font-mono);font-size:11px;color:var(--warning);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);min-height:18px;}
+.exam-question-col{min-width:0;}
+/* Mobile: sidebar collapses to compact top strip */
+@media(max-width:700px){
+  .exam-layout{grid-template-columns:1fr;gap:12px;}
+  .exam-sidebar{position:static;padding:10px 14px;}
+  .exam-sidebar-title{margin-bottom:8px;}
+  .exam-sidebar .exam-dots-wrap{gap:4px;}
+  .exam-sidebar .exam-dot{width:22px;height:22px;font-size:10px;}
+}
 </style>
 </head>
 <body>
@@ -576,12 +593,25 @@ tr:hover td{background:rgba(108,99,255,0.04);}
       <p>by Coach Aditya Goenka</p>
     </div>
     <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
-      <a href="pricing.html" style="display:inline-block;background:linear-gradient(135deg,var(--accent),#a89aff);color:white;text-decoration:none;padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;font-family:var(--font-body);letter-spacing:0.3px;box-shadow:0 2px 10px rgba(108,99,255,0.35);">⚡ Upgrade to Pro</a>
+      <a href="index.html" style="display:inline-block;background:linear-gradient(135deg,var(--accent),#a89aff);color:white;text-decoration:none;padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;font-family:var(--font-body);letter-spacing:0.3px;box-shadow:0 2px 10px rgba(108,99,255,0.35);">⚡ Upgrade to Pro</a>
       <a href="mailto:goenka.aditya.kol@gmail.com" style="font-family:var(--font-mono);font-size:11px;color:var(--accent);text-decoration:none;opacity:0.75;">goenka.aditya.kol@gmail.com</a>
     </div>
   </div>
 
 
+  <!-- ── Hero Section (1.1) ── -->
+  <div class="hero-section">
+    <h2 class="hero-headline">Stop solving <em>random</em> GRE questions</h2>
+    <p class="hero-sub">Practice with real exam timing, trap-based explanations, and score-band calibration — built question by question by a GRE coach.</p>
+    <div class="trust-bar">
+      <span class="trust-pill"><strong>4,520+</strong> Questions</span>
+      <span class="trust-pill"><strong>88</strong> Subtopics</span>
+      <span class="trust-pill"><strong>9</strong> Topics</span>
+      <span class="trust-pill"><strong>4</strong> Difficulty Levels</span>
+      <span class="trust-pill">Calibrated <strong>130–170</strong></span>
+    </div>
+    <button class="hero-cta-btn" onclick="startGuidedSession()">Start Free Practice →</button>
+  </div>
 
   <!-- ── Positioning Block (1.2) ── -->
   <div class="positioning-block">
@@ -799,24 +829,26 @@ tr:hover td{background:rgba(108,99,255,0.04);}
           <div class="exam-countdown" id="exam-countdown" style="display:none;">00:00</div>
         </div>
       </div>
-      <!-- Exam nav dots (exam mode only) -->
-      <div id="exam-nav-bar" style="display:none;">
-        <div class="exam-nav">
-          <div class="exam-nav-label">Question Navigator — click any dot to jump</div>
-          <div id="exam-dots"></div>
-        </div>
-      </div>
-      <div id="bank-question-area"></div>
-      <!-- Exam submit area (exam mode only) -->
-      <div id="exam-submit-area" style="display:none;">
-        <div class="exam-submit-area">
-          <div id="exam-unanswered-warning" class="unanswered-warning" style="display:none;"></div>
-          <p>Finished? Submit to see your full analysis.</p>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-            <button class="btn btn-danger" onclick="examSubmit()">📝 Submit Exam</button>
+      <!-- Exam layout: sidebar nav + question column -->
+      <div id="exam-layout-wrapper" style="display:none;">
+        <div class="exam-layout">
+          <!-- Sidebar navigator -->
+          <div class="exam-sidebar" id="exam-nav-bar">
+            <div class="exam-sidebar-title">Navigator</div>
+            <div class="exam-dots-wrap" id="exam-dots"></div>
+            <div class="exam-sidebar-unanswered" id="exam-unanswered-warning"></div>
+            <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
+              <button class="btn btn-danger" style="width:100%;padding:10px;" onclick="examSubmit()">📝 Submit</button>
+            </div>
+          </div>
+          <!-- Question column -->
+          <div class="exam-question-col">
+            <div id="bank-question-area"></div>
           </div>
         </div>
       </div>
+      <!-- Keep old submit area hidden — submit is now in sidebar -->
+      <div id="exam-submit-area" style="display:none;"></div>
     </div>
 
     <!-- Exam Analysis Screen -->
@@ -1686,7 +1718,7 @@ function bankSubtopicChanged(){
   }
   el.innerHTML = meta.count + ' questions available in this subtopic'
     + (isFreeTier()
-      ? ' &nbsp;<a href="pricing.html" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">4,520+ total in Pro across 88 subtopics →</a>'
+      ? ' &nbsp;<a href="index.html" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">4,520+ total in Pro across 88 subtopics →</a>'
       : '');
   el.style.color='var(--success)';
   bankUpdateSummary();
@@ -1868,10 +1900,7 @@ function bankRenderQuestion(){
           <span class="pq-type-badge">${bankTypeLabel(q.type)}</span>
           <span style="font-size:11px;color:var(--text3);font-family:var(--font-mono);">~${q.estimated_time_seconds||90}s</span>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <button class="error-report-btn" onclick="openErrorReport()">⚑ Report Error</button>
-          <div class="pq-timer" id="pq-qtimer">0:00</div>
-        </div>
+        <div class="pq-timer" id="pq-qtimer">0:00</div>
       </div>
       <div class="pq-body">${bodyHTML}</div>
       <div class="pq-feedback" id="pq-feedback"></div>
@@ -1960,6 +1989,9 @@ function bankSubmit(){
         <div style="display:flex;justify-content:space-between;margin-top:12px;font-family:var(--font-mono);font-size:11px;color:var(--text3);">
           <span>Your time: ${fmtTime(timeTaken)} · Est: ${fmtTime(q.estimated_time_seconds||90)}</span>
           <span>${timeTaken<=(q.estimated_time_seconds||90)?'⚡ On pace':'🐢 Over time'}</span>
+        </div>
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);text-align:right;">
+          <button class="error-report-btn" style="opacity:1;" onclick="openErrorReport()">⚑ Spotted an error in this question? Report it</button>
         </div>
       </div>`;
     fEl.classList.add('visible');
@@ -2140,7 +2172,7 @@ function applyFreeModeLimitations() {
     banner.style.cssText = 'background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:8px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;';
     banner.innerHTML = `
       <span style="font-size:13px;color:var(--text2);">🎓 <strong>Free Tier</strong> — 2 subtopics · Easy & Medium only · up to 20 questions/session</span>
-      <a href="pricing.html" style="font-size:12px;font-family:var(--font-mono);color:var(--accent);text-decoration:none;white-space:nowrap;">Upgrade to Pro →</a>`;
+      <a href="index.html" style="font-size:12px;font-family:var(--font-mono);color:var(--accent);text-decoration:none;white-space:nowrap;">Upgrade to Pro →</a>`;
     setupCard.insertBefore(banner, setupCard.firstChild);
   }
 
@@ -2149,7 +2181,7 @@ function applyFreeModeLimitations() {
   if (setupCardSession) {
     const banner2 = document.createElement('div');
     banner2.style.cssText = 'background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:12px;color:var(--text2);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;';
-    banner2.innerHTML = `<span>🎓 Free Tier — Manual session logging is always free</span><a href="pricing.html" style="color:var(--accent);text-decoration:none;font-family:var(--font-mono);font-size:11px;">See Pricing →</a>`;
+    banner2.innerHTML = `<span>🎓 Free Tier — Manual session logging is always free</span><a href="index.html" style="color:var(--accent);text-decoration:none;font-family:var(--font-mono);font-size:11px;">See Pricing →</a>`;
     setupCardSession.insertBefore(banner2, setupCardSession.firstChild);
   }
 }
@@ -2355,7 +2387,7 @@ startBankSession = async function() {
   document.getElementById('bank-score-pill').style.display = 'none';
   document.getElementById('bank-session-timer').style.display = 'none';
   document.getElementById('exam-countdown').style.display = 'block';
-  document.getElementById('exam-nav-bar').style.display = 'block';
+  document.getElementById('exam-layout-wrapper').style.display = 'block';
   document.getElementById('exam-submit-area').style.display = 'block';
 
   // Build nav dots
@@ -2419,10 +2451,13 @@ function examUpdateDots() {
 }
 
 function examJumpTo(idx) {
-  examSaveCurrentAnswer();  // saves time spent on current question
+  examSaveCurrentAnswer();
   bankState.currentIndex = idx;
-  bankState.qStartTime = Date.now();  // fresh timer for the jumped-to question
+  bankState.qStartTime = Date.now();
   examRenderQuestion(idx);
+  // On mobile, sidebar is above — scroll to question column
+  const qCol = document.getElementById('bank-question-area');
+  if (qCol && window.innerWidth <= 700) qCol.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 // ============================================================
@@ -2594,14 +2629,10 @@ function examGoPrev() {
 
 function examUpdateUnansweredWarning() {
   const unanswered = bankState.examAnswers.filter(a => !a || a.answer === null).length;
-  const w = document.getElementById('exam-unanswered-warning');
-  if (!w) return;
-  if (unanswered > 0) {
-    w.style.display = 'block';
-    w.textContent = unanswered + ' question' + (unanswered > 1 ? 's' : '') + ' not yet answered';
-  } else {
-    w.style.display = 'none';
-  }
+  const el = document.getElementById('exam-unanswered-warning');
+  if (!el) return;
+  el.textContent = unanswered > 0 ? unanswered + ' unanswered' : '✓ All answered';
+  el.style.color = unanswered > 0 ? 'var(--warning)' : 'var(--success)';
 }
 
 // ============================================================
@@ -2758,6 +2789,9 @@ function examRenderAnalysis() {
                 </div>
                 <div class="wrong-q-explanation">${escHtml(q.explanation)}</div>
                 <div class="wrong-q-trap">⚠️ Trap: ${escHtml(q.trap)}</div>
+                <div style="margin-top:10px;text-align:right;">
+                  <button class="error-report-btn" style="opacity:1;" data-wrong-idx="${i}" onclick="openErrorReportForQuestion(bankState.results.filter(r=>!r.correct)[this.dataset.wrongIdx].question)">⚑ Report an error in this question</button>
+                </div>
               </div>
             </div>`;
           }).join('')}
@@ -2795,7 +2829,8 @@ function barRow(label, correct, total, pct, color) {
 const _origResetBankSession = resetBankSession;
 resetBankSession = function() {
   document.getElementById('exam-analysis-screen').style.display = 'none';
-  document.getElementById('exam-nav-bar').style.display = 'none';
+  document.getElementById('exam-layout-wrapper').style.display = 'none';
+  document.getElementById('exam-layout-wrapper').style.display = 'none';
   document.getElementById('exam-submit-area').style.display = 'none';
   document.getElementById('exam-countdown').style.display = 'none';
   document.getElementById('bank-score-pill').style.display = 'flex';
@@ -3365,7 +3400,7 @@ function hideLoading(){document.getElementById('loading-overlay').classList.remo
 
 document.getElementById('session-date').value=new Date().toISOString().slice(0,10);
 
-// ── Report an Error ──────────────────────────────────────────────────────────
+// ── Report an Error (Practice Mode — uses bankState.queue[currentIndex]) ────────
 function openErrorReport() {
   const existing = document.getElementById('error-report-modal');
   if (existing) existing.remove();
@@ -3494,6 +3529,58 @@ function startGuidedSession() {
   }, 80);
 }
 
+// ── Report Error for a specific question object (Exam Mode wrong review) ────────
+function openErrorReportForQuestion(q) {
+  if (!q) return;
+  const existing = document.getElementById('error-report-modal');
+  if (existing) existing.remove();
+  const modal = document.createElement('div');
+  modal.id = 'error-report-modal';
+  modal.innerHTML = `
+    <div class="error-modal-card">
+      <div class="error-modal-title">⚑ Report a Question Error</div>
+      <div class="error-modal-meta">
+        ID: ${escHtml(q.id)} &nbsp;·&nbsp; ${escHtml(q.topic||bankState.topic)} › ${escHtml(q.subtopic||bankState.subtopic)}<br>
+        We review all reports within 24 hours.
+      </div>
+      <label class="error-modal-label" for="error-textarea">Describe the issue</label>
+      <textarea class="error-modal-textarea" id="error-textarea"
+        placeholder="e.g. The answer key seems wrong — I believe the answer should be B because... / Explanation has a calculation error..."></textarea>
+      <div class="error-modal-footer">
+        <button class="error-modal-cancel" onclick="document.getElementById('error-report-modal').remove()">Cancel</button>
+        <button class="error-modal-submit" onclick="submitErrorReportForQuestion(${JSON.stringify(q).replace(/"/g,'&quot;')})">Send Report →</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+  modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
+  setTimeout(() => document.getElementById('error-textarea')?.focus(), 100);
+}
+
+function submitErrorReportForQuestion(q) {
+  const issue = (document.getElementById('error-textarea')?.value || '').trim();
+  if (!issue) { showToast('Please describe the issue before submitting.', 'error'); return; }
+  const subject = encodeURIComponent('[GRE Quant Pro] Question Error Report — ' + q.id);
+  const body = encodeURIComponent(
+    'QUESTION ERROR REPORT\n' +
+    '═══════════════════════════════════════\n\n' +
+    'Question ID     : ' + q.id + '\n' +
+    'Topic           : ' + (q.topic||bankState.topic) + '\n' +
+    'Subtopic        : ' + (q.subtopic||bankState.subtopic) + '\n' +
+    'Difficulty      : ' + q.difficulty + '\n' +
+    'Type            : ' + q.type + '\n\n' +
+    '───────────────────────────────────────\n' +
+    'QUESTION:\n' + q.question + '\n\n' +
+    'OPTIONS:\n' + (q.options ? q.options.map((o,i)=>String.fromCharCode(65+i)+'. '+o).join('\n') : 'N/A') + '\n\n' +
+    'CORRECT ANSWER  : ' + (Array.isArray(q.answer) ? q.answer.join(', ') : q.answer) + '\n\n' +
+    '───────────────────────────────────────\n' +
+    'ISSUE REPORTED BY STUDENT:\n' + issue + '\n\n' +
+    'Sent via GRE Quant Pro · Coach Aditya Goenka'
+  );
+  window.open('https://mail.google.com/mail/?view=cm&to=goenka.aditya.kol%40gmail.com&su=' + subject + '&body=' + body, '_blank');
+  document.getElementById('error-report-modal')?.remove();
+  showToast('Error report opened in Gmail. Please send the email to complete your report.', 'success');
+}
+
 // ── Send to Tutor Teaser — Exam analysis screen (2.6b) ──────────────────────
 function showTutorTeaserExam() {
   if (!isFreeTier()) return;
@@ -3503,7 +3590,7 @@ function showTutorTeaserExam() {
     <div class="tutor-teaser" style="margin-bottom:24px;">
       <strong>📧 Want Coach Aditya to review this exam?</strong><br>
       With Pro, your full exam report — every question, your answer, the trap you fell for, and your time per question — is compiled and sent to Coach Aditya in one click. He reviews it before your next session.
-      <br><a href="pricing.html" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — ₹999 →</a>
+      <br><a href="index.html" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — ₹999 →</a>
     </div>`;
 }
 
@@ -3516,7 +3603,7 @@ function showTutorTeaser() {
     <div class="tutor-teaser">
       <strong>📧 Want Coach Aditya to review this session?</strong><br>
       With Pro, your full session report — every question, your answer, and the exact trap you fell for — is compiled and sent to Coach Aditya automatically. He reviews it before your next session.
-      <br><a href="pricing.html" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — ₹999 →</a>
+      <br><a href="index.html" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — ₹999 →</a>
     </div>`;
 }
 
