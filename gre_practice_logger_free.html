@@ -829,7 +829,7 @@ tr:hover td{background:rgba(108,99,255,0.04);}
           <div class="exam-countdown" id="exam-countdown" style="display:none;">00:00</div>
         </div>
       </div>
-      <!-- Exam layout: sidebar nav + question column -->
+      <!-- Exam layout: sidebar nav + question column (exam mode only) -->
       <div id="exam-layout-wrapper" style="display:none;">
         <div class="exam-layout">
           <!-- Sidebar navigator -->
@@ -841,12 +841,12 @@ tr:hover td{background:rgba(108,99,255,0.04);}
               <button class="btn btn-danger" style="width:100%;padding:10px;" onclick="examSubmit()">📝 Submit</button>
             </div>
           </div>
-          <!-- Question column -->
-          <div class="exam-question-col">
-            <div id="bank-question-area"></div>
-          </div>
+          <!-- Question column — exam mode renders here via JS move -->
+          <div class="exam-question-col" id="exam-question-col"></div>
         </div>
       </div>
+      <!-- Practice Mode question area — always visible when bank-active-screen is shown -->
+      <div id="bank-question-area"></div>
       <!-- Keep old submit area hidden — submit is now in sidebar -->
       <div id="exam-submit-area" style="display:none;"></div>
     </div>
@@ -2017,7 +2017,9 @@ function bankSubmit(){
 
 function bankNext(){
   bankState.currentIndex++;window.bankSelectedOptions=[];
-  bankRenderQuestion();window.scrollTo({top:0,behavior:'smooth'});
+  bankRenderQuestion();
+  const qArea = document.getElementById('bank-question-area');
+  if (qArea) qArea.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 function bankFinish(){
@@ -2388,7 +2390,12 @@ startBankSession = async function() {
   document.getElementById('bank-session-timer').style.display = 'none';
   document.getElementById('exam-countdown').style.display = 'block';
   document.getElementById('exam-layout-wrapper').style.display = 'block';
-  document.getElementById('exam-submit-area').style.display = 'block';
+  document.getElementById('exam-submit-area').style.display = 'none';
+
+  // Move the shared question area into the exam column
+  const qa = document.getElementById('bank-question-area');
+  const examCol = document.getElementById('exam-question-col');
+  if (qa && examCol) examCol.appendChild(qa);
 
   // Build nav dots
   examBuildNavDots();
@@ -2455,9 +2462,7 @@ function examJumpTo(idx) {
   bankState.currentIndex = idx;
   bankState.qStartTime = Date.now();
   examRenderQuestion(idx);
-  // On mobile, sidebar is above — scroll to question column
-  const qCol = document.getElementById('bank-question-area');
-  if (qCol && window.innerWidth <= 700) qCol.scrollIntoView({behavior:'smooth', block:'start'});
+  // No scroll — sidebar is sticky on desktop, question renders in place
 }
 
 // ============================================================
@@ -2830,11 +2835,20 @@ const _origResetBankSession = resetBankSession;
 resetBankSession = function() {
   document.getElementById('exam-analysis-screen').style.display = 'none';
   document.getElementById('exam-layout-wrapper').style.display = 'none';
-  document.getElementById('exam-layout-wrapper').style.display = 'none';
   document.getElementById('exam-submit-area').style.display = 'none';
   document.getElementById('exam-countdown').style.display = 'none';
   document.getElementById('bank-score-pill').style.display = 'flex';
   document.getElementById('bank-session-timer').style.display = 'flex';
+
+  // Restore bank-question-area to its home outside the exam wrapper
+  const qa = document.getElementById('bank-question-area');
+  const activeScreen = document.getElementById('bank-active-screen');
+  const examWrapper = document.getElementById('exam-layout-wrapper');
+  if (qa && activeScreen && qa.parentElement !== activeScreen) {
+    // Insert before the exam-layout-wrapper
+    activeScreen.insertBefore(qa, examWrapper);
+  }
+
   window.examSelectedOptions = [];
   _origResetBankSession();
 };
