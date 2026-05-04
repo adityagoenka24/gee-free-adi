@@ -245,7 +245,7 @@
     <div style="background:linear-gradient(135deg,rgba(247,151,30,0.12),rgba(249,115,22,0.08));border:1px solid rgba(247,151,30,0.35);border-radius:12px;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;text-align:center;">
       <span style="font-size:18px;">⚡</span>
       <span style="font-size:13px;color:#f7971e;font-family:'DM Mono',monospace;font-weight:500;line-height:1.5;">
-        <strong>Early Access Pricing:</strong> Pro is ₹999 (lifetime) during launch. Price will increase as the question bank grows to 4,520+ questions.
+        <strong>Early Access Pricing:</strong> Pro is ₹999 (lifetime) during launch. Price will increase after launch &mdash; lock in lifetime access now.
       </span>
     </div>
   </div>
@@ -271,7 +271,7 @@
       <div class="how-step">
         <div class="how-step-num">1</div>
         <div class="how-step-title">Choose your topic, subtopic, and difficulty</div>
-        <div class="how-step-body">Select from 9 topic areas and 88 subtopics. Filter by difficulty — Easy through Extreme Hard — calibrated to actual GRE score bands from 130 to 170. Only subtopics with questions available appear in the dropdown.</div>
+        <div class="how-step-body">Select from 9 topic areas and 88 subtopics. Filter by difficulty — Easy through Extreme Hard — calibrated to actual GRE score bands from 130 to 170. Pro users have access to all subtopics and all difficulty levels.</div>
       </div>
       <div class="how-step">
         <div class="how-step-num">2</div>
@@ -416,22 +416,24 @@
   <section class="founder-section fade-in">
     <div class="founder-card">
       <p class="founder-quote">I built GRE Quant Pro because I was tired of watching students repeat the same mistakes every week. Not because they were lazy — because no practice tool was telling them <em>why</em> they were making those mistakes. So I built one that does.</p>
+      <p>I built this question bank question by question &mdash; calibrated to real GRE score bands, with every wrong answer explained and every trap named explicitly. The Pro + Tutor plan is for students who want a coach who tells them exactly what to fix next.</p>
+    <br><br>
       <div class="founder-attr">
         <div class="founder-avatar">&#128104;&#8205;&#127979;</div>
         <div>
           <div class="founder-name">Coach Aditya Goenka</div>
-          <div class="founder-title">GRE Coach &middot; Author of Adi's GRE Quant Bank &middot; goenka.aditya.kol@gmail.com</div>
+          <div class="founder-title">GRE 10x 170 in Quant &middot; Author of Adi's GRE Quant Pro &middot; goenka.aditya.kol@gmail.com</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="tutor-section fade-in">
+  <!-- <section class="tutor-section fade-in">
     <div class="tutor-avatar">&#128104;&#8205;&#127979;</div>
     <div class="tutor-name">Coach Aditya Goenka</div>
     <p class="tutor-bio">I built this question bank question by question &mdash; calibrated to real GRE score bands, with every wrong answer explained and every trap named explicitly. The Pro + Tutor plan is for students who want a coach who tells them exactly what to fix next.</p>
     <a href="mailto:goenka.aditya.kol@gmail.com" class="tutor-contact">goenka.aditya.kol@gmail.com</a>
-  </section>
+  </section> -->
   <section class="bank-section fade-in" id="bank">
     <h2 class="section-title">What's in the Question Bank</h2>
     <p class="section-sub">9 topics &middot; 88 subtopics &middot; 4,520+ questions &middot; Growing continuously</p>
@@ -480,7 +482,7 @@
     <p class="section-sub">Everything you need to know before buying</p>
     <div class="faq-grid">
       <div class="faq-item"><div class="faq-q">How do I get access after paying?</div><div class="faq-a">After payment, Coach Aditya will add your email to the Pro access list within a few hours. Then visit <a href="gre_practice_logger_pro.html" style="color:var(--accent)">the Pro app</a>, enter your registered email, and you're in. No downloads, no zip files.</div></div>
-      <div class="faq-item"><div class="faq-q">Are all 4,520+ questions available right now?</div><div class="faq-a">The bank is actively being built &mdash; currently 160 questions are live (Percentages + Fractions). All remaining subtopics are added continuously. Pro users receive every update at no extra cost, forever.</div></div>
+      <div class="faq-item"><div class="faq-q">Are all 4,520+ questions available right now?</div><div class="faq-a">Yes &mdash; all 4,520+ questions across 88 subtopics are available to Pro users from day one. New questions are added regularly as the bank grows, and Pro users receive every update at no extra cost, forever.</div></div>
       <div class="faq-item"><div class="faq-q">Is this a web app or something I download?</div><div class="faq-a">A downloadable file that runs in your browser &mdash; no installation, no account, works offline. Open it like a website, use it like an app. Works on Windows, Mac, and mobile.</div></div>
       <div class="faq-item"><div class="faq-q">How are difficulty levels calibrated?</div><div class="faq-a">Each question maps to a GRE score band: Easy (130-155), Medium (155-162), Hard (162-167), Extreme Hard (167-170). Hard questions require a non-obvious insight. Extreme Hard separates 165 from 170 scorers.</div></div>
       <div class="faq-item"><div class="faq-q">What is Exam Mode?</div><div class="faq-a">A timed exam environment &mdash; countdown at 1.75 min/question (real GRE pace), no feedback during the test, full analysis after: accuracy by difficulty, by type, time per question, and wrong answer review.</div></div>
@@ -520,68 +522,68 @@
 const BANK=[
   {name:"Arithmetic",icon:"&#128290;",total:860,subtopics:[
     {n:"Percentages",q:80,done:true},{n:"Fractions & Decimals",q:80,done:true},
-    {n:"Ratios & Proportions",q:80,done:false},{n:"Exponents & Roots",q:80,done:false},
-    {n:"Rates & Unit Conversions",q:70,done:false},{n:"Prime Numbers & Factorization",q:70,done:false},
-    {n:"Integers & Divisibility",q:70,done:false},{n:"Sequences & Patterns",q:60,done:false},
-    {n:"Remainders",q:60,done:false},{n:"Absolute Value",q:50,done:false},
-    {n:"Odd & Even Numbers",q:40,done:false},{n:"Powers of 10",q:40,done:false},
-    {n:"Number Line & Ordering",q:40,done:false},{n:"Estimation & Approximation",q:40,done:false}
+    {n:"Ratios & Proportions",q:80,done:true},{n:"Exponents & Roots",q:80,done:true},
+    {n:"Rates & Unit Conversions",q:70,done:true},{n:"Prime Numbers & Factorization",q:70,done:true},
+    {n:"Integers & Divisibility",q:70,done:true},{n:"Sequences & Patterns",q:60,done:true},
+    {n:"Remainders",q:60,done:true},{n:"Absolute Value",q:50,done:true},
+    {n:"Odd & Even Numbers",q:40,done:true},{n:"Powers of 10",q:40,done:true},
+    {n:"Number Line & Ordering",q:40,done:true},{n:"Estimation & Approximation",q:40,done:true}
   ]},
   {name:"Algebra",icon:"&#9999;&#65039;",total:600,subtopics:[
-    {n:"Linear Equations (1 Variable)",q:60,done:false},{n:"Linear Equations (2 Variables)",q:60,done:false},
-    {n:"Inequalities",q:60,done:false},{n:"Quadratic Equations",q:60,done:false},
-    {n:"Functions",q:60,done:false},{n:"Algebraic Expressions",q:50,done:false},
-    {n:"Simultaneous Equations",q:50,done:false},{n:"Factoring",q:50,done:false},
-    {n:"Sequences & Series",q:50,done:false},{n:"Word Problem Modelling",q:50,done:false},
-    {n:"Exponents & Roots (Algebraic)",q:50,done:false}
+    {n:"Linear Equations (1 Variable)",q:60,done:true},{n:"Linear Equations (2 Variables)",q:60,done:true},
+    {n:"Inequalities",q:60,done:true},{n:"Quadratic Equations",q:60,done:true},
+    {n:"Functions",q:60,done:true},{n:"Algebraic Expressions",q:50,done:true},
+    {n:"Simultaneous Equations",q:50,done:true},{n:"Factoring",q:50,done:true},
+    {n:"Sequences & Series",q:50,done:true},{n:"Word Problem Modelling",q:50,done:true},
+    {n:"Exponents & Roots (Algebraic)",q:50,done:true}
   ]},
   {name:"Word Problems",icon:"&#128221;",total:470,subtopics:[
-    {n:"Distance-Speed-Time",q:60,done:false},{n:"Mixture Problems",q:60,done:false},
-    {n:"Work & Rate Problems",q:60,done:false},{n:"Interest (Simple & Compound)",q:50,done:false},
-    {n:"Profit & Loss",q:50,done:false},{n:"Percentage Word Problems",q:50,done:false},
-    {n:"Ratio Word Problems",q:50,done:false},{n:"Multi-step Problems",q:50,done:false},
-    {n:"Age Problems",q:40,done:false}
+    {n:"Distance-Speed-Time",q:60,done:true},{n:"Mixture Problems",q:60,done:true},
+    {n:"Work & Rate Problems",q:60,done:true},{n:"Interest (Simple & Compound)",q:50,done:true},
+    {n:"Profit & Loss",q:50,done:true},{n:"Percentage Word Problems",q:50,done:true},
+    {n:"Ratio Word Problems",q:50,done:true},{n:"Multi-step Problems",q:50,done:true},
+    {n:"Age Problems",q:40,done:true}
   ]},
   {name:"Geometry",icon:"&#128208;",total:890,subtopics:[
-    {n:"Circles (Area, Arc & Sector)",q:70,done:false},{n:"Triangles (General)",q:70,done:false},
-    {n:"Lines & Angles",q:60,done:false},{n:"Pythagorean Theorem",q:60,done:false},
-    {n:"Special Triangles (30-60-90, 45-45-90)",q:60,done:false},{n:"Quadrilaterals",q:60,done:false},
-    {n:"Perimeter & Area",q:60,done:false},{n:"Parallel Lines & Transversals",q:50,done:false},
-    {n:"Inscribed & Circumscribed Shapes",q:50,done:false},{n:"Similar & Congruent Figures",q:50,done:false},
-    {n:"Surface Area & Volume",q:50,done:false},{n:"3D Geometry",q:50,done:false},
-    {n:"Parallelograms & Trapezoids",q:40,done:false},{n:"Isosceles & Equilateral Triangles",q:40,done:false},
-    {n:"Chords, Tangents & Secants",q:40,done:false},{n:"Other Polygons",q:40,done:false},
-    {n:"Cones, Spheres & Hemispheres",q:40,done:false}
+    {n:"Circles (Area, Arc & Sector)",q:70,done:true},{n:"Triangles (General)",q:70,done:true},
+    {n:"Lines & Angles",q:60,done:true},{n:"Pythagorean Theorem",q:60,done:true},
+    {n:"Special Triangles (30-60-90, 45-45-90)",q:60,done:true},{n:"Quadrilaterals",q:60,done:true},
+    {n:"Perimeter & Area",q:60,done:true},{n:"Parallel Lines & Transversals",q:50,done:true},
+    {n:"Inscribed & Circumscribed Shapes",q:50,done:true},{n:"Similar & Congruent Figures",q:50,done:true},
+    {n:"Surface Area & Volume",q:50,done:true},{n:"3D Geometry",q:50,done:true},
+    {n:"Parallelograms & Trapezoids",q:40,done:true},{n:"Isosceles & Equilateral Triangles",q:40,done:true},
+    {n:"Chords, Tangents & Secants",q:40,done:true},{n:"Other Polygons",q:40,done:true},
+    {n:"Cones, Spheres & Hemispheres",q:40,done:true}
   ]},
   {name:"Coordinate Geometry",icon:"&#128205;",total:370,subtopics:[
-    {n:"Slope & Intercepts",q:50,done:false},{n:"Equation of a Line",q:50,done:false},
-    {n:"Distance Between Points",q:40,done:false},{n:"Midpoint",q:40,done:false},
-    {n:"Parallel & Perpendicular Lines",q:40,done:false},{n:"Graphs of Linear Equations",q:40,done:false},
-    {n:"Graphs of Quadratic Functions",q:40,done:false},{n:"Coordinate Geometry Word Problems",q:40,done:false},
-    {n:"Plotting Points",q:30,done:false}
+    {n:"Slope & Intercepts",q:50,done:true},{n:"Equation of a Line",q:50,done:true},
+    {n:"Distance Between Points",q:40,done:true},{n:"Midpoint",q:40,done:true},
+    {n:"Parallel & Perpendicular Lines",q:40,done:true},{n:"Graphs of Linear Equations",q:40,done:true},
+    {n:"Graphs of Quadratic Functions",q:40,done:true},{n:"Coordinate Geometry Word Problems",q:40,done:true},
+    {n:"Plotting Points",q:30,done:true}
   ]},
   {name:"Statistics & Probability",icon:"&#128202;",total:560,subtopics:[
-    {n:"Mean, Median & Mode",q:60,done:false},{n:"Basic Probability",q:60,done:false},
-    {n:"Combinations",q:60,done:false},{n:"Permutations",q:60,done:false},
-    {n:"Overlapping Sets (Venn Diagrams)",q:50,done:false},{n:"Range & Standard Deviation",q:50,done:false},
-    {n:"Weighted Average",q:50,done:false},{n:"Compound Probability",q:50,done:false},
-    {n:"Independent & Dependent Events",q:40,done:false},{n:"Data Distribution",q:40,done:false},
-    {n:"Interquartile Range & Percentiles",q:40,done:false}
+    {n:"Mean, Median & Mode",q:60,done:true},{n:"Basic Probability",q:60,done:true},
+    {n:"Combinations",q:60,done:true},{n:"Permutations",q:60,done:true},
+    {n:"Overlapping Sets (Venn Diagrams)",q:50,done:true},{n:"Range & Standard Deviation",q:50,done:true},
+    {n:"Weighted Average",q:50,done:true},{n:"Compound Probability",q:50,done:true},
+    {n:"Independent & Dependent Events",q:40,done:true},{n:"Data Distribution",q:40,done:true},
+    {n:"Interquartile Range & Percentiles",q:40,done:true}
   ]},
   {name:"Data Interpretation",icon:"&#128200;",total:290,subtopics:[
-    {n:"Reading & Comparing Data",q:40,done:false},{n:"Bar Graphs",q:40,done:false},
-    {n:"Line Graphs",q:40,done:false},{n:"Pie Charts",q:40,done:false},
-    {n:"Tables & Data Sets",q:40,done:false},{n:"Percentage Change from Graphs",q:30,done:false},
-    {n:"Mixed Graph Sets",q:30,done:false},{n:"Multi-graph DI Sets",q:30,done:false}
+    {n:"Reading & Comparing Data",q:40,done:true},{n:"Bar Graphs",q:40,done:true},
+    {n:"Line Graphs",q:40,done:true},{n:"Pie Charts",q:40,done:true},
+    {n:"Tables & Data Sets",q:40,done:true},{n:"Percentage Change from Graphs",q:30,done:true},
+    {n:"Mixed Graph Sets",q:30,done:true},{n:"Multi-graph DI Sets",q:30,done:true}
   ]},
   {name:"Number Properties",icon:"&#128291;",total:380,subtopics:[
-    {n:"Factors & Multiples",q:60,done:false},{n:"GCD & LCM",q:60,done:false},
-    {n:"Divisibility Rules",q:50,done:false},{n:"Consecutive Integers",q:50,done:false},
-    {n:"Even/Odd Properties",q:40,done:false},{n:"Prime Factorization",q:40,done:false},
-    {n:"Digit Problems & Place Value",q:40,done:false},{n:"Number Theory",q:40,done:false}
+    {n:"Factors & Multiples",q:60,done:true},{n:"GCD & LCM",q:60,done:true},
+    {n:"Divisibility Rules",q:50,done:true},{n:"Consecutive Integers",q:50,done:true},
+    {n:"Even/Odd Properties",q:40,done:true},{n:"Prime Factorization",q:40,done:true},
+    {n:"Digit Problems & Place Value",q:40,done:true},{n:"Number Theory",q:40,done:true}
   ]},
   {name:"Mixed Practice",icon:"&#127919;",total:100,subtopics:[
-    {n:"General Mixed (All Topics)",q:100,done:false}
+    {n:"General Mixed (All Topics)",q:100,done:true}
   ]}
 ];
 
@@ -600,7 +602,7 @@ function buildTopicCards(){
     const statusColor=statusClass==="done"?"var(--success)":statusClass==="partial"?"var(--warning)":"var(--text3)";
     const card=document.createElement("div");
     card.className="topic-card";
-    card.innerHTML=`<div class="topic-header"><div class="topic-title-row"><span class="topic-icon">${topic.icon}</span><span class="topic-name">${topic.name}</span></div><span class="topic-count-badge">${topic.total.toLocaleString()} Qs</span></div><div class="status-row"><div class="status-dot ${statusClass}"></div><span class="status-text" style="color:${statusColor}">${statusLabel}</span></div><div class="topic-progress"><div class="topic-progress-fill" style="--target-width:${pct}%"></div></div><div class="subtopics-list">${topic.subtopics.map(s=>`<span class="sub-tag ${s.done?"done":""}" title="${s.q} questions">${s.n}</span>`).join("")}</div>`;
+    card.innerHTML=`<div class="topic-header"><div class="topic-title-row"><span class="topic-icon">${topic.icon}</span><span class="topic-name">${topic.name}</span></div><span class="topic-count-badge">${topic.total.toLocaleString()} Qs</span></div><div class="subtopics-list">${topic.subtopics.map(s=>`<span class="sub-tag ${s.done?"done":""}" title="${s.q} questions">${s.n}</span>`).join("")}</div>`;
     grid.appendChild(card);
   });
 }
