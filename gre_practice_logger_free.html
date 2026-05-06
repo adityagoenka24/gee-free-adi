@@ -619,7 +619,7 @@ tr:hover td{background:rgba(108,99,255,0.04);}
   </div>
 
   <div class="tabs">
-    <button class="tab-btn" id="tab-btn-session" onclick="switchTab('session',this)">✏️ New Session</button>
+    <!-- <button class="tab-btn" id="tab-btn-session" onclick="switchTab('session',this)">✏️ New Session</button> -->
     <button class="tab-btn active" id="tab-btn-bank" onclick="switchTab('bank',this)">🎯 Practice from Bank</button>
     <button class="tab-btn" id="tab-btn-progress" onclick="switchTab('progress',this)">📊 My Progress</button>
   </div>
@@ -990,6 +990,10 @@ const chartInstances={};
 // TABS
 // ============================================================
 function switchTab(name,btn){
+
+  // safety
+  if(tabName === 'session') return;
+
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
