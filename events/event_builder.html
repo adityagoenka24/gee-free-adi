@@ -12,10 +12,7 @@
 <body>
   <main class="shell">
     <div class="topbar">
-      <a class="brand" href="../index.html">
-        <div class="mark">Q</div>
-        <div><strong>GRE Quant Pro</strong><span>Coach Event Builder · Unlinked Preview</span></div>
-      </a>
+      <a class="nav-logo" href="../index.html">GRE<span>Quant</span> Pro</a>
       <nav class="nav">
         <a href="mock_test.html">Mock Test</a>
         <a href="team_battle.html">Team Battle</a>
@@ -23,13 +20,13 @@
       </nav>
     </div>
 
-    <section class="hero">
-      <div class="panel">
+    <section class="hero builder-hero">
+      <div class="panel builder-intro">
         <div class="eyebrow">Coach Tool</div>
         <h1>Build a fixed event paper.</h1>
         <p>Choose a bank source, filters, timer, and question count. The builder downloads a self-contained config JSON so every student receives the same paper.</p>
       </div>
-      <div class="panel">
+      <div class="panel builder-source-card">
         <h2>Bank Source</h2>
         <div class="field">
           <label for="bankSource">Source</label>
@@ -38,52 +35,74 @@
             <option value="../../gre-pro/bank/">Local sibling Pro bank</option>
           </select>
         </div>
-        <button class="primary-btn" id="loadBankBtn">Load Bank</button>
+        <button class="primary-btn" id="loadBankBtn" style="width:100%">Load Bank</button>
         <p class="muted" id="bankStatus">Free bank is safest for the first preview. Pro source works locally if the sibling folder is available.</p>
       </div>
     </section>
 
-    <section class="grid">
-      <div class="panel">
+    <section class="builder-grid">
+      <div class="panel builder-section">
         <h2>Event Settings</h2>
-        <div class="grid">
+        <div class="builder-form-grid">
           <div class="field"><label for="eventId">Event ID</label><input id="eventId" value="mock_001"></div>
           <div class="field"><label for="eventType">Event Type</label><select id="eventType"><option value="mock_test">Mock Test</option><option value="team_battle">Team Battle</option></select></div>
         </div>
         <div class="field"><label for="eventName">Event Name</label><input id="eventName" value="GRE Quant Pro Sunday Mock 1"></div>
-        <div class="grid">
+        <div class="builder-form-grid">
           <div class="field"><label for="questionCount">Questions</label><input id="questionCount" type="number" min="1" value="27"></div>
           <div class="field"><label for="secondsPerQuestion">Seconds per Question</label><input id="secondsPerQuestion" type="number" min="15" value="105"></div>
         </div>
         <div class="field"><label for="instructions">Instructions</label><textarea id="instructions">Answer all questions. No feedback is shown during the test. Download your result JSON at the end and send it to Coach Aditya.</textarea></div>
-        <div class="check-row">
-          <label class="chip"><input type="checkbox" id="allowNavigation" checked> Navigation allowed</label>
-          <label class="chip"><input type="checkbox" id="shuffleForStudents"> Shuffle per student</label>
+        <div class="builder-toggle-row">
+          <button class="builder-toggle active" type="button" id="allowNavigationToggle" data-target="allowNavigation">Navigation allowed</button>
+          <button class="builder-toggle" type="button" id="shuffleForStudentsToggle" data-target="shuffleForStudents">Shuffle per student</button>
+          <input type="checkbox" id="allowNavigation" checked hidden>
+          <input type="checkbox" id="shuffleForStudents" hidden>
         </div>
       </div>
 
-      <div class="panel">
+      <div class="panel builder-section">
         <h2>Content Filters</h2>
-        <div class="field"><label for="topicSelect">Topic</label><select id="topicSelect"></select></div>
-        <div class="field"><label for="subtopicSelect">Subtopic</label><select id="subtopicSelect"></select></div>
-        <div class="field"><label>Difficulty</label><div class="check-row" id="difficultyChecks"></div></div>
-        <div class="field"><label>Question Type</label><div class="check-row" id="typeChecks"></div></div>
+        <div class="builder-form-grid">
+          <div class="field"><label for="topicSelect">Topic</label><select id="topicSelect"></select></div>
+          <div class="field"><label for="subtopicSelect">Subtopic</label><select id="subtopicSelect"></select></div>
+        </div>
+        <div class="builder-filter-block">
+          <div class="builder-filter-head"><span>Difficulty</span><button type="button" class="mini-link" data-select-all="difficultyChecks">Select all</button></div>
+          <div class="builder-pill-grid" id="difficultyChecks"></div>
+        </div>
+        <div class="builder-filter-block">
+          <div class="builder-filter-head"><span>Question Type</span><button type="button" class="mini-link" data-select-all="typeChecks">Select all</button></div>
+          <div class="builder-pill-grid" id="typeChecks"></div>
+        </div>
         <div class="actions">
           <button class="ghost-btn" id="previewBtn">Preview Pool</button>
           <button class="primary-btn" id="buildBtn">Build Config</button>
         </div>
-        <p class="muted" id="poolStatus">Load a bank to begin.</p>
+        <div class="builder-pool-card">
+          <div class="builder-pool-num" id="poolCount">0</div>
+          <div>
+            <div class="builder-pool-label">Matching question pool</div>
+            <p class="muted" id="poolStatus">Load a bank to begin.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="panel" style="margin-top:18px">
-      <h2>Built Config</h2>
+    <section class="panel builder-output" style="margin-top:18px">
+      <div>
+        <h2>Built Config</h2>
+        <p class="muted">Download this JSON and place it under `gre-free/events/config/`, then share the student link with `?config=config/file_name.json`.</p>
+      </div>
       <div class="actions">
         <button class="primary-btn" id="downloadBtn" disabled>Download event_config.json</button>
         <a class="ghost-btn" id="mockLink" href="mock_test.html">Open Mock Preview</a>
         <a class="ghost-btn" id="teamLink" href="team_battle.html">Open Team Preview</a>
       </div>
-      <pre id="configPreview">No config built yet.</pre>
+      <details class="config-details">
+        <summary>Show config JSON preview</summary>
+        <pre id="configPreview">No config built yet.</pre>
+      </details>
     </section>
   </main>
   <script src="events_common.js"></script>
@@ -92,12 +111,34 @@
     const allDifficulties = ["easy","medium","hard","extreme_hard"];
     const allTypes = ["mcq","numeric_entry","quantitative_comparison","multiple_answer"];
 
+    const labelMap = {
+      easy:"Easy",
+      medium:"Medium",
+      hard:"Hard",
+      extreme_hard:"Extreme",
+      mcq:"MCQ",
+      numeric_entry:"Numeric",
+      quantitative_comparison:"Quant Comp.",
+      multiple_answer:"Multi-Answer"
+    };
+
     function checkedValues(containerId){
-      return [...document.querySelectorAll(`#${containerId} input:checked`)].map(input => input.value);
+      return [...document.querySelectorAll(`#${containerId} .builder-pill.active`)].map(btn => btn.dataset.value);
     }
 
     function renderChecks(id, values, selected){
-      Events.$(id).innerHTML = values.map(value => `<label class="chip"><input type="checkbox" value="${value}" ${selected.includes(value) ? "checked" : ""}> ${Events.escapeHtml(value.replaceAll("_"," "))}</label>`).join("");
+      Events.$(id).innerHTML = values.map(value => `<button type="button" class="builder-pill ${selected.includes(value) ? "active" : ""} ${value}" data-value="${value}">${Events.escapeHtml(labelMap[value] || value.replaceAll("_"," "))}</button>`).join("");
+      Events.$(id).querySelectorAll(".builder-pill").forEach(btn => {
+        btn.onclick = () => {
+          btn.classList.toggle("active");
+          loadSelectedPool().catch(error => Events.$("poolStatus").textContent = error.message);
+        };
+      });
+    }
+
+    function syncToggleButton(btn){
+      const input = Events.$(btn.dataset.target);
+      btn.classList.toggle("active", input.checked);
     }
 
     async function loadBank(){
@@ -143,6 +184,7 @@
         }
       }
       builder.questions = questions;
+      Events.$("poolCount").textContent = questions.length;
       Events.$("poolStatus").textContent = `${questions.length} questions match the current filters.`;
       return questions;
     }
@@ -189,6 +231,24 @@
     Events.$("previewBtn").onclick = () => loadSelectedPool().catch(error => Events.$("poolStatus").textContent = error.message);
     Events.$("buildBtn").onclick = async () => { await loadSelectedPool(); buildConfig(); };
     Events.$("downloadBtn").onclick = () => Events.downloadJson(`${Events.slug(builder.config.event_id)}.json`, builder.config);
+    document.querySelectorAll(".builder-toggle").forEach(btn => {
+      syncToggleButton(btn);
+      btn.onclick = () => {
+        const input = Events.$(btn.dataset.target);
+        input.checked = !input.checked;
+        syncToggleButton(btn);
+      };
+    });
+    document.querySelectorAll("[data-select-all]").forEach(btn => {
+      btn.onclick = () => {
+        const wrap = Events.$(btn.dataset.selectAll);
+        const pills = [...wrap.querySelectorAll(".builder-pill")];
+        const allActive = pills.every(pill => pill.classList.contains("active"));
+        pills.forEach(pill => pill.classList.toggle("active", !allActive));
+        btn.textContent = allActive ? "Select all" : "Clear all";
+        loadSelectedPool().catch(error => Events.$("poolStatus").textContent = error.message);
+      };
+    });
     loadBank().catch(error => Events.$("bankStatus").textContent = error.message);
   </script>
 </body>
