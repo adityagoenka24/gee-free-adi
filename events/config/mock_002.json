@@ -1,0 +1,262 @@
+{
+  "event_id": "mock_002",
+  "event_name": "GRE Quant Pro Sunday Mini Challenge",
+  "event_type": "mock_test",
+  "created_at": "2026-05-07T11:23:59.290Z",
+  "timer_seconds": 1050,
+  "question_count": 10,
+  "shuffle_questions_for_students": false,
+  "allow_navigation": true,
+  "show_feedback_during_test": false,
+  "instructions": "Answer all questions. No feedback is shown during the test. Download your result JSON at the end and send it to Coach Aditya.",
+  "source_filters": {
+    "bank_source": "../bank/",
+    "topic": "Arithmetic",
+    "subtopic": "Percentages",
+    "difficulties": [
+      "medium",
+      "hard"
+    ],
+    "types": [
+      "mcq",
+      "numeric_entry",
+      "quantitative_comparison",
+      "multiple_answer"
+    ]
+  },
+  "questions": [
+    {
+      "id": "ARI-PCT-044",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Column A: 0.5% of 2000\nColumn B: 5% of 200",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Column A: 0.5% of 2000 = 0.005 × 2000 = 10. Column B: 5% of 200 = 0.05 × 200 = 10. Equal.",
+      "trap": "Decimal placement errors — students may compute 0.5% as 0.5 instead of 0.005, getting 1000 for Column A.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "decimal-percent",
+        "qc"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
+    },
+    {
+      "id": "ARI-PCT-026",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "After a 20% increase followed by a 20% decrease, a number becomes 576. What was the original number? Enter your answer as a number.",
+      "answer": "600",
+      "explanation": "Net multiplier: 1.20 × 0.80 = 0.96. So 0.96 × original = 576 → original = 576/0.96 = 600.",
+      "trap": "Students assume the number is unchanged (since +20% and -20% seem to cancel) and answer 576.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "reverse-percent",
+        "successive-percent",
+        "find-original"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
+    },
+    {
+      "id": "ARI-PCT-066",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A dishonest dealer claims to sell goods at cost price but uses a weight of 900 grams instead of 1000 grams. What is his actual profit percentage?",
+      "options": [
+        "A. 9%",
+        "B. 10%",
+        "C. 11.11%",
+        "D. 12.5%",
+        "E. 15%"
+      ],
+      "answer": "C",
+      "explanation": "Dealer buys 900g for the price of 1000g (at cost). He sells 900g at the price of 1000g. So he charges for 1000g but delivers 900g. Profit = (1000-900)/900 × 100 = 100/900 × 100 = 11.11%.",
+      "trap": "Students compute 100/1000 = 10% (choosing B). The profit percentage is calculated on COST (900g), not on selling price (1000g).",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "profit-loss",
+        "tricky-real-world",
+        "hard"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
+    },
+    {
+      "id": "ARI-PCT-037",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A student scored 72 marks out of 90 in one test and 78 marks out of 120 in another test. In which test did the student perform better, and by what percentage?",
+      "options": [
+        "A. First test by 5%",
+        "B. Second test by 5%",
+        "C. First test by 15%",
+        "D. Second test by 15%",
+        "E. First test by 25%"
+      ],
+      "answer": "A",
+      "explanation": "First test: (72/90) × 100 = 80%. Second test: (78/120) × 100 = 65%. First test is better by 80% - 65% = 15 percentage points. Wait — the question asks 'by what percentage' which means the difference in percentage scores, so 15 percentage points. But option A says 5%. Let me recheck: this question has an error in options — answer should be C (First test by 15 percentage points). Flagged for review.",
+      "trap": "Comparing raw scores (72 vs 78) rather than percentage scores leads to wrong conclusions.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "percentage-comparison",
+        "flagged-for-review"
+      ],
+      "review_flag": true,
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
+    },
+    {
+      "id": "ARI-PCT-025",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "The price of an item increased from $P to $1.3P. Which of the following statements must be true? Select all that apply.",
+      "options": [
+        "A. The price increased by 30%",
+        "B. The price increased by $0.3",
+        "C. The new price is 130% of the original",
+        "D. The original price was less than the new price",
+        "E. The percent increase depends on the value of P"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "A: (1.3P - P)/P × 100 = 30% ✓. C: New price = 1.3P = 130% of P ✓. D: 1.3P > P for positive P ✓. B: The increase is 0.3P, not $0.3 (we don't know P's value). E: The percent increase is always 30%, independent of P.",
+      "trap": "B is tempting — students confuse 0.3P with a fixed dollar amount. E is tricky — percent change is always 30% regardless of P.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "algebraic-percent",
+        "multiple-answer",
+        "percent-change"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
+    },
+    {
+      "id": "ARI-PCT-049",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "x > 0\nColumn A: x increased by 50% then decreased by 50%\nColumn B: x decreased by 50% then increased by 50%",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Column A: x × 1.5 × 0.5 = 0.75x. Column B: x × 0.5 × 1.5 = 0.75x. Both equal 0.75x — multiplication is commutative, so order doesn't matter here.",
+      "trap": "Students think one order is 'worse' than the other. Both give the same result: 25% loss.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "successive-percent",
+        "order-independence",
+        "qc"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
+    },
+    {
+      "id": "ARI-PCT-058",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A mixture contains milk and water in ratio 4:1. How much water must be added to 100 liters of this mixture to make the ratio 4:3?",
+      "options": [
+        "A. 20 liters",
+        "B. 25 liters",
+        "C. 30 liters",
+        "D. 40 liters",
+        "E. 50 liters"
+      ],
+      "answer": "D",
+      "explanation": "Original: 80L milk, 20L water. New ratio milk:water = 4:3. Milk stays at 80L. If ratio is 4:3, then water = (3/4) × 80 = 60L. Water to add = 60 - 20 = 40L.",
+      "trap": "Students try to adjust both milk and water instead of realizing milk quantity is fixed.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "mixture",
+        "ratio-percent",
+        "hard"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
+    },
+    {
+      "id": "ARI-PCT-035",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The price of oil increased by 25% in January and decreased by 16% in February. What is the net percent change over the two months?",
+      "options": [
+        "A. +5%",
+        "B. +4%",
+        "C. +9%",
+        "D. -5%",
+        "E. +10%"
+      ],
+      "answer": "A",
+      "explanation": "Net multiplier: 1.25 × 0.84 = 1.05. Net change = +5%.",
+      "trap": "Students subtract: 25% - 16% = +9% (answer C). Must multiply the multipliers, not subtract the percentages.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "successive-percent",
+        "percent-change-chain"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
+    },
+    {
+      "id": "ARI-PCT-041",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "An investor puts $10,000 in a fund. The fund gains 30% in year 1, loses 30% in year 2. What is the value of the investment after year 2?",
+      "options": [
+        "A. $8,900",
+        "B. $9,000",
+        "C. $9,100",
+        "D. $10,000",
+        "E. $10,900"
+      ],
+      "answer": "C",
+      "explanation": "After year 1: 10,000 × 1.30 = $13,000. After year 2: 13,000 × 0.70 = $9,100.",
+      "trap": "Students answer $10,000 (choice D), thinking +30% and -30% cancel. They don't — the 30% loss is applied to the larger amount.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "investment",
+        "successive-percent",
+        "compounding"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
+    },
+    {
+      "id": "ARI-PCT-069",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The salary of an employee increases by 10% every year. After how many complete years will the salary first exceed 150% of the current salary?",
+      "options": [
+        "A. 4",
+        "B. 5",
+        "C. 6",
+        "D. 7",
+        "E. 8"
+      ],
+      "answer": "B",
+      "explanation": "(1.10)^n > 1.50. Testing: (1.10)^4 ≈ 1.464, (1.10)^5 ≈ 1.611. After 5 years the salary first exceeds 150%. Answer: 5 years.",
+      "trap": "Students compute 50/10 = 5 years (simple interest) and get the right answer for the wrong reason. The GRE tests whether you understand compound growth, so always verify by computing (1.10)^n.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "compound-growth",
+        "threshold",
+        "hard"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
+    }
+  ]
+}

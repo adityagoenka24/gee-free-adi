@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GRE Quant Pro Event Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="events.css">
+</head>
+<body>
+  <main class="shell">
+    <div class="topbar">
+      <a class="brand" href="../index.html">
+        <div class="mark">Q</div>
+        <div><strong>GRE Quant Pro</strong><span>Coach Event Builder · Unlinked Preview</span></div>
+      </a>
+      <nav class="nav">
+        <a href="mock_test.html">Mock Test</a>
+        <a href="team_battle.html">Team Battle</a>
+        <a href="coach_aggregator.html">Aggregator</a>
+      </nav>
+    </div>
+
+    <section class="hero">
+      <div class="panel">
+        <div class="eyebrow">Coach Tool</div>
+        <h1>Build a fixed event paper.</h1>
+        <p>Choose a bank source, filters, timer, and question count. The builder downloads a self-contained config JSON so every student receives the same paper.</p>
+      </div>
+      <div class="panel">
+        <h2>Bank Source</h2>
+        <div class="field">
+          <label for="bankSource">Source</label>
+          <select id="bankSource">
+            <option value="../bank/">Free bank only</option>
+            <option value="../../gre-pro/bank/">Local sibling Pro bank</option>
+          </select>
+        </div>
+        <button class="primary-btn" id="loadBankBtn">Load Bank</button>
+        <p class="muted" id="bankStatus">Free bank is safest for the first preview. Pro source works locally if the sibling folder is available.</p>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>Event Settings</h2>
+        <div class="grid">
+          <div class="field"><label for="eventId">Event ID</label><input id="eventId" value="mock_001"></div>
+          <div class="field"><label for="eventType">Event Type</label><select id="eventType"><option value="mock_test">Mock Test</option><option value="team_battle">Team Battle</option></select></div>
+        </div>
+        <div class="field"><label for="eventName">Event Name</label><input id="eventName" value="GRE Quant Pro Sunday Mock 1"></div>
+        <div class="grid">
+          <div class="field"><label for="questionCount">Questions</label><input id="questionCount" type="number" min="1" value="27"></div>
+          <div class="field"><label for="secondsPerQuestion">Seconds per Question</label><input id="secondsPerQuestion" type="number" min="15" value="105"></div>
+        </div>
+        <div class="field"><label for="instructions">Instructions</label><textarea id="instructions">Answer all questions. No feedback is shown during the test. Download your result JSON at the end and send it to Coach Aditya.</textarea></div>
+        <div class="check-row">
+          <label class="chip"><input type="checkbox" id="allowNavigation" checked> Navigation allowed</label>
+          <label class="chip"><input type="checkbox" id="shuffleForStudents"> Shuffle per student</label>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Content Filters</h2>
+        <div class="field"><label for="topicSelect">Topic</label><select id="topicSelect"></select></div>
+        <div class="field"><label for="subtopicSelect">Subtopic</label><select id="subtopicSelect"></select></div>
+        <div class="field"><label>Difficulty</label><div class="check-row" id="difficultyChecks"></div></div>
+        <div class="field"><label>Question Type</label><div class="check-row" id="typeChecks"></div></div>
+        <div class="actions">
+          <button class="ghost-btn" id="previewBtn">Preview Pool</button>
+          <button class="primary-btn" id="buildBtn">Build Config</button>
+        </div>
+        <p class="muted" id="poolStatus">Load a bank to begin.</p>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top:18px">
+      <h2>Built Config</h2>
+      <div class="actions">
+        <button class="primary-btn" id="downloadBtn" disabled>Download event_config.json</button>
+        <a class="ghost-btn" id="mockLink" href="mock_test.html">Open Mock Preview</a>
+        <a class="ghost-btn" id="teamLink" href="team_battle.html">Open Team Preview</a>
+      </div>
+      <pre id="configPreview">No config built yet.</pre>
+    </section>
+  </main>
+  <script src="events_common.js"></script>
+  <script>
+    const builder = { base:"../bank/", manifest:null, questions:[], config:null };
+    const allDifficulties = ["easy","medium","hard","extreme_hard"];
+    const allTypes = ["mcq","numeric_entry","quantitative_comparison","multiple_answer"];
+
+    function checkedValues(containerId){
+      return [...document.querySelectorAll(`#${containerId} input:checked`)].map(input => input.value);
+    }
+
+    function renderChecks(id, values, selected){
+      Events.$(id).innerHTML = values.map(value => `<label class="chip"><input type="checkbox" value="${value}" ${selected.includes(value) ? "checked" : ""}> ${Events.escapeHtml(value.replaceAll("_"," "))}</label>`).join("");
+    }
+
+    async function loadBank(){
+      builder.base = Events.$("bankSource").value;
+      Events.$("bankStatus").textContent = "Loading manifest...";
+      builder.manifest = await Events.loadJson(`${builder.base}index.json`);
+      const topicSelect = Events.$("topicSelect");
+      topicSelect.innerHTML = `<option value="all">All topics</option>` + Object.keys(builder.manifest.topics).map(topic => `<option>${Events.escapeHtml(topic)}</option>`).join("");
+      renderChecks("difficultyChecks", allDifficulties, ["easy","medium","hard"]);
+      renderChecks("typeChecks", allTypes, allTypes);
+      topicSelect.onchange = populateSubtopics;
+      populateSubtopics();
+      Events.$("bankStatus").textContent = `${builder.manifest.bank || "Bank"} loaded.`;
+      await loadSelectedPool();
+    }
+
+    function populateSubtopics(){
+      const topic = Events.$("topicSelect").value;
+      const subs = topic === "all"
+        ? []
+        : Object.keys(builder.manifest.topics[topic] || {}).filter(sub => builder.manifest.topics[topic][sub].status === "complete");
+      Events.$("subtopicSelect").innerHTML = `<option value="all">All subtopics</option>` + subs.map(sub => `<option>${Events.escapeHtml(sub)}</option>`).join("");
+    }
+
+    async function loadSelectedPool(){
+      if (!builder.manifest) return [];
+      const topicFilter = Events.$("topicSelect").value;
+      const subtopicFilter = Events.$("subtopicSelect").value;
+      const difficulties = checkedValues("difficultyChecks");
+      const types = checkedValues("typeChecks");
+      const questions = [];
+      for (const [topic, subtopics] of Object.entries(builder.manifest.topics)) {
+        if (topicFilter !== "all" && topic !== topicFilter) continue;
+        for (const [subtopic, meta] of Object.entries(subtopics)) {
+          if (meta.status !== "complete") continue;
+          if (subtopicFilter !== "all" && subtopic !== subtopicFilter) continue;
+          const file = await Events.loadJson(`${builder.base}${meta.file}`);
+          for (const q of file.questions || []) {
+            if (difficulties.length && !difficulties.includes(q.difficulty)) continue;
+            if (types.length && !types.includes(q.type)) continue;
+            questions.push(Events.enrichQuestion(q, topic, subtopic));
+          }
+        }
+      }
+      builder.questions = questions;
+      Events.$("poolStatus").textContent = `${questions.length} questions match the current filters.`;
+      return questions;
+    }
+
+    function buildConfig(){
+      const questions = builder.questions.length ? builder.questions : [];
+      const requested = Math.max(1, Number(Events.$("questionCount").value) || 1);
+      if (!questions.length) {
+        Events.$("poolStatus").textContent = "No matching questions. Adjust filters.";
+        return;
+      }
+      const picked = Events.shuffle(questions).slice(0, Math.min(requested, questions.length));
+      const secondsPerQuestion = Math.max(15, Number(Events.$("secondsPerQuestion").value) || 105);
+      const config = {
+        event_id: Events.$("eventId").value.trim() || `event_${Date.now()}`,
+        event_name: Events.$("eventName").value.trim() || "GRE Quant Pro Event",
+        event_type: Events.$("eventType").value,
+        created_at: new Date().toISOString(),
+        timer_seconds: picked.length * secondsPerQuestion,
+        question_count: picked.length,
+        shuffle_questions_for_students: Events.$("shuffleForStudents").checked,
+        allow_navigation: Events.$("allowNavigation").checked,
+        show_feedback_during_test: false,
+        instructions: Events.$("instructions").value.trim(),
+        source_filters: {
+          bank_source: builder.base,
+          topic: Events.$("topicSelect").value,
+          subtopic: Events.$("subtopicSelect").value,
+          difficulties: checkedValues("difficultyChecks"),
+          types: checkedValues("typeChecks")
+        },
+        questions: picked
+      };
+      builder.config = config;
+      Events.$("downloadBtn").disabled = false;
+      Events.$("configPreview").textContent = JSON.stringify(config, null, 2);
+      Events.$("poolStatus").textContent = `Built ${picked.length} fixed questions from a ${questions.length}-question pool.`;
+      localStorage.setItem("gre_quant_last_event_config", JSON.stringify(config));
+    }
+
+    Events.$("loadBankBtn").onclick = () => loadBank().catch(error => Events.$("bankStatus").textContent = error.message);
+    Events.$("topicSelect").onchange = () => { populateSubtopics(); loadSelectedPool().catch(error => Events.$("poolStatus").textContent = error.message); };
+    Events.$("subtopicSelect").onchange = () => loadSelectedPool().catch(error => Events.$("poolStatus").textContent = error.message);
+    Events.$("previewBtn").onclick = () => loadSelectedPool().catch(error => Events.$("poolStatus").textContent = error.message);
+    Events.$("buildBtn").onclick = async () => { await loadSelectedPool(); buildConfig(); };
+    Events.$("downloadBtn").onclick = () => Events.downloadJson(`${Events.slug(builder.config.event_id)}.json`, builder.config);
+    loadBank().catch(error => Events.$("bankStatus").textContent = error.message);
+  </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GRE Quant Pro Event Mock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="events.css">
+</head>
+<body>
+  <main class="shell">
+    <div class="topbar">
+      <a class="brand" href="../index.html">
+        <div class="mark">Q</div>
+        <div><strong>GRE Quant Pro</strong><span>Events Add-On · Unlinked Preview</span></div>
+      </a>
+      <nav class="nav">
+        <a href="../index.html">Upgrade to Pro</a>
+      </nav>
+    </div>
+
+    <section id="startSection">
+      <div class="hero">
+        <div class="panel">
+          <div class="eyebrow">Mock Test Event</div>
+          <h1 id="eventName">Loading event...</h1>
+          <p id="instructions">The event config is loading.</p>
+          <div class="notice" style="margin-top:18px;margin-bottom:0">This free event gives you a sample of GRE Quant Pro: timed practice, trap-aware analytics, and topic-level feedback. Pro unlocks the full 8,410+ question practice system.</div>
+        </div>
+        <div class="panel">
+          <h2>Student Check-In</h2>
+          <p class="muted" id="eventDetails">Loading details...</p>
+          <div class="field"><label for="studentName">Name</label><input id="studentName" autocomplete="name"></div>
+          <div class="field"><label for="studentEmail">Email</label><input id="studentEmail" type="email" autocomplete="email"></div>
+          <div class="field"><label for="studentBatch">Class / Batch</label><input id="studentBatch" placeholder="Optional"></div>
+          <p class="muted" id="startError"></p>
+          <button class="primary-btn" id="startBtn">Start Mock Test</button>
+        </div>
+      </div>
+      <div class="notice warning">No feedback appears during the test. At the end, your analysis appears instantly. Download the result JSON and send it to Coach Aditya for the group leaderboard.</div>
+    </section>
+
+    <section id="examSection" class="hidden">
+      <div class="bank-meta-bar">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div class="meta-item"><span class="meta-label">Student</span><span class="meta-value" id="eventMetaName">-</span></div>
+          <div class="meta-item"><span class="meta-label">Event</span><span class="meta-value" id="eventMetaTopic">-</span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <div class="bank-progress-pill" id="progressText">Q 1 / 1</div>
+          <div class="exam-countdown" id="timer">--:--</div>
+        </div>
+      </div>
+      <div class="exam-layout">
+        <aside class="exam-sidebar">
+          <div class="exam-sidebar-title">Navigator</div>
+          <div class="exam-dots-wrap" id="numberNav"></div>
+          <div class="exam-sidebar-unanswered" id="unansweredWarning"></div>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
+            <button class="btn btn-danger" style="width:100%;padding:10px;" id="submitBtn">Submit</button>
+          </div>
+        </aside>
+        <div id="eventQuestionArea"></div>
+      </div>
+    </section>
+
+    <section id="resultsSection" class="hidden">
+      <div class="analysis-header">
+        <div class="analysis-title" id="resultsTitle">Exam Analysis</div>
+        <div class="analysis-meta" id="analysisMeta"></div>
+        <div style="margin-top:16px;font-size:12px;color:var(--text3);font-family:var(--font-mono);">
+          GRE Quant Pro Events · Coach Aditya Goenka · <a href="../index.html" style="color:var(--accent);text-decoration:none;">Unlock full Pro practice</a>
+        </div>
+        <div class="actions">
+          <button class="primary-btn" id="downloadResultBtn">Download Result JSON</button>
+          <button class="ghost-btn" id="emailResultBtn">Open Email Draft</button>
+          <a class="primary-btn" href="../index.html">Unlock Full Pro Bank</a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:24px;" id="resultMetrics"></div>
+      <div id="proCta"></div>
+      <div id="breakdowns" class="charts-grid" style="margin-top:18px"></div>
+      <div id="reviewSection"></div>
+    </section>
+  </main>
+  <script src="events_common.js"></script>
+  <script>Events.initStudentPage({ teamMode:false });</script>
+</body>
+</html>

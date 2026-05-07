@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GRE Quant Pro Coach Aggregator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="events.css">
+</head>
+<body>
+  <main class="shell">
+    <div class="topbar">
+      <a class="brand" href="../index.html">
+        <div class="mark">Q</div>
+        <div><strong>GRE Quant Pro</strong><span>Coach Aggregator · Unlinked Preview</span></div>
+      </a>
+      <nav class="nav">
+        <a href="event_builder.html">Builder</a>
+        <a href="mock_test.html">Mock Test</a>
+        <a href="team_battle.html">Team Battle</a>
+      </nav>
+    </div>
+
+    <section class="hero">
+      <div class="panel">
+        <div class="eyebrow">Coach Tool</div>
+        <h1>Aggregate result JSONs.</h1>
+        <p>Upload student result files from mock tests or team battles. This page computes leaderboards, team averages, weak areas, question-level stats, and visual performance charts locally in the browser.</p>
+      </div>
+      <div class="panel">
+        <h2>Upload Results</h2>
+        <label class="drop-zone" id="dropZone">
+          <strong>Drop result JSON files here</strong>
+          <span class="muted" style="display:block;margin-top:8px">or click to choose files</span>
+          <input id="fileInput" type="file" accept=".json,application/json" multiple hidden>
+        </label>
+        <div class="actions">
+          <button class="ghost-btn" id="clearBtn">Clear</button>
+          <button class="primary-btn" id="downloadJsonBtn" disabled>Download leaderboard.json</button>
+          <button class="ghost-btn" id="downloadCsvBtn" disabled>Download CSV</button>
+        </div>
+        <p class="muted" id="uploadStatus">No files loaded yet.</p>
+      </div>
+    </section>
+
+    <section class="results-grid" id="summaryMetrics"></section>
+    <section class="coach-charts">
+      <div class="result-card">
+        <h3>Top Performers</h3>
+        <div class="chart-bars" id="topPerformerChart"></div>
+      </div>
+      <div class="result-card">
+        <h3>Team Battle Snapshot</h3>
+        <div id="teamChart"></div>
+      </div>
+    </section>
+    <section class="coach-charts">
+      <div class="result-card">
+        <h3>Weakest Subtopics</h3>
+        <div class="chart-bars" id="weakSubtopicChart"></div>
+      </div>
+      <div class="result-card">
+        <h3>Hardest Questions</h3>
+        <div class="chart-bars" id="hardQuestionChart"></div>
+      </div>
+    </section>
+    <section class="grid" style="margin-top:18px">
+      <div class="result-card"><h3>Leaderboard</h3><div class="table-wrap" id="leaderboard"></div></div>
+      <div class="result-card"><h3>Team Score</h3><div class="table-wrap" id="teams"></div></div>
+    </section>
+    <section class="grid" style="margin-top:18px">
+      <div class="result-card"><h3>Weak Subtopics</h3><div class="table-wrap" id="weakSubtopics"></div></div>
+      <div class="result-card"><h3>Question Analysis</h3><div class="table-wrap" id="questions"></div></div>
+    </section>
+  </main>
+  <script src="events_common.js"></script>
+  <script>
+    let loadedResults = [];
+    let aggregate = null;
+
+    function readFile(file){
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          try { resolve(JSON.parse(reader.result)); }
+          catch (error) { reject(new Error(`${file.name}: invalid JSON`)); }
+        };
+        reader.onerror = () => reject(new Error(`${file.name}: could not read file`));
+        reader.readAsText(file);
+      });
+    }
+
+    function rowsToTable(headers, rows){
+      if (!rows.length) return "<p class='muted' style='padding:14px'>No data yet.</p>";
+      return `<table><thead><tr>${headers.map(h => `<th>${Events.escapeHtml(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+    }
+
+    function barChart(rows, { labelKey, valueKey, max = 100, suffix = "", empty = "No data yet." } = {}){
+      if (!rows.length) return `<p class="muted">${empty}</p>`;
+      return rows.map(row => {
+        const value = Number(row[valueKey] || 0);
+        const pct = max ? Math.max(0, Math.min(100, (value / max) * 100)) : 0;
+        return `<div class="chart-bar-row">
+          <div class="chart-name" title="${Events.escapeHtml(row[labelKey])}">${Events.escapeHtml(row[labelKey])}</div>
+          <div class="chart-track"><div class="chart-fill" style="width:${pct}%"></div></div>
+          <div class="chart-value">${value}${suffix}</div>
+        </div>`;
+      }).join("");
+    }
+
+    function renderCoachCharts(data){
+      Events.$("topPerformerChart").innerHTML = barChart(data.leaderboard.slice(0, 8).map(r => ({ name: r.name, value: r.accuracy })), {
+        labelKey: "name", valueKey: "value", suffix: "%"
+      });
+      Events.$("weakSubtopicChart").innerHTML = barChart(data.weak_subtopics.slice(0, 8).map(s => ({ name: s.subtopic, value: Math.round(100 - s.accuracy) })), {
+        labelKey: "name", valueKey: "value", suffix: "%", empty: "No subtopic attempts yet."
+      });
+      Events.$("hardQuestionChart").innerHTML = barChart(data.question_analysis.slice(0, 8).map(q => ({ name: q.question_id, value: Math.round(100 - q.accuracy) })), {
+        labelKey: "name", valueKey: "value", suffix: "%", empty: "No question attempts yet."
+      });
+      if (!data.teams.length) {
+        Events.$("teamChart").innerHTML = "<p class='muted'>Upload Team Battle results to see Red vs Blue performance.</p>";
+        return;
+      }
+      Events.$("teamChart").innerHTML = `<div class="team-compare">${data.teams.map(t => `
+        <div class="team-card ${t.team === "Red" ? "red" : "blue"}">
+          <span>${Events.escapeHtml(t.team)} avg accuracy</span>
+          <b class="${t.team === "Red" ? "team-red" : "team-blue"}">${t.average_accuracy}%</b>
+          <p class="muted" style="margin:8px 0 0">${t.students} students · top scorer: ${Events.escapeHtml(t.top_scorer || "-")}</p>
+        </div>`).join("")}</div>`;
+    }
+
+    function average(values){
+      const nums = values.map(Number).filter(Number.isFinite);
+      return nums.length ? nums.reduce((a,b) => a + b, 0) / nums.length : 0;
+    }
+
+    function makeAggregate(results){
+      const leaderboard = [...results].sort((a,b) => b.score - a.score || b.accuracy - a.accuracy || a.total_time_seconds - b.total_time_seconds)
+        .map((r, i) => ({
+          rank: i + 1,
+          name: r.student?.name || "Unknown",
+          email: r.student?.email || "",
+          batch: r.student?.batch || "",
+          team: r.team || "",
+          score: r.score,
+          total_questions: r.total_questions,
+          accuracy: Number(r.accuracy || 0),
+          total_time_seconds: Number(r.total_time_seconds || 0),
+          avg_time_seconds: Number(r.average_time_seconds || 0),
+          event_id: r.event_id,
+          event_name: r.event_name
+        }));
+
+      const teamNames = [...new Set(results.map(r => r.team).filter(Boolean))];
+      const teams = teamNames.map(team => {
+        const members = results.filter(r => r.team === team);
+        return {
+          team,
+          students: members.length,
+          average_accuracy: Number(average(members.map(r => r.accuracy)).toFixed(2)),
+          average_score: Number(average(members.map(r => r.score)).toFixed(2)),
+          average_time_seconds: Number(average(members.map(r => r.total_time_seconds)).toFixed(1)),
+          top_scorer: [...members].sort((a,b) => b.score - a.score || a.total_time_seconds - b.total_time_seconds)[0]?.student?.name || ""
+        };
+      }).sort((a,b) => b.average_accuracy - a.average_accuracy || a.average_time_seconds - b.average_time_seconds);
+
+      const subtopicMap = new Map();
+      const questionMap = new Map();
+      for (const result of results) {
+        for (const item of result.results || []) {
+          const sub = item.subtopic || "Unspecified";
+          if (!subtopicMap.has(sub)) subtopicMap.set(sub, { subtopic: sub, total: 0, correct: 0, skipped: 0 });
+          const s = subtopicMap.get(sub);
+          s.total += 1; s.correct += item.correct ? 1 : 0; s.skipped += item.skipped ? 1 : 0;
+
+          const qid = item.question_id || "unknown";
+          if (!questionMap.has(qid)) questionMap.set(qid, { question_id: qid, topic: item.topic || "", subtopic: item.subtopic || "", total: 0, correct: 0, skipped: 0, avg_time_seconds: 0, time: 0 });
+          const q = questionMap.get(qid);
+          q.total += 1; q.correct += item.correct ? 1 : 0; q.skipped += item.skipped ? 1 : 0; q.time += Number(item.time_taken_seconds) || 0;
+        }
+      }
+      const weak_subtopics = [...subtopicMap.values()].map(s => ({ ...s, accuracy: s.total ? Number(((s.correct / s.total) * 100).toFixed(2)) : 0 }))
+        .sort((a,b) => a.accuracy - b.accuracy || b.total - a.total);
+      const question_analysis = [...questionMap.values()].map(q => ({ ...q, accuracy: q.total ? Number(((q.correct / q.total) * 100).toFixed(2)) : 0, avg_time_seconds: q.total ? Number((q.time / q.total).toFixed(1)) : 0 }))
+        .sort((a,b) => a.accuracy - b.accuracy || b.total - a.total);
+
+      return {
+        generated_at: new Date().toISOString(),
+        event_id: results[0]?.event_id || "",
+        event_name: results[0]?.event_name || "",
+        submissions: results.length,
+        average_accuracy: Number(average(results.map(r => r.accuracy)).toFixed(2)),
+        average_score: Number(average(results.map(r => r.score)).toFixed(2)),
+        leaderboard,
+        teams,
+        weak_subtopics,
+        question_analysis
+      };
+    }
+
+    function render(){
+      aggregate = makeAggregate(loadedResults);
+      Events.$("summaryMetrics").innerHTML = [
+        ["Submissions", aggregate.submissions],
+        ["Avg Accuracy", `${aggregate.average_accuracy}%`],
+        ["Avg Score", aggregate.average_score],
+        ["Teams", aggregate.teams.length || "N/A"]
+      ].map(([label, value]) => `<div class="metric"><b>${value}</b><span>${label}</span></div>`).join("");
+      renderCoachCharts(aggregate);
+
+      Events.$("leaderboard").innerHTML = rowsToTable(["Rank","Student","Team","Score","Accuracy","Time"], aggregate.leaderboard.map(r => [
+        r.rank, Events.escapeHtml(r.name), Events.escapeHtml(r.team), `${r.score}/${r.total_questions}`, `${r.accuracy}%`, Events.formatTime(r.total_time_seconds)
+      ]));
+      Events.$("teams").innerHTML = rowsToTable(["Team","Students","Avg Accuracy","Avg Score","Avg Time","Top Scorer"], aggregate.teams.map(t => [
+        `<strong class="${t.team === "Red" ? "team-red" : "team-blue"}">${Events.escapeHtml(t.team)}</strong>`, t.students, `${t.average_accuracy}%`, t.average_score, Events.formatTime(t.average_time_seconds), Events.escapeHtml(t.top_scorer)
+      ]));
+      Events.$("weakSubtopics").innerHTML = rowsToTable(["Subtopic","Attempts","Correct","Skipped","Accuracy"], aggregate.weak_subtopics.slice(0, 12).map(s => [
+        Events.escapeHtml(s.subtopic), s.total, s.correct, s.skipped, `${s.accuracy}%`
+      ]));
+      Events.$("questions").innerHTML = rowsToTable(["Question","Subtopic","Attempts","Accuracy","Avg Time"], aggregate.question_analysis.slice(0, 20).map(q => [
+        Events.escapeHtml(q.question_id), Events.escapeHtml(q.subtopic), q.total, `${q.accuracy}%`, Events.formatTime(q.avg_time_seconds)
+      ]));
+      Events.$("downloadJsonBtn").disabled = !loadedResults.length;
+      Events.$("downloadCsvBtn").disabled = !loadedResults.length;
+      Events.$("uploadStatus").textContent = `${loadedResults.length} result file${loadedResults.length === 1 ? "" : "s"} loaded.`;
+    }
+
+    function toCsv(rows){
+      const headers = ["rank","name","email","batch","team","score","total_questions","accuracy","total_time_seconds","event_id"];
+      const esc = value => `"${String(value ?? "").replaceAll('"','""')}"`;
+      return [headers.join(","), ...rows.map(row => headers.map(h => esc(row[h])).join(","))].join("\n");
+    }
+
+    async function handleFiles(files){
+      const parsed = [];
+      const errors = [];
+      for (const file of files) {
+        try { parsed.push(await readFile(file)); }
+        catch (error) { errors.push(error.message); }
+      }
+      loadedResults = loadedResults.concat(parsed.filter(r => r && Array.isArray(r.results)));
+      render();
+      if (errors.length) Events.$("uploadStatus").textContent += ` ${errors.length} file(s) failed.`;
+    }
+
+    Events.$("dropZone").onclick = () => Events.$("fileInput").click();
+    Events.$("fileInput").onchange = (event) => handleFiles([...event.target.files]);
+    Events.$("dropZone").ondragover = (event) => { event.preventDefault(); Events.$("dropZone").classList.add("drag"); };
+    Events.$("dropZone").ondragleave = () => Events.$("dropZone").classList.remove("drag");
+    Events.$("dropZone").ondrop = (event) => { event.preventDefault(); Events.$("dropZone").classList.remove("drag"); handleFiles([...event.dataTransfer.files]); };
+    Events.$("clearBtn").onclick = () => { loadedResults = []; render(); };
+    Events.$("downloadJsonBtn").onclick = () => Events.downloadJson(`${Events.slug(aggregate.event_id || "leaderboard")}_leaderboard.json`, aggregate);
+    Events.$("downloadCsvBtn").onclick = () => Events.downloadText(`${Events.slug(aggregate.event_id || "leaderboard")}_leaderboard.csv`, toCsv(aggregate.leaderboard), "text/csv");
+    render();
+  </script>
+</body>
+</html>
