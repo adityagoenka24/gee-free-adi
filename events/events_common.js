@@ -153,6 +153,7 @@ const Events = (() => {
         correct: isCorrect(q, answer),
         skipped,
         time_taken_seconds: Math.max(0, Math.round(state.qTimes[i] || 0)),
+        estimated_time_seconds: q.estimated_time_seconds || 90,
         difficulty: q.difficulty || "unspecified",
         type: q.type || "unspecified",
         topic: q.topic || "Mixed",
@@ -334,19 +335,77 @@ const Events = (() => {
     </div>`;
   }
 
-  function renderBreakdownTable(title, rows) {
-    return `<div class="chart-card"><h3>${escapeHtml(title)}</h3><div class="table-wrap"><table><thead><tr><th>Area</th><th>Total</th><th>Correct</th><th>Skipped</th><th>Accuracy</th><th>Avg time</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${escapeHtml(r.label)}</td><td>${r.total}</td><td>${r.correct}</td><td>${r.skipped}</td><td>${r.accuracy}%</td><td>${formatTime(r.avg_time_seconds)}</td></tr>`).join("")}</tbody></table></div></div>`;
+  function barRow(label, correct, total, pct, color) {
+    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
+      <span style="width:100px;font-size:13px;color:var(--text2);flex-shrink:0;">${escapeHtml(label)}</span>
+      <div style="flex:1;height:6px;background:var(--surface3);border-radius:3px;overflow:hidden;">
+        <div style="width:${pct}%;height:100%;background:${color};border-radius:3px;transition:width 0.8s ease;"></div>
+      </div>
+      <span style="font-family:var(--font-mono);font-size:12px;color:${color};min-width:70px;text-align:right;">${correct}/${total} (${pct}%)</span>
+    </div>`;
+  }
+
+  function renderAnalysisBars(result) {
+    const dOrder = ["easy", "medium", "hard", "extreme_hard"];
+    const dLabels = { easy: "Easy", medium: "Medium", hard: "Hard", extreme_hard: "Extreme" };
+    const byDiff = {};
+    result.results.forEach((r) => {
+      const d = r.difficulty;
+      if (!byDiff[d]) byDiff[d] = { total: 0, correct: 0 };
+      byDiff[d].total += 1;
+      if (r.correct) byDiff[d].correct += 1;
+    });
+    $("exam-diff-bars").innerHTML = dOrder.filter((d) => byDiff[d]).map((d) => {
+      const s = byDiff[d];
+      const pct = Math.round((s.correct / s.total) * 100);
+      const col = pct >= 75 ? "var(--success)" : pct >= 50 ? "var(--warning)" : "var(--danger)";
+      return barRow(dLabels[d], s.correct, s.total, pct, col);
+    }).join("") || '<p style="color:var(--text3);font-size:13px;">No data</p>';
+
+    const byType = {};
+    result.results.forEach((r) => {
+      const t = r.type;
+      if (!byType[t]) byType[t] = { total: 0, correct: 0 };
+      byType[t].total += 1;
+      if (r.correct) byType[t].correct += 1;
+    });
+    $("exam-type-bars").innerHTML = Object.entries(byType).map(([t, s]) => {
+      const pct = Math.round((s.correct / s.total) * 100);
+      const col = pct >= 75 ? "var(--success)" : pct >= 50 ? "var(--warning)" : "var(--danger)";
+      return barRow(typeLabel(t), s.correct, s.total, pct, col);
+    }).join("") || '<p style="color:var(--text3);font-size:13px;">No data</p>';
+  }
+
+  function renderTimeTable(result) {
+    const dLabels = { easy: "Easy", medium: "Medium", hard: "Hard", extreme_hard: "Extreme" };
+    $("exam-time-table").innerHTML = `
+      <table><thead><tr>
+        <th>#</th><th>Difficulty</th><th>Type</th><th>Est. Time</th><th>Actual Time</th><th>Result</th>
+      </tr></thead><tbody>
+      ${result.results.map((r, i) => {
+        const icon = r.correct ? "✅" : r.skipped ? "⏭" : "❌";
+        return `<tr>
+          <td style="font-family:var(--font-mono);">Q${i + 1}</td>
+          <td><span class="tag tag-${escapeHtml(String(r.difficulty).replace("_", "-"))}">${escapeHtml(dLabels[r.difficulty] || difficultyLabel(r.difficulty))}</span></td>
+          <td style="font-size:12px;color:var(--text2);">${escapeHtml(typeLabel(r.type))}</td>
+          <td style="font-family:var(--font-mono);font-size:12px;color:var(--text3);">${formatTime(r.estimated_time_seconds || 90)}</td>
+          <td style="font-family:var(--font-mono);font-size:12px;color:var(--text3);">${formatTime(r.time_taken_seconds || 0)}</td>
+          <td>${icon}</td>
+        </tr>`;
+      }).join("")}
+      </tbody></table>`;
   }
 
   function renderWrongReview(result) {
     const wrong = (result.results || []).filter((r) => !r.correct);
     if (!wrong.length) {
-      return `<div class="table-card" style="margin-top:18px;text-align:center;padding:40px;">
-        <div style="font-family:var(--font-display);font-size:24px;margin-bottom:8px;">Perfect Score</div>
+      return `<div class="table-card" style="margin-bottom:24px;text-align:center;padding:40px;">
+        <div style="font-size:48px;margin-bottom:16px;">🏆</div>
+        <div style="font-family:var(--font-display);font-size:22px;margin-bottom:8px;">Perfect Score!</div>
         <div style="color:var(--text2);font-size:14px;">All questions answered correctly.</div>
       </div>`;
     }
-    return `<div class="table-card" style="margin-top:18px;">
+    return `<div class="table-card" style="margin-bottom:24px;">
       <h3>Questions to Review (${wrong.length})</h3>
       <div class="wrong-q-list">${wrong.map((r) => {
         const correctAnswer = Array.isArray(r.correct_answer) ? r.correct_answer.join(", ") : r.correct_answer;
@@ -366,7 +425,7 @@ const Events = (() => {
               <span class="wrong-q-correct">Correct: ${escapeHtml(correctAnswer)}</span>
             </div>
             ${r.explanation ? `<div class="wrong-q-explanation">${escapeHtml(r.explanation)}</div>` : ""}
-            ${r.trap ? `<div class="wrong-q-trap">Trap: ${escapeHtml(r.trap)}</div>` : ""}
+            ${r.trap ? `<div class="wrong-q-trap">⚠️ Trap: ${escapeHtml(r.trap)}</div>` : ""}
           </div>
         </div>`;
       }).join("")}</div>
@@ -402,7 +461,7 @@ const Events = (() => {
         <div class="analysis-meta-item"><span class="al">Date</span><span class="av">${new Date(result.submitted_at).toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})}</span></div>
         <div class="analysis-meta-item"><span class="al">Duration</span><span class="av">${formatTime(result.total_time_seconds)} / ${formatTime(state.config.timer_seconds)} allotted</span></div>`;
     }
-    $("resultMetrics").innerHTML = [
+    $("exam-kpi-row").innerHTML = [
       kpiCard("🎯", `${result.accuracy}%`, "Accuracy", "var(--accent)"),
       kpiCard("✅", result.correct, "Correct", "var(--success)"),
       kpiCard("❌", result.incorrect, "Incorrect", "var(--danger)"),
@@ -410,14 +469,10 @@ const Events = (() => {
       kpiCard("⏱", formatTime(result.total_time_seconds), "Total Time", "var(--warning)"),
       kpiCard("⚡", `${formatTime(result.average_time_seconds)}/q`, "Avg per Q", "var(--accent2)")
     ].join("");
-    $("breakdowns").innerHTML = [
-      renderBreakdownTable("By Topic", result.breakdowns.topic),
-      renderBreakdownTable("By Subtopic", result.breakdowns.subtopic),
-      renderBreakdownTable("By Difficulty", result.breakdowns.difficulty),
-      renderBreakdownTable("By Type", result.breakdowns.type)
-    ].join("");
+    renderAnalysisBars(result);
+    renderTimeTable(result);
     if ($("proCta")) $("proCta").innerHTML = renderProCta(result);
-    if ($("reviewSection")) $("reviewSection").innerHTML = renderWrongReview(result);
+    $("exam-wrong-section").innerHTML = renderWrongReview(result);
     $("downloadResultBtn").onclick = () => downloadJson(`${slug(result.event_id)}_${slug(result.student.name)}_result.json`, result);
     $("emailResultBtn").onclick = () => {
       const subject = encodeURIComponent(`GRE Quant Pro Event Result - ${result.event_name} - ${result.student.name}`);
