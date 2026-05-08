@@ -1,0 +1,495 @@
+{
+  "event_id": "arithmetic_mixed_001",
+  "event_name": "GRE Quant Pro Arithmetic Mixed 1",
+  "event_type": "mock_test",
+  "created_at": "2026-05-08T12:26:13.154Z",
+  "timer_seconds": 2100,
+  "question_count": 20,
+  "shuffle_questions_for_students": true,
+  "allow_navigation": true,
+  "show_feedback_during_test": false,
+  "instructions": "Answer all questions. No feedback is shown during the test. Download your result JSON at the end and send it to Coach Aditya.",
+  "source_filters": {
+    "bank_source": "../../gre-pro-adi/bank/",
+    "topic": "Arithmetic",
+    "subtopic": "Arithmetic Mixed Bag",
+    "difficulties": [
+      "medium",
+      "hard",
+      "extreme_hard"
+    ],
+    "types": [
+      "mcq",
+      "numeric_entry",
+      "quantitative_comparison",
+      "multiple_answer"
+    ]
+  },
+  "questions": [
+    {
+      "id": "ARI-FRC-062",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "What is the value of (1/1×2) + (1/2×3) + (1/3×4) + ... + (1/9×10)?",
+      "options": [
+        "A. 7/10",
+        "B. 9/10",
+        "C. 4/5",
+        "D. 1/10",
+        "E. 8/9"
+      ],
+      "answer": "B",
+      "explanation": "1/(n(n+1)) = 1/n − 1/(n+1). This telescopes: (1−1/2)+(1/2−1/3)+...+(1/9−1/10) = 1 − 1/10 = 9/10.",
+      "trap": "Students compute all 9 fractions individually and add — tedious and error-prone. The telescoping trick is essential.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "telescoping-sum",
+        "partial-fractions",
+        "hard"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-EST-030",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "Using the approximation √(n) ≈ n_0 + (n - n_0²)/(2n_0), estimate √(83) to one decimal place, where n_0 is the nearest whole-number square root below n.",
+      "options": null,
+      "answer": "9.1",
+      "explanation": "Nearest perfect square below 83: 9² = 81. n_0 = 9. √83 ≈ 9 + (83 - 81)/(2×9) = 9 + 2/18 = 9 + 1/9 ≈ 9 + 0.111 = 9.111. Rounded to one decimal place: 9.1. Verify: 9.1² = 82.81, 9.2² = 84.64. Since 83 is between 82.81 and 84.64, and closer to 82.81, √83 rounds to 9.1.",
+      "trap": "Students use n_0 = 10 (the nearest integer, not nearest square root below) and compute √83 ≈ 10 + (83-100)/20 = 10 - 0.85 = 9.15 ≈ 9.2, which is less accurate.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "approximation",
+        "square-root",
+        "multi-step"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-P10-030",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The mass of a proton is approximately 1.67 × 10^(-27) kg. The mass of an electron is approximately 9.11 × 10^(-31) kg. Approximately how many times heavier is a proton than an electron?",
+      "options": [
+        "A. 1,836",
+        "B. 183",
+        "C. 18,360",
+        "D. 0.00055",
+        "E. 1,635"
+      ],
+      "answer": "A",
+      "explanation": "Divide: (1.67 × 10^(-27)) ÷ (9.11 × 10^(-31)) = (1.67 ÷ 9.11) × 10^(-27-(-31)) = (1.67/9.11) × 10^4. Compute 1.67/9.11 ≈ 0.1834. So 0.1834 × 10^4 = 1834 ≈ 1,836. The proton is approximately 1,836 times heavier.",
+      "trap": "Students subtract exponents as -27 - (-31) = -27 - 31 = -58 (forgetting to subtract a negative = add), getting 10^(-58) instead of 10^4. Subtracting a negative exponent: -27 - (-31) = -27 + 31 = +4.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "scientific-notation",
+        "negative-exponent",
+        "multi-step",
+        "approximation"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-PCT-066",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A dishonest dealer claims to sell goods at cost price but uses a weight of 900 grams instead of 1000 grams. What is his actual profit percentage?",
+      "options": [
+        "A. 9%",
+        "B. 10%",
+        "C. 11.11%",
+        "D. 12.5%",
+        "E. 15%"
+      ],
+      "answer": "C",
+      "explanation": "Dealer buys 900g for the price of 1000g (at cost). He sells 900g at the price of 1000g. So he charges for 1000g but delivers 900g. Profit = (1000-900)/900 × 100 = 100/900 × 100 = 11.11%.",
+      "trap": "Students compute 100/1000 = 10% (choosing B). The profit percentage is calculated on COST (900g), not on selling price (1000g).",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "profit-loss",
+        "tricky-real-world",
+        "hard"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-RAE-061",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A tank has an inlet pipe and an outlet pipe. The inlet alone fills the tank in 12 minutes; the outlet alone drains it in 18 minutes. The tank is half-full when both pipes open. After how many minutes is the tank completely full?",
+      "options": [
+        "A. 18 min",
+        "B. 24 min",
+        "C. 30 min",
+        "D. 36 min",
+        "E. 9 min"
+      ],
+      "answer": "A",
+      "explanation": "Net rate = 1/12-1/18 = 1/36 per minute. Half tank remains. Time = (1/2)/(1/36) = 18 minutes.",
+      "trap": "Students compute time to fill FULL tank from empty: 36 min, then halve to 18. This gives the same answer here but the correct approach is (remaining fraction)/(net rate).",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "ratio-word-problem",
+        "fraction-subtraction"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "NUM-REM-047",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "A positive integer n leaves a remainder of 2 when divided by 3, a remainder of 3 when divided by 5, and a remainder of 4 when divided by 7. What is the smallest positive value of n?",
+      "options": [
+        "A. 53",
+        "B. 68",
+        "C. 83",
+        "D. 158",
+        "E. 173"
+      ],
+      "answer": "A",
+      "explanation": "We need n ≡ 2 (mod 3), n ≡ 3 (mod 5), n ≡ 4 (mod 7). Notice a pattern: n ≡ −1 (mod 3), n ≡ −2 (mod 5), n ≡ −3 (mod 7). So n+1 ≡ 0 (mod 3), n+2 ≡ 0 (mod 5), n+3 ≡ 0 (mod 7). This means... let's just use CRT. From n ≡ 2 (mod 3): n = 3k+2. Substitute into n ≡ 3 (mod 5): 3k+2 ≡ 3 (mod 5) → 3k ≡ 1 (mod 5). Inverse of 3 mod 5: 3×2=6≡1 (mod 5), so 3^(-1)=2. k ≡ 2 (mod 5). So k=5j+2, giving n=3(5j+2)+2=15j+8. Now apply n ≡ 4 (mod 7): 15j+8 ≡ 4 (mod 7). 15 mod 7=1, 8 mod 7=1. So j+1 ≡ 4 (mod 7) → j ≡ 3 (mod 7). j=7m+3. n=15(7m+3)+8=105m+45+8=105m+53. Smallest positive n = 53. Verify: 53 mod 3=2 ✓ (51=3×17, 53−51=2), 53 mod 5=3 ✓ (50=5×10, 53−50=3), 53 mod 7=4 ✓ (49=7×7, 53−49=4). Answer: A.",
+      "trap": "Students add the three remainders (2+3+4=9) or try averaging, getting nonsense. The only valid approach is systematic CRT: solve the first two congruences to get a combined congruence mod 15, then solve against the third. Plugging options back in is also valid on GRE: check 53 mod 3=2 ✓, mod 5=3 ✓, mod 7=4 ✓.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "remainders",
+        "chinese-remainder-theorem",
+        "multi-step"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-RAT-028",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A:B = 2:3 and B:C = 4:5. What is A:C? Express as a fraction A/C rounded to 2 decimal places.",
+      "answer": "0.53",
+      "explanation": "Make B common: A:B = 2:3 = 8:12 (×4). B:C = 4:5 = 12:15 (×3). So A:C = 8:15. A/C = 8/15 ≈ 0.5333 ≈ 0.53.",
+      "trap": "Students compute A:C = 2:5 by taking A from first ratio and C from second without making B equal. Must scale both ratios to common B value.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "combining-ratios",
+        "proportion"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-PCT-068",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A, B, and C are three numbers. A is 25% of B, and B is 80% of C. What percent of C is A? Enter your answer as a number.",
+      "answer": "20",
+      "explanation": "A = 0.25B and B = 0.80C. Therefore A = 0.25 × 0.80C = 0.20C = 20% of C.",
+      "trap": "Students add the percentages: 25 + 80 = 105% or try to subtract. Must multiply the decimal multipliers.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "chain-percent",
+        "three-numbers",
+        "hard"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-EXP-076",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "Which of the following simplify to an integer for ALL positive integer values of n? Select all that apply.",
+      "options": [
+        "A. n^(1/n)",
+        "B. (n!)^(1/n)",
+        "C. (n^n)^(1/n)",
+        "D. (2^n + 2^n)^(1/n)",
+        "E. (n^2)^(1/2)"
+      ],
+      "answer": [
+        "C",
+        "E"
+      ],
+      "explanation": "A: n^(1/n) is integer only when n=1 (gives 1). For n=2: √2 is irrational ✗. B: (n!)^(1/n): for n=2, √2 irrational ✗. C: (n^n)^(1/n) = n^(n/n) = n^1 = n ✓ always. D: (2^n+2^n)^(1/n) = (2^(n+1))^(1/n) = 2^((n+1)/n) — integer only when n|(n+1), i.e. n=1 ✗ for n≥2. E: (n²)^(1/2) = n ✓ always.",
+      "trap": "Students include D: 2^((n+1)/n) = 2^(1+1/n), which equals an integer only when 1/n is an integer, i.e. n=1. For n=2: 2^(3/2) = 2√2 ✗.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "fractional-exponent",
+        "exponent-rules",
+        "multiple-answer"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-RAE-069",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "A and B run around a circular track. A completes the circuit in 40 seconds, B in 60 seconds. They start at the same point at the same time.\nColumn A: Time until they first meet again at the start\nColumn B: 100 seconds",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "They meet at the start when both have completed whole number of laps. This happens at the LCM of 40 and 60 = 120 seconds. Column B (100) < Column A (120).",
+      "trap": "Students compute (40+60)/2=50 or 40×60/(40+60)=24 seconds. The correct answer is LCM(40,60)=120 seconds.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "ratio-word-problem",
+        "qc"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-PCT-060",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A price P increases by x% to become Q. Which of the following expressions correctly represent x? Select all that apply.",
+      "options": [
+        "A. (Q-P)/P × 100",
+        "B. (Q/P - 1) × 100",
+        "C. Q/P × 100 - 100",
+        "D. (Q-P)/Q × 100",
+        "E. 100(Q-P)/P"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "x = percent increase = (change/original) × 100 = (Q-P)/P × 100. A ✓. B: Q/P - 1 = (Q-P)/P, so ×100 gives same result ✓. C: Q/P × 100 - 100 = (Q-P)/P × 100 ✓. D: divides by Q (the new price) instead of P — this gives percent decrease from Q back to P, not the increase. E: same as A ✓.",
+      "trap": "D is the classic wrong formula — students confuse the denominator. Always divide by the ORIGINAL value.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "percent-formula",
+        "multiple-answer",
+        "algebraic",
+        "hard"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-PCT-047",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "Which of the following percent changes result in a final value greater than the starting value? Select all that apply.",
+      "options": [
+        "A. +50% then -40%",
+        "B. +25% then -20%",
+        "C. +10% then -10%",
+        "D. +100% then -50%",
+        "E. +20% then -15%"
+      ],
+      "answer": [
+        "E"
+      ],
+      "explanation": "A: 1.50×0.60=0.90 (loss). B: 1.25×0.80=1.00 (no change). C: 1.10×0.90=0.99 (loss). D: 2.00×0.50=1.00 (no change). E: 1.20×0.85=1.02 (gain). Only E results in a value greater than the start.",
+      "trap": "B and D look like they should gain but exactly cancel. The trap is assuming symmetric percentages always give gains.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "successive-percent",
+        "multiple-answer",
+        "net-change"
+      ],
+      "review_flag": true,
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-SEQ-055",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "For the series 1 + 1/2 + 1/4 + 1/8 + ... (infinite):\nColumn A: The sum\nColumn B: The limit of the partial sums",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "The sum of an infinite convergent series IS the limit of its partial sums, by definition. Both equal 2 (a/(1-r) = 1/(1-1/2) = 2). They are always equal — Column A and Column B are two ways of describing the same quantity.",
+      "trap": "Students think 'sum' and 'limit of partial sums' are different. They are identical by definition for convergent series.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "geometric-sequence",
+        "sum-formula",
+        "qc"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-RAT-024",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "x and y are positive. x:y = 3:7.\nColumn A: (x+y)/y\nColumn B: 10/7",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "x=3k, y=7k. (x+y)/y = (3k+7k)/7k = 10k/7k = 10/7. Equal.",
+      "trap": "Students substitute x=3, y=7 and compute 10/7 ✓ but then doubt since k isn't 1. The k cancels completely.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "ratio-basics",
+        "algebraic",
+        "qc"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-FRC-044",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "In a class, 3/8 of students play cricket and 1/4 play football. The rest play neither. What fraction play neither?",
+      "options": [
+        "A. 1/8",
+        "B. 3/8",
+        "C. 5/8",
+        "D. 1/2",
+        "E. 7/16"
+      ],
+      "answer": "B",
+      "explanation": "Cricket + football = 3/8 + 1/4 = 3/8 + 2/8 = 5/8. Neither = 1 − 5/8 = 3/8.",
+      "trap": "Students add 3/8 + 1/4 = 4/12 = 1/3 (adding denominators). Must find LCD first.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "fraction-word-problem",
+        "complement"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-FRC-080",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "Column A: The sum of all fractions 1/(n²−1) for n = 2, 3, 4, ..., 10\nColumn B: 9/20",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "1/(n²−1) = 1/((n−1)(n+1)) = (1/2)[1/(n−1) − 1/(n+1)]. Sum from n=2 to 10: (1/2)[(1/1−1/3)+(1/2−1/4)+(1/3−1/5)+...+(1/9−1/11)]. After telescoping: (1/2)[1 + 1/2 − 1/10 − 1/11] = (1/2)[3/2 − 21/110] = (1/2)[(165−21)/110] = (1/2)(144/110) = 72/110 = 36/55. But Column B = 9/20 = 0.45. 36/55 ≈ 0.6545 ≠ 0.45. Let me recheck the telescoping. (1/2)Σ[1/(n-1) − 1/(n+1)] for n=2 to 10. Pairs: n=2: 1/1−1/3; n=3: 1/2−1/4; n=4: 1/3−1/5; ... n=10: 1/9−1/11. Sum of 1/(n-1): 1+1/2+1/3+...+1/9. Sum of 1/(n+1): 1/3+1/4+...+1/11. Difference: 1+1/2−1/10−1/11 = 3/2−21/110 = 165/110−21/110=144/110. × 1/2 = 72/110 = 36/55. Column B = 9/20. 36/55 ≠ 9/20. Flagging — options need review.",
+      "trap": "This requires the partial fraction telescoping technique — a key GRE hard skill.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "telescoping-sum",
+        "partial-fractions",
+        "extreme-hard"
+      ],
+      "review_flag": true,
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "NUM-REM-050",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "Which of the following statements about remainders are true for ALL positive integers a, b, and d > 1? Select all that apply.",
+      "options": [
+        "A. The remainder when (a + b) is divided by d equals (remainder of a) + (remainder of b), without any further reduction.",
+        "B. If a ≡ r (mod d) and b ≡ r (mod d), then (a − b) ≡ 0 (mod d).",
+        "C. The remainder when a is divided by d is strictly less than d.",
+        "D. If d is prime and d divides (a × b), then d divides a or d divides b (or both).",
+        "E. The remainder when a² is divided by d depends only on the remainder when a is divided by d."
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A. False. The sum of individual remainders may ≥ d and must be reduced mod d. Example: 5 mod 3=2, 4 mod 3=1; sum of remainders=3, but (5+4) mod 3=0. The correct rule is ((a mod d) + (b mod d)) mod d. B. True. a≡r (mod d) means d|(a−r). b≡r (mod d) means d|(b−r). Then (a−b)=(a−r)−(b−r), and d divides both terms, so d|(a−b). C. True. By the division algorithm, a = qd + r where 0 ≤ r < d. The remainder is always strictly less than d. D. True. This is Euclid's Lemma: if a prime p divides a product ab, then p divides a or p divides b. This is a cornerstone of number theory. E. True. If a ≡ r (mod d), then a = kd + r, so a² = k²d² + 2kdr + r² = d(k²d + 2kr) + r². Thus a² mod d = r² mod d, which depends only on r = a mod d. Answers: B, C, D, E.",
+      "trap": "Students choose A because they partially recall the modular addition rule and think 'adding remainders' is the full rule. But statement A explicitly says 'without any further reduction' — that caveat makes it false. The complete rule requires taking mod d again: ((a mod d) + (b mod d)) mod d.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "remainders",
+        "multiple-answer",
+        "conceptual",
+        "algebraic-proof",
+        "memorisation"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-SEQ-035",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "The sequence 3, 3r, 3r², ... has a sum of 12 for its first 3 terms. Find r (given r > 0, r ≠ 1). Enter your answer as a number.",
+      "answer": "1",
+      "explanation": "3(1+r+r²) = 12 → r²+r-3=0. No rational solution — flagging for review.",
+      "trap": "Setting up the geometric sum equation correctly is the key step.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "geometric-sequence",
+        "sum-formula"
+      ],
+      "review_flag": true,
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-RAT-044",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "The ratio of A to B is 3:5. The ratio of B to C is 5:7.\nColumn A: A + C\nColumn B: 2B",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "A:B:C = 3:5:7 (b is common). Column A = A+C = 3k+7k = 10k. Column B = 2B = 2×5k = 10k. Always equal.",
+      "trap": "Students compute with k=1: 10 vs 10 and may doubt if it holds generally. It always holds because both = 10k.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "combining-ratios",
+        "qc"
+      ],
+      "review_flag": true,
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    },
+    {
+      "id": "ARI-P10-012",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "What is (5 × 10^3) × (4 × 10^6) expressed in correct scientific notation?",
+      "options": [
+        "A. 20 × 10^9",
+        "B. 2 × 10^9",
+        "C. 2 × 10^10",
+        "D. 9 × 10^9",
+        "E. 20 × 10^18"
+      ],
+      "answer": "C",
+      "explanation": "Multiply coefficients and add exponents: (5 × 4) × 10^(3+6) = 20 × 10^9. Now normalize: 20 × 10^9 = 2.0 × 10^1 × 10^9 = 2.0 × 10^10. The coefficient must be between 1 and 10, so we must rewrite 20 as 2 × 10^1 and add the extra 1 to the exponent.",
+      "trap": "Students choose A (20 × 10^9) because the arithmetic is correct but they forget to normalize. Scientific notation requires the coefficient to be between 1 and 10, so 20 × 10^9 must be rewritten as 2 × 10^10.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "scientific-notation",
+        "exponent-rules",
+        "multi-step"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Arithmetic Mixed Bag"
+    }
+  ]
+}
