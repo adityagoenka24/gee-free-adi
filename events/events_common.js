@@ -206,7 +206,7 @@ const Events = (() => {
         <div class="pq-header">
           <div class="pq-left">
             <span class="q-number">Q${state.current + 1}</span>
-            // <span class="pq-badge ${escapeHtml(diff)}">${escapeHtml(difficultyLabel(diff))}</span>
+            <!-- <span class="pq-badge ${escapeHtml(diff)}">${escapeHtml(difficultyLabel(diff))}</span> -->
             <span class="pq-type-badge">${escapeHtml(typeLabel(q.type))}</span>
           </div>
           <span style="font-size:12px;color:var(--text3);font-family:var(--font-mono);">~${q.estimated_time_seconds || 90}s suggested</span>
