@@ -235,7 +235,7 @@
         "C. The two quantities are equal",
         "D. The relationship cannot be determined from the information given"
       ],
-      "answer": "B",
+      "answer": "A",
       "explanation": "They meet at the start when both have completed whole number of laps. This happens at the LCM of 40 and 60 = 120 seconds. Column B (100) < Column A (120).",
       "trap": "Students compute (40+60)/2=50 or 40×60/(40+60)=24 seconds. The correct answer is LCM(40,60)=120 seconds.",
       "estimated_time_seconds": 110,
@@ -383,8 +383,8 @@
         "C. The two quantities are equal",
         "D. The relationship cannot be determined from the information given"
       ],
-      "answer": "C",
-      "explanation": "1/(n²−1) = 1/((n−1)(n+1)) = (1/2)[1/(n−1) − 1/(n+1)]. Sum from n=2 to 10: (1/2)[(1/1−1/3)+(1/2−1/4)+(1/3−1/5)+...+(1/9−1/11)]. After telescoping: (1/2)[1 + 1/2 − 1/10 − 1/11] = (1/2)[3/2 − 21/110] = (1/2)[(165−21)/110] = (1/2)(144/110) = 72/110 = 36/55. But Column B = 9/20 = 0.45. 36/55 ≈ 0.6545 ≠ 0.45. Let me recheck the telescoping. (1/2)Σ[1/(n-1) − 1/(n+1)] for n=2 to 10. Pairs: n=2: 1/1−1/3; n=3: 1/2−1/4; n=4: 1/3−1/5; ... n=10: 1/9−1/11. Sum of 1/(n-1): 1+1/2+1/3+...+1/9. Sum of 1/(n+1): 1/3+1/4+...+1/11. Difference: 1+1/2−1/10−1/11 = 3/2−21/110 = 165/110−21/110=144/110. × 1/2 = 72/110 = 36/55. Column B = 9/20. 36/55 ≠ 9/20. Flagging — options need review.",
+      "answer": "A",
+      "explanation": "1/(n²−1) = 1/((n−1)(n+1)) = (1/2)[1/(n−1) − 1/(n+1)]. Sum from n=2 to 10: (1/2)[(1/1−1/3)+(1/2−1/4)+(1/3−1/5)+...+(1/9−1/11)]. After telescoping: (1/2)[1 + 1/2 − 1/10 − 1/11] = (1/2)[3/2 − 21/110] = (1/2)[(165−21)/110] = (1/2)(144/110) = 72/110 = 36/55. But Column B = 9/20 = 0.45. 36/55 ≈ 0.6545 ≠ 0.45. ",
       "trap": "This requires the partial fraction telescoping technique — a key GRE hard skill.",
       "estimated_time_seconds": 130,
       "tags": [
