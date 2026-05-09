@@ -474,10 +474,18 @@ const Events = (() => {
     if ($("proCta")) $("proCta").innerHTML = renderProCta(result);
     $("exam-wrong-section").innerHTML = renderWrongReview(result);
     $("downloadResultBtn").onclick = () => downloadJson(`${slug(result.event_id)}_${slug(result.student.name)}_result.json`, result);
-    document.getElementById("emailResultBtn").onclick = () => {
+    document.getElementById("emailResultBtn").onclick = async () => {
   const subject = encodeURIComponent(`GRE Quant Pro Event Result - ${result.event_name} - ${result.student.name}`);
-  const body = encodeURIComponent(`Hi Coach Aditya,\n\nAttached/pasted below is my event result JSON.\n\n${JSON.stringify(result, null, 2)}`);
-  window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=goenka.aditya.kol@gmail.com&su=${subject}&body=${body}`, '_blank');
+  const bodyText = `Hi Coach Aditya,\n\nAttached/pasted below is my event result JSON.\n\n${JSON.stringify(result, null, 2)}`;
+  
+  // Copy full body to clipboard
+  await navigator.clipboard.writeText(bodyText);
+
+  // Open Gmail with a short nudge to paste
+  const shortBody = encodeURIComponent("Hi Coach Aditya,\n\n[Paste your result here — it has been copied to your clipboard]");
+  window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=goenka.aditya.kol@gmail.com&su=${subject}&body=${shortBody}`, '_blank');
+
+  alert("Gmail is opening. The full result JSON has been copied to your clipboard — just paste it into the email body.");
 };
   }
 
