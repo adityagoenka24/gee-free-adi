@@ -474,11 +474,11 @@ const Events = (() => {
     if ($("proCta")) $("proCta").innerHTML = renderProCta(result);
     $("exam-wrong-section").innerHTML = renderWrongReview(result);
     $("downloadResultBtn").onclick = () => downloadJson(`${slug(result.event_id)}_${slug(result.student.name)}_result.json`, result);
-    $("emailResultBtn").onclick = () => {
-      const subject = encodeURIComponent(`GRE Quant Pro Event Result - ${result.event_name} - ${result.student.name}`);
-      const body = encodeURIComponent(`Hi Coach Aditya,\n\nAttached/pasted below is my event result JSON.\n\n${JSON.stringify(result, null, 2)}`);
-      location.href = `mailto:goenka.aditya.kol@gmail.com?subject=${subject}&body=${body}`;
-    };
+    document.getElementById("emailResultBtn").onclick = () => {
+  const subject = encodeURIComponent(`GRE Quant Pro Event Result - ${result.event_name} - ${result.student.name}`);
+  const body = encodeURIComponent(`Hi Coach Aditya,\n\nAttached/pasted below is my event result JSON.\n\n${JSON.stringify(result, null, 2)}`);
+  window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=goenka.aditya.kol@gmail.com&su=${subject}&body=${body}`, '_blank');
+};
   }
 
   function submitEvent(timedOut = false) {
