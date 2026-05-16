@@ -145,6 +145,135 @@ const Events = (() => {
     }));
   }
 
+  function weakestBreakdown(items, minTotal = 1) {
+    return [...(items || [])]
+      .filter((item) => item.total >= minTotal)
+      .sort((a, b) => a.accuracy - b.accuracy || b.total - a.total || b.avg_time_seconds - a.avg_time_seconds)[0] || null;
+  }
+
+  function strongestBreakdown(items, minTotal = 1) {
+    return [...(items || [])]
+      .filter((item) => item.total >= minTotal)
+      .sort((a, b) => b.accuracy - a.accuracy || b.total - a.total)[0] || null;
+  }
+
+  function performanceBand(accuracy) {
+    if (accuracy >= 85) return { label: "Strong", tone: "strong", summary: "Your accuracy is already in a good zone. The next gain is speed and consistency." };
+    if (accuracy >= 70) return { label: "Close", tone: "close", summary: "You are close. A few recurring errors are costing more than a lack of ability." };
+    if (accuracy >= 50) return { label: "Needs Focus", tone: "focus", summary: "You have enough base to build from, but the weak areas need targeted practice." };
+    return { label: "High Risk", tone: "risk", summary: "This score pattern needs structured recovery before the next full GRE-style attempt." };
+  }
+
+  function getPrimaryWeakArea(result) {
+    const minTotal = result.total_questions >= 8 ? 2 : 1;
+    const subtopic = weakestBreakdown(result.breakdowns.subtopic, minTotal);
+    const topic = weakestBreakdown(result.breakdowns.topic, minTotal);
+    const type = weakestBreakdown(result.breakdowns.type, minTotal);
+    const difficulty = weakestBreakdown(result.breakdowns.difficulty, minTotal);
+    return subtopic || topic || type || difficulty || null;
+  }
+
+  function getTimingDiagnosis(result) {
+    const attempted = (result.results || []).filter((r) => !r.skipped);
+    const slow = attempted.filter((r) => {
+      const expected = Number(r.estimated_time_seconds) || 90;
+      return (Number(r.time_taken_seconds) || 0) > expected * 1.2;
+    });
+    const fastWrong = attempted.filter((r) => {
+      const expected = Number(r.estimated_time_seconds) || 90;
+      return !r.correct && (Number(r.time_taken_seconds) || 0) < expected * 0.55;
+    });
+    if (slow.length >= Math.max(2, Math.ceil(attempted.length * 0.25))) {
+      return {
+        label: "Time pressure",
+        detail: `${slow.length} question${slow.length === 1 ? "" : "s"} took much longer than the suggested pace. Accuracy may drop when the clock gets tight.`,
+        recommendation: "Do one untimed concept round, then repeat the same area at 1:45 per question."
+      };
+    }
+    if (fastWrong.length >= Math.max(2, Math.ceil(attempted.length * 0.2))) {
+      return {
+        label: "Rushed mistakes",
+        detail: `${fastWrong.length} wrong answer${fastWrong.length === 1 ? "" : "s"} came very quickly. That usually means the trap was accepted before the question was fully parsed.`,
+        recommendation: "Pause for 5 seconds on hard questions and name what the question is really asking before calculating."
+      };
+    }
+    return {
+      label: "Pace is usable",
+      detail: `Average pace was ${formatTime(result.average_time_seconds)} per question. The bigger opportunity is accuracy inside weak areas.`,
+      recommendation: "Keep the timer on, but make the next practice set topic-specific."
+    };
+  }
+
+  function getTrapDiagnosis(result) {
+    const wrong = (result.results || []).filter((r) => !r.correct);
+    const tagged = new Map();
+    wrong.forEach((r) => (r.tags || []).forEach((tag) => {
+      const label = String(tag || "").replace(/[-_]+/g, " ").trim();
+      if (!label) return;
+      tagged.set(label, (tagged.get(label) || 0) + 1);
+    }));
+    const repeatedTag = [...tagged.entries()].sort((a, b) => b[1] - a[1])[0];
+    const sampleTrap = wrong.find((r) => r.trap)?.trap || "";
+    if (repeatedTag && repeatedTag[1] >= 2) {
+      return {
+        label: repeatedTag[0].replace(/\b\w/g, (c) => c.toUpperCase()),
+        detail: `This trap pattern appeared ${repeatedTag[1]} times in your misses.`,
+        sample: sampleTrap
+      };
+    }
+    if (sampleTrap) {
+      return {
+        label: "Question-specific trap",
+        detail: "Your misses were not random. At least one had a clear GRE-style trap pattern.",
+        sample: sampleTrap
+      };
+    }
+    if (!wrong.length) {
+      return {
+        label: "No major trap exposed",
+        detail: "No wrong-answer trap was exposed in this attempt.",
+        sample: "Now the goal is to prove the same accuracy across harder and mixed sets."
+      };
+    }
+    return {
+      label: "Review needed",
+      detail: "The missed questions need a second pass to separate concept gaps from careless errors.",
+      sample: "Redo each missed question without looking at the solution, then compare your reasoning."
+    };
+  }
+
+  function buildDiagnosis(result) {
+    const band = performanceBand(result.accuracy);
+    const weakArea = getPrimaryWeakArea(result);
+    const strongest = strongestBreakdown(result.breakdowns.subtopic) || strongestBreakdown(result.breakdowns.topic);
+    const timing = getTimingDiagnosis(result);
+    const trap = getTrapDiagnosis(result);
+    const weakLabel = weakArea ? weakArea.label : "Mixed Quant";
+    const weakDetail = weakArea
+      ? `${weakArea.correct}/${weakArea.total} correct (${weakArea.accuracy}%) with ${formatTime(weakArea.avg_time_seconds)} average time.`
+      : "This mock was too small to isolate one weak zone reliably.";
+    const mainIssue = result.skipped >= Math.max(2, Math.ceil(result.total_questions * 0.2))
+      ? "Unanswered questions are pulling the score down."
+      : result.accuracy < 70
+        ? `${weakLabel} needs the next focused practice block.`
+        : `${weakLabel} is the best place to chase the next few points.`;
+    const recoveryPlan = [
+      `Redo the missed ${weakLabel} questions once without the solution open.`,
+      `Practice 15-20 ${weakLabel} questions in Pro, starting untimed if accuracy is below 70%.`,
+      `Finish with a timed set at GRE pace and check whether the same trap appears again.`
+    ];
+    return {
+      band,
+      main_issue: mainIssue,
+      weak_area: weakArea ? { label: weakLabel, detail: weakDetail } : { label: weakLabel, detail: weakDetail },
+      strongest_area: strongest ? `${strongest.label} (${strongest.accuracy}%)` : "Not enough data yet",
+      timing,
+      trap,
+      recovery_plan: recoveryPlan,
+      pro_recommendation: `Start your next Pro session with ${weakLabel}.`
+    };
+  }
+
   function buildResult(student, team) {
     const submittedAt = new Date();
     const results = state.config.questions.map((q, i) => {
@@ -169,7 +298,7 @@ const Events = (() => {
       };
     });
     const summary = summarize(results);
-    return {
+    const result = {
       event_id: state.config.event_id,
       event_name: state.config.event_name,
       event_type: state.config.event_type,
@@ -193,6 +322,8 @@ const Events = (() => {
       },
       results
     };
+    result.diagnosis = buildDiagnosis(result);
+    return result;
   }
 
   function setQuestionTime(index) {
@@ -437,13 +568,62 @@ const Events = (() => {
     </div>`;
   }
 
+  function renderSmartDiagnosis(result) {
+    const diagnosis = result.diagnosis || buildDiagnosis(result);
+    const band = diagnosis.band || performanceBand(result.accuracy);
+    const trapSample = diagnosis.trap.sample
+      ? `<div class="diagnosis-trap-sample">${escapeHtml(diagnosis.trap.sample)}</div>`
+      : "";
+    return `<div class="smart-diagnosis">
+      <div class="diagnosis-top">
+        <div>
+          <div class="diagnosis-eyebrow">Personal diagnosis</div>
+          <h3>Your GRE Quant next step is clear</h3>
+          <p>${escapeHtml(band.summary)}</p>
+        </div>
+        <div class="diagnosis-band ${escapeHtml(band.tone)}">
+          <span>${escapeHtml(band.label)}</span>
+          <b>${escapeHtml(String(result.accuracy))}%</b>
+        </div>
+      </div>
+      <div class="diagnosis-grid">
+        <div class="diagnosis-card primary">
+          <span>Main issue</span>
+          <b>${escapeHtml(diagnosis.main_issue)}</b>
+          <p>${escapeHtml(diagnosis.weak_area.detail)}</p>
+        </div>
+        <div class="diagnosis-card">
+          <span>Weakest zone</span>
+          <b>${escapeHtml(diagnosis.weak_area.label)}</b>
+          <p>${escapeHtml(diagnosis.pro_recommendation)}</p>
+        </div>
+        <div class="diagnosis-card">
+          <span>Timing read</span>
+          <b>${escapeHtml(diagnosis.timing.label)}</b>
+          <p>${escapeHtml(diagnosis.timing.detail)}</p>
+        </div>
+        <div class="diagnosis-card">
+          <span>Trap pattern</span>
+          <b>${escapeHtml(diagnosis.trap.label)}</b>
+          <p>${escapeHtml(diagnosis.trap.detail)}</p>
+          ${trapSample}
+        </div>
+      </div>
+      <div class="recovery-plan">
+        <div>
+          <div class="diagnosis-eyebrow">Recommended recovery plan</div>
+          <h4>Do this before your next full mock</h4>
+        </div>
+        <ol>
+          ${diagnosis.recovery_plan.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}
+        </ol>
+      </div>
+    </div>`;
+  }
+
   function renderProCta(result) {
-    const weakAreas = [...(result.breakdowns.subtopic || [])]
-      .sort((a, b) => a.accuracy - b.accuracy || b.total - a.total)
-      .slice(0, 3);
-    const weakText = weakAreas.length
-      ? `Your next practice set should start with ${weakAreas.map((w) => `${escapeHtml(w.label)} (${w.accuracy}%)`).join(", ")}.`
-      : "This event is only the starting diagnostic.";
+    const diagnosis = result.diagnosis || buildDiagnosis(result);
+    const weakText = `${escapeHtml(diagnosis.pro_recommendation)} GRE Quant Pro turns this diagnosis into targeted drills from the full 8,410+ question bank across 88 subtopics.`;
     const wrongTraps = (result.results || []).filter((r) => !r.correct && r.trap).slice(0, 2);
     const trapText = wrongTraps.length
       ? wrongTraps.map((r) => escapeHtml(r.trap)).join(" ")
@@ -451,7 +631,7 @@ const Events = (() => {
     return `<div class="pro-analysis-cta">
       <div>
         <h3>This mock is the diagnosis. Pro is the practice plan.</h3>
-        <p>${weakText} GRE Quant Pro turns this same analysis into targeted drills from the full 8,410+ question bank across 88 subtopics.</p>
+        <p>${weakText}</p>
         <div class="pro-cta-points">
           <span>Your weak-area practice queue</span>
           <span>Trap explanations after every question</span>
@@ -460,11 +640,11 @@ const Events = (() => {
         </div>
         <div class="pro-locked-grid">
           <div class="pro-locked-card"><div class="pro-locked-label">Locked in Pro</div><b>Weak subtopic map</b><span>See exactly where accuracy and time collapse across all 88 subtopics.</span></div>
-          <div class="pro-locked-card"><div class="pro-locked-label">Locked in Pro</div><b>Targeted recovery set</b><span>Practice more questions from the areas this mock exposed.</span></div>
+          <div class="pro-locked-card"><div class="pro-locked-label">Locked in Pro</div><b>${escapeHtml(diagnosis.weak_area.label)} recovery set</b><span>Practice more questions from the area this mock exposed.</span></div>
           <div class="pro-locked-card"><div class="pro-locked-label">Locked in Pro</div><b>Trap pattern review</b><span>${trapText}</span></div>
         </div>
       </div>
-      <a class="primary-btn" href="https://grequantpro.com/#plans">Unlock Targeted Practice</a>
+      <a class="primary-btn" href="https://grequantpro.com/#plans">Unlock My Practice Plan</a>
     </div>`;
   }
 
@@ -489,7 +669,7 @@ const Events = (() => {
     ].join("");
     renderAnalysisBars(result);
     renderTimeTable(result);
-    if ($("proCta")) $("proCta").innerHTML = renderProCta(result);
+    if ($("proCta")) $("proCta").innerHTML = renderSmartDiagnosis(result) + renderProCta(result);
     $("exam-wrong-section").innerHTML = renderWrongReview(result);
     $("downloadResultBtn").onclick = () => downloadJson(`${slug(result.event_id)}_${slug(result.student.name)}_result.json`, result);
     document.getElementById("emailResultBtn").onclick = async () => {
