@@ -1076,6 +1076,31 @@ if(feature){
   document.body.appendChild(banner);
   setTimeout(()=>banner.remove(),5000);
 }
+
+  // A simple daily visitor counter using CountAPI
+async function trackDailyVisitors() {
+    try {
+        // Get today's date format (YYYY-MM-DD) to create a unique daily key
+        const today = new Date().toISOString().split('T')[0];
+        
+        // Clean your domain name to use as a namespace (e.g., 'yourdomain-com')
+        const namespace = window.location.hostname.replace(/\./g, '-');
+        
+        // Hit the API to increment the count for today's specific key
+        const response = await fetch(`https://countapi.xyz{namespace}/${today}`);
+        const data = await response.json();
+        
+        // Print the result directly to your browser's JS console
+        console.log(`📊 Total visitors today (${today}): ${data.value}`);
+    } catch (error) {
+        console.error("Counter error:", error);
+    }
+}
+
+// Run the function when the page loads
+trackDailyVisitors();
+
+  
 </script>
 </body>
 </html>
