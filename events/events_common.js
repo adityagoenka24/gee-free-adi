@@ -88,10 +88,15 @@ const Events = (() => {
     return response.json();
   }
 
-  async function loadConfig(defaultPath = "config/mock_001.json") {
+  async function loadConfig(defaultPath = "config/current.json", useQueryParam = true) {
     const params = new URLSearchParams(location.search);
-    const configPath = params.get("config") || defaultPath;
+    const configPath = useQueryParam ? params.get("config") || defaultPath : defaultPath;
     const config = await loadJson(configPath);
+    if ((config.active_config || config.config_path) && !Array.isArray(config.questions)) {
+      const target = String(config.active_config || config.config_path).trim();
+      const resolvedPath = target.includes("/") ? target : `config/${target}`;
+      return loadConfig(resolvedPath, false);
+    }
     if (config.shuffle_questions_for_students) config.questions = shuffle(config.questions || []);
     return config;
   }

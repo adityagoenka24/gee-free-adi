@@ -24,7 +24,7 @@
       <div class="panel builder-intro">
         <div class="eyebrow">Coach Tool</div>
         <h1>Build a fixed event paper.</h1>
-        <p>Choose a bank source, filters, timer, and question count. The builder downloads a self-contained config JSON so every student receives the same paper.</p>
+        <p>Choose a bank source, filters, timer, and question count. The builder downloads a self-contained current.json so the landing page and mock links automatically use the latest paper.</p>
       </div>
       <div class="panel builder-source-card">
         <h2>Bank Source</h2>
@@ -52,7 +52,7 @@
           <div class="field"><label for="questionCount">Questions</label><input id="questionCount" type="number" min="1" value="27"></div>
           <div class="field"><label for="secondsPerQuestion">Seconds per Question</label><input id="secondsPerQuestion" type="number" min="15" value="105"></div>
         </div>
-        <div class="field"><label for="instructions">Instructions</label><textarea id="instructions">Answer all questions. No feedback is shown during the test. Download your result JSON at the end and send it to Coach Aditya.</textarea></div>
+        <div class="field"><label for="instructions">Instructions</label><textarea id="instructions">Answer all questions. No feedback is shown during the test. Your score, timing, weak areas, and trap review appear instantly after submission.</textarea></div>
         <div class="builder-toggle-row">
           <button class="builder-toggle active" type="button" id="allowNavigationToggle" data-target="allowNavigation">Navigation allowed</button>
           <button class="builder-toggle" type="button" id="shuffleForStudentsToggle" data-target="shuffleForStudents">Shuffle per student</button>
@@ -92,10 +92,10 @@
     <section class="panel builder-output" style="margin-top:18px">
       <div>
         <h2>Built Config</h2>
-        <p class="muted">Download this JSON and place it under `gre-free/events/config/`, then share the student link with `?config=config/file_name.json`.</p>
+        <p class="muted">Download this JSON as `current.json` and place it under `gre-free/events/config/`. The landing page, Mock Test, and Team Battle links will automatically use it by default.</p>
       </div>
       <div class="actions">
-        <button class="primary-btn" id="downloadBtn" disabled>Download event_config.json</button>
+        <button class="primary-btn" id="downloadBtn" disabled>Download current.json</button>
         <a class="ghost-btn" id="mockLink" href="mock_test.html">Open Mock Preview</a>
         <a class="ghost-btn" id="teamLink" href="team_battle.html">Open Team Preview</a>
       </div>
@@ -230,7 +230,7 @@
     Events.$("subtopicSelect").onchange = () => loadSelectedPool().catch(error => Events.$("poolStatus").textContent = error.message);
     Events.$("previewBtn").onclick = () => loadSelectedPool().catch(error => Events.$("poolStatus").textContent = error.message);
     Events.$("buildBtn").onclick = async () => { await loadSelectedPool(); buildConfig(); };
-    Events.$("downloadBtn").onclick = () => Events.downloadJson(`${Events.slug(builder.config.event_id)}.json`, builder.config);
+    Events.$("downloadBtn").onclick = () => Events.downloadJson("current.json", builder.config);
     document.querySelectorAll(".builder-toggle").forEach(btn => {
       syncToggleButton(btn);
       btn.onclick = () => {

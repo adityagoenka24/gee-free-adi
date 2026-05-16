@@ -395,7 +395,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
     <h2 id="mockTitle">Take the free GRE Quant mock before you buy.</h2>
     <p id="mockDescription">Use the mock as a diagnostic: take a timed paper, see the traps that cost you marks, and use that pain map to decide whether Pro is worth it.</p>
     <div class="event-doorway-actions">
-      <a href="events/mock_test.html?config=config/mock_002.json" class="btn btn-primary" id="mockStartLink">Start Free Mock →</a>
+      <a href="events/mock_test.html" class="btn btn-primary" id="mockStartLink">Start Free Mock →</a>
       <a href="#plans" class="btn btn-secondary">See what Pro unlocks</a>
     </div>
     <div class="event-note" id="mockNote">Result analysis appears instantly after submission. No Pro purchase needed to take the mock.</div>
@@ -1026,16 +1026,24 @@ function formatEventTime(seconds){
 
 async function initMockDoorway(){
   const params=new URLSearchParams(window.location.search);
-  const eventId=(params.get("event")||"mock_002").replace(/[^a-zA-Z0-9_-]/g,"");
+  const eventId=(params.get("event")||"").replace(/[^a-zA-Z0-9_-]/g,"");
   const configParam=params.get("config");
-  const configPath=configParam ? configParam : `config/${eventId}.json`;
-  const eventPage=configPath.startsWith("events/") ? `events/mock_test.html?config=${encodeURIComponent(configPath.replace(/^events\//,""))}` : `events/mock_test.html?config=${encodeURIComponent(configPath)}`;
+  const configPath=configParam ? configParam : eventId ? `config/${eventId}.json` : "config/current.json";
+  const isDefaultCurrent=!configParam&&!eventId;
+  const eventPage=isDefaultCurrent ? "events/mock_test.html" : configPath.startsWith("events/") ? `events/mock_test.html?config=${encodeURIComponent(configPath.replace(/^events\//,""))}` : `events/mock_test.html?config=${encodeURIComponent(configPath)}`;
   const startLink=document.getElementById("mockStartLink");
   if(startLink)startLink.href=eventPage;
   try{
     const response=await fetch(`events/${configPath.replace(/^events\//,"")}`,{cache:"no-store"});
     if(!response.ok)throw new Error("event config not found");
-    const config=await response.json();
+    let config=await response.json();
+    if((config.active_config||config.config_path)&&!Array.isArray(config.questions)){
+      const target=String(config.active_config||config.config_path).trim();
+      const resolved=target.includes("/")?target:`config/${target}`;
+      const linkedResponse=await fetch(`events/${resolved.replace(/^events\//,"")}`,{cache:"no-store"});
+      if(!linkedResponse.ok)throw new Error("linked event config not found");
+      config=await linkedResponse.json();
+    }
     const count=config.question_count||(config.questions||[]).length;
     const title=document.getElementById("mockTitle");
     const description=document.getElementById("mockDescription");
