@@ -433,20 +433,33 @@ const Events = (() => {
   }
 
   function renderProCta(result) {
-    const weak = [...(result.breakdowns.subtopic || [])].sort((a, b) => a.accuracy - b.accuracy)[0];
-    const weakText = weak ? `Your weakest area in this event was ${escapeHtml(weak.label)} at ${weak.accuracy}%.` : "This event is only the starting diagnostic.";
+    const weakAreas = [...(result.breakdowns.subtopic || [])]
+      .sort((a, b) => a.accuracy - b.accuracy || b.total - a.total)
+      .slice(0, 3);
+    const weakText = weakAreas.length
+      ? `Your next practice set should start with ${weakAreas.map((w) => `${escapeHtml(w.label)} (${w.accuracy}%)`).join(", ")}.`
+      : "This event is only the starting diagnostic.";
+    const wrongTraps = (result.results || []).filter((r) => !r.correct && r.trap).slice(0, 2);
+    const trapText = wrongTraps.length
+      ? wrongTraps.map((r) => escapeHtml(r.trap)).join(" ")
+      : "Pro keeps naming the exact trap after every wrong answer so patterns stop repeating.";
     return `<div class="pro-analysis-cta">
       <div>
-        <h3>Turn this analysis into your next score jump.</h3>
-        <p>${weakText} GRE Quant Pro gives you this same analysis after every session, plus access to the full 8,410+ question bank across 88 subtopics.</p>
+        <h3>This mock is the diagnosis. Pro is the practice plan.</h3>
+        <p>${weakText} GRE Quant Pro turns this same analysis into targeted drills from the full 8,410+ question bank across 88 subtopics.</p>
         <div class="pro-cta-points">
-          <span>8,410+ practice questions</span>
-          <span>Trap explanations</span>
-          <span>Timed exam mode</span>
-          <span>Progress analytics</span>
+          <span>Your weak-area practice queue</span>
+          <span>Trap explanations after every question</span>
+          <span>Timed exam mode for real GRE pace</span>
+          <span>Progress analytics across sessions</span>
+        </div>
+        <div class="pro-locked-grid">
+          <div class="pro-locked-card"><div class="pro-locked-label">Locked in Pro</div><b>Weak subtopic map</b><span>See exactly where accuracy and time collapse across all 88 subtopics.</span></div>
+          <div class="pro-locked-card"><div class="pro-locked-label">Locked in Pro</div><b>Targeted recovery set</b><span>Practice more questions from the areas this mock exposed.</span></div>
+          <div class="pro-locked-card"><div class="pro-locked-label">Locked in Pro</div><b>Trap pattern review</b><span>${trapText}</span></div>
         </div>
       </div>
-      <a class="primary-btn" href="../index.html">Upgrade to Pro Today</a>
+      <a class="primary-btn" href="../index.html#plans">Unlock Targeted Practice</a>
     </div>`;
   }
 
