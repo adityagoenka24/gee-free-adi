@@ -1077,28 +1077,43 @@ if(feature){
   setTimeout(()=>banner.remove(),5000);
 }
 
-  // A simple daily visitor counter using CountAPI
-async function trackDailyVisitors() {
+async function trackUniqueDailyVisitors() {
     try {
-        // Get today's date format (YYYY-MM-DD) to create a unique daily key
+        // 1. Establish today's date string (Format: YYYY-MM-DD)
         const today = new Date().toISOString().split('T')[0];
         
-        // Clean your domain name to use as a namespace (e.g., 'yourdomain-com')
-        const namespace = window.location.hostname.replace(/\./g, '-');
+        // 2. Generate a clean ID matching your Hostinger domain
+        const siteDomain = window.location.hostname.replace(/\./g, '-');
         
-        // Hit the API to increment the count for today's specific key
-        const response = await fetch(`https://countapi.xyz{namespace}/${today}`);
-        const data = await response.json();
+        // 3. Define the storage key to check in the user's browser
+        const storageKey = `visited_${siteDomain}_${today}`;
         
-        // Print the result directly to your browser's JS console
-        console.log(`📊 Total visitors today (${today}): ${data.value}`);
+        // Base API URL for your unique daily counter path
+        const apiUrl = `https://counterapi.dev{siteDomain}/${today}`;
+
+        // 4. Check if the user has already loaded this page today
+        if (localStorage.getItem(storageKey)) {
+            // User already counted today. Just fetch the current total without incrementing.
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            console.log(`📊 Total unique visitors today (${today}): ${data.value} (You were already counted)`);
+        } else {
+            // First time visit today. Increment the counter.
+            const response = await fetch(`${apiUrl}/up`);
+            const data = await response.json();
+            
+            // Mark the user's browser so they aren't counted on refresh
+            localStorage.setItem(storageKey, "true");
+            console.log(`📊 Total unique visitors today (${today}): ${data.value} (New visit registered!)`);
+        }
     } catch (error) {
         console.error("Counter error:", error);
     }
 }
 
-// Run the function when the page loads
-trackDailyVisitors();
+// Fire the counter on page load
+trackUniqueDailyVisitors();
+
 
   
 </script>
