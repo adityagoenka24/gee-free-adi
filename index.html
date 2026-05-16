@@ -392,7 +392,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
 <section class="event-doorway fade-in" id="mock">
   <div class="event-doorway-content">
     <div class="event-doorway-kicker">Free live diagnostic</div>
-    <h2 id="mockTitle">Take the free GRE Quant mock before you buy.</h2>
+    <h2 id="mockTitle">Stop Guessing. Take the free GRE Quant mock.</h2>
     <p id="mockDescription">Use the mock as a diagnostic: take a timed paper, see the traps that cost you marks, and use that pain map to decide whether Pro is worth it.</p>
     <div class="event-doorway-actions">
       <a href="events/mock_test.html" class="btn btn-primary" id="mockStartLink">Start Free Mock →</a>
@@ -1050,7 +1050,7 @@ async function initMockDoorway(){
     const name=document.getElementById("mockEventName");
     const format=document.getElementById("mockEventFormat");
     const time=document.getElementById("mockEventTime");
-    if(title)title.textContent=`Take ${config.event_name || "the free GRE Quant mock"} before you buy.`;
+    if(title)title.textContent=`Stop Guessing. Take ${config.event_name || "the free GRE Quant mock"}.`;
     if(description)description.textContent="Use this free event as a diagnostic: take the timed paper, see which traps cost you marks, then decide whether Pro is worth unlocking for targeted practice.";
     if(name)name.textContent=config.event_name || "GRE Quant Pro Mock";
     if(format)format.textContent=`${count} question${count===1?"":"s"}`;
