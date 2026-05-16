@@ -464,7 +464,7 @@ const Events = (() => {
           <div class="pro-locked-card"><div class="pro-locked-label">Locked in Pro</div><b>Trap pattern review</b><span>${trapText}</span></div>
         </div>
       </div>
-      <a class="primary-btn" href="../index.html#plans">Unlock Targeted Practice</a>
+      <a class="primary-btn" href="https://grequantpro.com/#plans">Unlock Targeted Practice</a>
     </div>`;
   }
 

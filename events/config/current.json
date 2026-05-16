@@ -1,22 +1,21 @@
 {
-  "event_id": "algebra_functions",
-  "event_name": "GRE Algebra - Functions",
+  "event_id": "mock_002",
+  "event_name": "GRE Quant Pro Sunday Mini Challenge",
   "event_type": "mock_test",
-  "created_at": "2026-05-16T03:36:53.343Z",
-  "timer_seconds": 2100,
-  "question_count": 20,
-  "shuffle_questions_for_students": true,
+  "created_at": "2026-05-07T11:23:59.290Z",
+  "timer_seconds": 1050,
+  "question_count": 10,
+  "shuffle_questions_for_students": false,
   "allow_navigation": true,
   "show_feedback_during_test": false,
   "instructions": "Answer all questions. No feedback is shown during the test. Your score, timing, weak areas, and trap review appear instantly after submission.",
   "source_filters": {
-    "bank_source": "../../gre-pro-adi/bank/",
-    "topic": "Algebra",
-    "subtopic": "Functions",
+    "bank_source": "../bank/",
+    "topic": "Arithmetic",
+    "subtopic": "Percentages",
     "difficulties": [
       "medium",
-      "hard",
-      "extreme_hard"
+      "hard"
     ],
     "types": [
       "mcq",
@@ -27,218 +26,125 @@
   },
   "questions": [
     {
-      "id": "ALG-FNC-018",
+      "id": "ARI-PCT-044",
       "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "If f(x) = 3x + 1, what is f⁻¹(10)?",
-      "options": null,
-      "answer": "3",
-      "explanation": "To find f⁻¹, set y = 3x + 1 and solve for x in terms of y:\ny - 1 = 3x\nx = (y - 1)/3.\nSo f⁻¹(y) = (y - 1)/3.\n\nTherefore: f⁻¹(10) = (10 - 1)/3 = 9/3 = 3.",
-      "trap": "Students compute f(10) = 3(10) + 1 = 31 instead of inverting the function, confusing f(10) with f⁻¹(10).",
-      "estimated_time_seconds": 75,
-      "tags": [
-        "inverse-function",
-        "two-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-060",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "A function f is defined for all real x as:\nf(x) = x - 1, if x is an integer\nf(x) = f(f(x + 2)), if x is not an integer\n\nWhat is f(1/2)?",
+      "type": "quantitative_comparison",
+      "question": "Column A: 0.5% of 2000\nColumn B: 5% of 200",
       "options": [
-        "A. -1",
-        "B. 0",
-        "C. 1",
-        "D. 3/2",
-        "E. 2"
-      ],
-      "answer": "B",
-      "explanation": "Since 1/2 is not an integer: f(1/2) = f(f(1/2 + 2)) = f(f(5/2)).\n\nSince 5/2 is not an integer: f(5/2) = f(f(5/2 + 2)) = f(f(9/2)).\n\nNotice the pattern: adding 2 keeps us on half-integers (n + 1/2). Let's find a consistent value.\n\nSuppose f(n + 1/2) = c for some constant c (assuming all half-integers map to the same value).\nThen: c = f(f(n + 1/2 + 2)) = f(f(n + 5/2)) = f(c).\n\nSo we need f(c) = c. If c is an integer: f(c) = c - 1 ≠ c. So c cannot be an integer.\n\nTry the self-consistent construction: suppose f(5/2) = 1 (an integer).\nThen f(f(5/2)) = f(1) = 1 - 1 = 0.\nSo f(1/2) = f(f(5/2)) = 0.\n\nNow verify f(5/2) = 1: f(5/2) = f(f(9/2)).\nSuppose f(9/2) = 2 (integer): f(f(9/2)) = f(2) = 2 - 1 = 1. ✓\n\nVerify f(9/2) = 2: f(9/2) = f(f(13/2)).\nSuppose f(13/2) = 3: f(f(13/2)) = f(3) = 3 - 1 = 2. ✓\n\nThe pattern is self-consistent: f(n + 1/2) = n - 1 for positive integers n.\nf(1/2) = 1 - 1 = 0.",
-      "trap": "Students apply the integer rule f(x) = x - 1 to 1/2 treating it as approximately 0 or 1, computing f(1/2) ≈ f(0) = -1 or f(1) = 0, without tracing through the recursive definition.",
-      "estimated_time_seconds": 130,
-      "tags": [
-        "piecewise-function",
-        "function-notation",
-        "multi-step",
-        "conceptual"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-037",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "The custom operation is defined as a ⊕ b = a² + b for all real numbers a and b. Which of the following statements are true? Select all that apply.",
-      "options": [
-        "A. 2 ⊕ 3 = 3 ⊕ 2",
-        "B. (1 ⊕ 1) ⊕ 2 = 1 ⊕ (1 ⊕ 2)",
-        "C. a ⊕ 0 = a² for all a",
-        "D. 0 ⊕ a = a² for all a",
-        "E. a ⊕ b = b ⊕ a for all a and b"
-      ],
-      "answer": [
-        "C"
-      ],
-      "explanation": "Check each statement:\nA. 2 ⊕ 3 = (2)² + 3 = 7; 3 ⊕ 2 = (3)² + 2 = 11. 7 ≠ 11. FALSE.\nB. (1 ⊕ 1) ⊕ 2: first 1 ⊕ 1 = 1 + 1 = 2, then 2 ⊕ 2 = 4 + 2 = 6.\n   1 ⊕ (1 ⊕ 2): first 1 ⊕ 2 = 1 + 2 = 3, then 1 ⊕ 3 = 1 + 3 = 4. 6 ≠ 4. FALSE.\nC. a ⊕ 0 = a² + 0 = a². TRUE.\nD. 0 ⊕ a = (0)² + a = 0 + a = a. This equals a, not a². FALSE.\nE. The operation is not commutative (see A). FALSE.\n\nOnly C is true.",
-      "trap": "Students confuse C with D: 0 ⊕ a = 0² + a = a (not a²), so D is false. Students assume symmetry between C and D and mark both true.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "function-notation",
-        "multiple-answer",
-        "conceptual"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-040",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "For the custom operation a # b = (a + b)/(1 + ab), if 0.5 # x = 0.6, what is x?",
-      "options": [
-        "A. 1/11",
-        "B. 2/11",
-        "C. 1/7",
-        "D. 1/5",
-        "E. 2/7"
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
       ],
       "answer": "C",
-      "explanation": "Set up the equation: (0.5 + x)/(1 + 0.5x) = 0.6.\n\nCross-multiply: 0.5 + x = 0.6(1 + 0.5x) = 0.6 + 0.3x.\n\nCollect x terms: x - 0.3x = 0.6 - 0.5.\n0.7x = 0.1.\nx = 0.1/0.7 = 1/7.",
-      "trap": "Students cross-multiply as 0.5 + x = 0.6 + 0.5x (dropping the factor of 0.6 from the 0.5x term), getting 0.5x = 0.1, x = 1/5, and selecting D.",
-      "estimated_time_seconds": 105,
+      "explanation": "Column A: 0.5% of 2000 = 0.005 × 2000 = 10. Column B: 5% of 200 = 0.05 × 200 = 10. Equal.",
+      "trap": "Decimal placement errors — students may compute 0.5% as 0.5 instead of 0.005, getting 1000 for Column A.",
+      "estimated_time_seconds": 55,
       "tags": [
-        "function-notation",
-        "multi-step"
+        "decimal-percent",
+        "qc"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
     },
     {
-      "id": "ALG-FNC-049",
-      "difficulty": "hard",
+      "id": "ARI-PCT-026",
+      "difficulty": "medium",
       "type": "numeric_entry",
-      "question": "A function f satisfies f(2x) = 4f(x) + 6 for all x. If f(1) = 2, what is f(4)?",
-      "options": null,
-      "answer": "62",
-      "explanation": "Step 1: Find f(2) using x = 1.\nf(2·1) = 4f(1) + 6\nf(2) = 4(2) + 6 = 8 + 6 = 14.\n\nStep 2: Find f(4) using x = 2.\nf(2·2) = 4f(2) + 6\nf(4) = 4(14) + 6 = 56 + 6 = 62.",
-      "trap": "Students compute f(4) = 4f(1) + 6 = 14 by plugging x = 1 directly, skipping the intermediate step f(2) = 14 and effectively computing f(2) instead of f(4).",
-      "estimated_time_seconds": 105,
+      "question": "After a 20% increase followed by a 20% decrease, a number becomes 576. What was the original number? Enter your answer as a number.",
+      "answer": "600",
+      "explanation": "Net multiplier: 1.20 × 0.80 = 0.96. So 0.96 × original = 576 → original = 576/0.96 = 600.",
+      "trap": "Students assume the number is unchanged (since +20% and -20% seem to cancel) and answer 576.",
+      "estimated_time_seconds": 80,
       "tags": [
-        "function-notation",
-        "multi-step"
+        "reverse-percent",
+        "successive-percent",
+        "find-original"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
     },
     {
-      "id": "ALG-FNC-056",
-      "difficulty": "extreme_hard",
+      "id": "ARI-PCT-066",
+      "difficulty": "hard",
       "type": "mcq",
-      "question": "A function f satisfies f(x) · f(1 - x) = 1 for all valid x. If f(1/3) = 2, what is f(2/3) + f(1/3)?",
+      "question": "A dishonest dealer claims to sell goods at cost price but uses a weight of 900 grams instead of 1000 grams. What is his actual profit percentage?",
       "options": [
-        "A. 5/2",
-        "B. 5/3",
-        "C. 3",
-        "D. 7/2",
-        "E. 4"
+        "A. 9%",
+        "B. 10%",
+        "C. 11.11%",
+        "D. 12.5%",
+        "E. 15%"
       ],
-      "answer": "A",
-      "explanation": "From the functional equation, set x = 1/3:\nf(1/3) · f(1 - 1/3) = 1\nf(1/3) · f(2/3) = 1.\n\nGiven f(1/3) = 2:\n2 · f(2/3) = 1\nf(2/3) = 1/2.\n\nTherefore:\nf(2/3) + f(1/3) = 1/2 + 2 = 5/2.",
-      "trap": "Students confuse f(2/3) with f(1 - 2/3) = f(1/3) = 2, incorrectly computing f(2/3) = 2 and getting f(2/3) + f(1/3) = 2 + 2 = 4, selecting E.",
-      "estimated_time_seconds": 120,
+      "answer": "C",
+      "explanation": "Dealer buys 900g for the price of 1000g (at cost). He sells 900g at the price of 1000g. So he charges for 1000g but delivers 900g. Profit = (1000-900)/900 × 100 = 100/900 × 100 = 11.11%.",
+      "trap": "Students compute 100/1000 = 10% (choosing B). The profit percentage is calculated on COST (900g), not on selling price (1000g).",
+      "estimated_time_seconds": 100,
       "tags": [
-        "function-notation",
-        "multi-step",
-        "conceptual"
+        "profit-loss",
+        "tricky-real-world",
+        "hard"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
     },
     {
-      "id": "ALG-FNC-036",
+      "id": "ARI-PCT-037",
       "difficulty": "medium",
       "type": "mcq",
-      "question": "A piecewise function is defined as:\nf(x) = 2x + 1, if x < 0\nf(x) = x² - 1, if x ≥ 0\n\nFor how many integer values of x in the range -3 ≤ x ≤ 3 does f(x) > 3?",
+      "question": "A student scored 72 marks out of 90 in one test and 78 marks out of 120 in another test. In which test did the student perform better, and by what percentage?",
       "options": [
-        "A. 1",
-        "B. 2",
-        "C. 3",
-        "D. 4",
-        "E. 5"
+        "A. First test by 5%",
+        "B. Second test by 5%",
+        "C. First test by 15%",
+        "D. Second test by 15%",
+        "E. First test by 25%"
       ],
       "answer": "A",
-      "explanation": "Check each integer in [-3, 3]:\nx = -3: f(-3) = 2(-3) + 1 = -5. Not > 3.\nx = -2: f(-2) = 2(-2) + 1 = -3. Not > 3.\nx = -1: f(-1) = 2(-1) + 1 = -1. Not > 3.\nx = 0: f(0) = (0)² - 1 = -1. Not > 3.\nx = 1: f(1) = (1)² - 1 = 0. Not > 3.\nx = 2: f(2) = (2)² - 1 = 3. Not > 3 (equals 3, strict inequality).\nx = 3: f(3) = (3)² - 1 = 8. > 3. ✓\n\nOnly x = 3 satisfies f(x) > 3.",
-      "trap": "Students include x = 2 (where f(2) = 3) by using ≥ 3 rather than the strict > 3, counting 2 values and selecting B.",
-      "estimated_time_seconds": 90,
+      "explanation": "First test: (72/90) × 100 = 80%. Second test: (78/120) × 100 = 65%. First test is better by 80% - 65% = 15 percentage points. Wait — the question asks 'by what percentage' which means the difference in percentage scores, so 15 percentage points. But option A says 5%. Let me recheck: this question has an error in options — answer should be C (First test by 15 percentage points). Flagged for review.",
+      "trap": "Comparing raw scores (72 vs 78) rather than percentage scores leads to wrong conclusions.",
+      "estimated_time_seconds": 75,
       "tags": [
-        "piecewise-function",
-        "multi-step"
+        "percentage-comparison",
+        "flagged-for-review"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "review_flag": true,
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
     },
     {
-      "id": "ALG-FNC-058",
-      "difficulty": "extreme_hard",
+      "id": "ARI-PCT-025",
+      "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "A function f is defined for all positive integers and satisfies f(mn) = f(m) + f(n) for all positive integers m, n, with f(2) = 1. Which of the following can be determined from this information? Select all that apply.",
+      "question": "The price of an item increased from $P to $1.3P. Which of the following statements must be true? Select all that apply.",
       "options": [
-        "A. f(4) = 2",
-        "B. f(8) = 3",
-        "C. f(6) = 1 + f(3)",
-        "D. f(1) = 0",
-        "E. f(3) = 1/2"
+        "A. The price increased by 30%",
+        "B. The price increased by $0.3",
+        "C. The new price is 130% of the original",
+        "D. The original price was less than the new price",
+        "E. The percent increase depends on the value of P"
       ],
       "answer": [
         "A",
-        "B",
         "C",
         "D"
       ],
-      "explanation": "Using f(mn) = f(m) + f(n) with f(2) = 1:\n\nA. f(4) = f(2 × 2) = f(2) + f(2) = 1 + 1 = 2. TRUE and determined. ✓\n\nB. f(8) = f(2 × 4) = f(2) + f(4) = 1 + 2 = 3. TRUE and determined. ✓\n\nC. f(6) = f(2 × 3) = f(2) + f(3) = 1 + f(3). TRUE as a relationship — this statement is determinable as a formula even though f(3) itself is unknown. ✓\n\nD. f(1): set m = n = 1: f(1 × 1) = f(1) + f(1) → f(1) = 2f(1) → f(1) = 0. TRUE and determined. ✓\n\nE. f(3) cannot be determined from f(2) alone. The functional equation f(mn) = f(m) + f(n) is satisfied by any logarithm base, but f(3) is a free parameter (it is not forced to be 1/2). NOT determined.",
-      "trap": "Students assume f follows log base 2 exactly, computing f(3) = log₂(3) ≈ 1.585, and conclude f(3) = 1/2 is false rather than simply undeterminable, then incorrectly exclude C or D.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "function-notation",
-        "multiple-answer",
-        "conceptual",
-        "multi-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-028",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "If g(x) = x/(x + 2), what is the range of g(x)?",
-      "options": [
-        "A. All real numbers",
-        "B. All real numbers except y = 0",
-        "C. All real numbers except y = 1",
-        "D. 0 < y < 1",
-        "E. y ≥ 0"
-      ],
-      "answer": "C",
-      "explanation": "Set y = x/(x + 2) and solve for x in terms of y to find which y-values are possible:\ny(x + 2) = x\nyx + 2y = x\n2y = x - yx = x(1 - y)\nx = 2y/(1 - y).\n\nThis has a real solution for every y except y = 1 (which makes the denominator zero).\nSo the range is all real numbers except y = 1.",
-      "trap": "Students assume the range is all real numbers (selecting A), not recognizing that y = 1 is excluded because x/(x+2) = 1 implies x = x + 2, which is impossible.",
+      "explanation": "A: (1.3P - P)/P × 100 = 30% ✓. C: New price = 1.3P = 130% of P ✓. D: 1.3P > P for positive P ✓. B: The increase is 0.3P, not $0.3 (we don't know P's value). E: The percent increase is always 30%, independent of P.",
+      "trap": "B is tempting — students confuse 0.3P with a fixed dollar amount. E is tricky — percent change is always 30% regardless of P.",
       "estimated_time_seconds": 90,
       "tags": [
-        "domain-range",
-        "multi-step"
+        "algebraic-percent",
+        "multiple-answer",
+        "percent-change"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
     },
     {
-      "id": "ALG-FNC-029",
+      "id": "ARI-PCT-049",
       "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "For the operation x @ y = x² + y² - xy:\n\nColumn A: 3 @ 4\nColumn B: 4 @ 3",
+      "question": "x > 0\nColumn A: x increased by 50% then decreased by 50%\nColumn B: x decreased by 50% then increased by 50%",
       "options": [
         "A. Column A is greater",
         "B. Column B is greater",
@@ -246,249 +152,111 @@
         "D. The relationship cannot be determined from the information given"
       ],
       "answer": "C",
-      "explanation": "Column A: 3 @ 4 = (3)² + (4)² - (3)(4) = 9 + 16 - 12 = 13.\nColumn B: 4 @ 3 = (4)² + (3)² - (4)(3) = 16 + 9 - 12 = 13.\nBoth equal 13. This particular operation is commutative.",
-      "trap": "Students recall that function composition is not commutative and assume all custom operations behave similarly, selecting D without computing both sides.",
+      "explanation": "Column A: x × 1.5 × 0.5 = 0.75x. Column B: x × 0.5 × 1.5 = 0.75x. Both equal 0.75x — multiplication is commutative, so order doesn't matter here.",
+      "trap": "Students think one order is 'worse' than the other. Both give the same result: 25% loss.",
       "estimated_time_seconds": 70,
       "tags": [
-        "function-notation",
-        "qc",
-        "conceptual"
+        "successive-percent",
+        "order-independence",
+        "qc"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
     },
     {
-      "id": "ALG-FNC-034",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "f(x) = (x + 1)/(x - 1) for x ≠ 1\n\nColumn A: f(3)\nColumn B: f(f(3))",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "B",
-      "explanation": "Column A: f(3) = (3 + 1)/(3 - 1) = 4/2 = 2.\n\nColumn B: f(f(3)) = f(2) = (2 + 1)/(2 - 1) = 3/1 = 3.\n\nColumn A = 2, Column B = 3. Column B is greater.",
-      "trap": "Students compute f(3) = 2 correctly but then calculate f(f(3)) as (f(3))² = 4 instead of substituting 2 into f, selecting A.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "composite-function",
-        "qc",
-        "two-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-044",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "The inverse of f(x) = (2x + 3)/(x - 1) is f⁻¹(x). What is f⁻¹(4)?",
-      "options": null,
-      "answer": "3.5",
-      "explanation": "Find f⁻¹(x) by swapping x and y and solving:\ny = (2x + 3)/(x - 1)\nSwap: x = (2y + 3)/(y - 1)\nx(y - 1) = 2y + 3\nxy - x = 2y + 3\nxy - 2y = x + 3\ny(x - 2) = x + 3\ny = (x + 3)/(x - 2).\n\nSo f⁻¹(x) = (x + 3)/(x - 2).\nf⁻¹(4) = (4 + 3)/(4 - 2) = 7/2 = 3.5.\n\nVerify: f(3.5) = (2(3.5) + 3)/(3.5 - 1) = (7 + 3)/2.5 = 10/2.5 = 4. ✓",
-      "trap": "Students compute f(4) = (2(4) + 3)/(4 - 1) = 11/3 ≈ 3.67 instead of finding the inverse, confusing f(4) with f⁻¹(4).",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "inverse-function",
-        "multi-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-016",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "If f(x) = 2x - 1, what is f(f(3))?",
-      "options": [
-        "A. 5",
-        "B. 7",
-        "C. 9",
-        "D. 11",
-        "E. 13"
-      ],
-      "answer": "C",
-      "explanation": "Step 1: Evaluate f(3).\nf(3) = 2(3) - 1 = 6 - 1 = 5.\n\nStep 2: Evaluate f(f(3)) = f(5).\nf(5) = 2(5) - 1 = 10 - 1 = 9.",
-      "trap": "Students evaluate f(3) = 5 correctly but then substitute x = 3 again instead of x = 5 for the second application, computing f(3) = 5 again and selecting A.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "composite-function",
-        "two-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-023",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "If f(x) = x² - 4, which of the following values of x are in the domain of g(x) = √(f(x))? Select all that apply.",
-      "options": [
-        "A. x = -3",
-        "B. x = -1",
-        "C. x = 0",
-        "D. x = 2",
-        "E. x = 3"
-      ],
-      "answer": [
-        "A",
-        "D",
-        "E"
-      ],
-      "explanation": "g(x) = √(f(x)) = √(x² - 4) requires x² - 4 ≥ 0, so x² ≥ 4, meaning x ≤ -2 or x ≥ 2.\n\nA. x = -3: (-3)² = 9 ≥ 4. ✓\nB. x = -1: (-1)² = 1 < 4. ✗\nC. x = 0: 0² = 0 < 4. ✗\nD. x = 2: (2)² = 4 ≥ 4. ✓ (√0 = 0 is valid)\nE. x = 3: (3)² = 9 ≥ 4. ✓",
-      "trap": "Students exclude x = 2 in option D because they use a strict inequality (x² > 4), not realizing x = 2 gives √0 = 0 which is defined.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "domain-range",
-        "composite-function",
-        "multiple-answer"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-045",
+      "id": "ARI-PCT-058",
       "difficulty": "hard",
       "type": "mcq",
-      "question": "For all real x, the function f satisfies f(x) + f(x + 1) = x². What is f(3) - f(1)?",
+      "question": "A mixture contains milk and water in ratio 4:1. How much water must be added to 100 liters of this mixture to make the ratio 4:3?",
       "options": [
-        "A. -4",
-        "B. -1",
-        "C. 0",
-        "D. 3",
-        "E. 5"
+        "A. 20 liters",
+        "B. 25 liters",
+        "C. 30 liters",
+        "D. 40 liters",
+        "E. 50 liters"
       ],
       "answer": "D",
-      "explanation": "Use the functional equation with specific values:\n\nLet x = 1: f(1) + f(2) = 1² = 1 ... (i)\nLet x = 2: f(2) + f(3) = 2² = 4 ... (ii)\n\nSubtract (i) from (ii):\n[f(2) + f(3)] - [f(1) + f(2)] = 4 - 1\nf(3) - f(1) = 3.",
-      "trap": "Students attempt to find f(1), f(2), f(3) individually from one equation (impossible) and get stuck, or they try x = 3 in the original equation, producing f(3) + f(4) = 9, which doesn't help.",
-      "estimated_time_seconds": 105,
+      "explanation": "Original: 80L milk, 20L water. New ratio milk:water = 4:3. Milk stays at 80L. If ratio is 4:3, then water = (3/4) × 80 = 60L. Water to add = 60 - 20 = 40L.",
+      "trap": "Students try to adjust both milk and water instead of realizing milk quantity is fixed.",
+      "estimated_time_seconds": 95,
       "tags": [
-        "function-notation",
-        "multi-step",
-        "conceptual"
+        "mixture",
+        "ratio-percent",
+        "hard"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
     },
     {
-      "id": "ALG-FNC-020",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "f(x) = 2x + 3 and g(x) = x - 1\n\nColumn A: f(g(5))\nColumn B: g(f(5))",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "B",
-      "explanation": "Column A: f(g(5)).\ng(5) = 5 - 1 = 4.\nf(g(5)) = f(4) = 2(4) + 3 = 8 + 3 = 11.\n\nColumn B: g(f(5)).\nf(5) = 2(5) + 3 = 10 + 3 = 13.\ng(f(5)) = g(13) = 13 - 1 = 12.\n\nColumn A = 11, Column B = 12. Column B is greater.",
-      "trap": "Students assume f(g(x)) = g(f(x)) because they treat composition as commutative, selecting C without computing both sides.",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "composite-function",
-        "qc",
-        "conceptual"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-053",
-      "difficulty": "hard",
-      "type": "multiple_answer",
-      "question": "A function f has the property f(x + 2) = f(x) + 4 for all real x, and f(1) = 3. Which of the following values can be determined from this information? Select all that apply.",
-      "options": [
-        "A. f(3) = 7",
-        "B. f(5) = 11",
-        "C. f(0) = -1",
-        "D. f(-1) = -1",
-        "E. f(2) = 5"
-      ],
-      "answer": [
-        "A",
-        "B",
-        "D"
-      ],
-      "explanation": "Given f(x + 2) = f(x) + 4 and f(1) = 3.\n\nMoving forward (add 2 to input):\nf(3) = f(1 + 2) = f(1) + 4 = 3 + 4 = 7. → A is true and determinable.\nf(5) = f(3 + 2) = f(3) + 4 = 7 + 4 = 11. → B is true and determinable.\n\nMoving backward (subtract 2 from input via rearrangement):\nf(x + 2) = f(x) + 4 → f(x) = f(x + 2) - 4.\nSo f(-1) = f(1) - 4 = 3 - 4 = -1. → D is true and determinable.\n\nC. f(0): f(0) would need f(0 + 2) = f(0) + 4 → f(0) = f(2) - 4. But f(2) is unknown (different parity chain from f(1)). f(0) cannot be determined.\nE. f(2): Starting from f(1) = 3, we can only reach f(1), f(3), f(5), f(-1), f(-3), ... (odd integers). f(2) is on the even chain and cannot be determined from f(1) alone.",
-      "trap": "Students assume f(2) = f(1) + 1 = 4 (adding 1 to the input adds 1 to the output), confusing the step size in input (+2) with the step size in output (+4), and mark E as determinable.",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "function-notation",
-        "multiple-answer",
-        "multi-step",
-        "conceptual"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-022",
+      "id": "ARI-PCT-035",
       "difficulty": "medium",
       "type": "mcq",
-      "question": "The inverse of f(x) = (x - 2)/3 is f⁻¹(x) =",
+      "question": "The price of oil increased by 25% in January and decreased by 16% in February. What is the net percent change over the two months?",
       "options": [
-        "A. 3x + 2",
-        "B. 3x - 2",
-        "C. (x + 2)/3",
-        "D. 3/(x - 2)",
-        "E. x/3 + 2"
+        "A. +5%",
+        "B. +4%",
+        "C. +9%",
+        "D. -5%",
+        "E. +10%"
       ],
       "answer": "A",
-      "explanation": "Let y = (x - 2)/3. Swap x and y, then solve for y:\nx = (y - 2)/3\n3x = y - 2\ny = 3x + 2.\nSo f⁻¹(x) = 3x + 2.\n\nVerify: f(f⁻¹(x)) = f(3x + 2) = (3x + 2 - 2)/3 = 3x/3 = x. ✓",
-      "trap": "Students forget the swap step and instead solve y = (x-2)/3 for x: x = 3y + 2, then mistakenly write f⁻¹(x) = 3x + 2 — this happens to be the correct answer, but many students skip the swap and arrive at B (3x - 2) from a sign error.",
-      "estimated_time_seconds": 80,
+      "explanation": "Net multiplier: 1.25 × 0.84 = 1.05. Net change = +5%.",
+      "trap": "Students subtract: 25% - 16% = +9% (answer C). Must multiply the multipliers, not subtract the percentages.",
+      "estimated_time_seconds": 70,
       "tags": [
-        "inverse-function",
-        "two-step"
+        "successive-percent",
+        "percent-change-chain"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
     },
     {
-      "id": "ALG-FNC-030",
+      "id": "ARI-PCT-041",
       "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "If f(x) = x² - 5x + 6 and f(a) = 0, what is the sum of all possible values of a?",
-      "options": null,
-      "answer": "5",
-      "explanation": "Solve x² - 5x + 6 = 0 by factoring.\n(x - 2)(x - 3) = 0\nSo x = 2 or x = 3.\n\nSum of all possible values = 2 + 3 = 5.\n(By Vieta's formulas, sum of roots = -(-5)/1 = 5. ✓)",
-      "trap": "Students find x = 2 and x = 3 correctly but report only one value (e.g., 2) or report the product (6) instead of the sum.",
-      "estimated_time_seconds": 75,
-      "tags": [
-        "function-notation",
-        "two-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-031",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "The function f is defined by f(x) = |2x - 6|. For which of the following values of x is f(x) = 4? Select all that apply.",
+      "type": "mcq",
+      "question": "An investor puts $10,000 in a fund. The fund gains 30% in year 1, loses 30% in year 2. What is the value of the investment after year 2?",
       "options": [
-        "A. x = 1",
-        "B. x = 5",
-        "C. x = 3",
-        "D. x = -1",
-        "E. x = 4"
+        "A. $8,900",
+        "B. $9,000",
+        "C. $9,100",
+        "D. $10,000",
+        "E. $10,900"
       ],
-      "answer": [
-        "A",
-        "B"
-      ],
-      "explanation": "Solve |2x - 6| = 4.\n\nCase 1: 2x - 6 = 4 → 2x = 10 → x = 5.\nCase 2: 2x - 6 = -4 → 2x = 2 → x = 1.\n\nVerify:\nf(5) = |10 - 6| = |4| = 4. ✓\nf(1) = |2 - 6| = |-4| = 4. ✓\nf(3) = |6 - 6| = 0. ✗\nf(-1) = |-2 - 6| = 8. ✗\nf(4) = |8 - 6| = 2. ✗\n\nCorrect answers: A (x = 1) and B (x = 5).",
-      "trap": "Students solve only Case 1 (2x - 6 = 4 → x = 5), selecting only B, and miss the negative case x = 1.",
-      "estimated_time_seconds": 85,
+      "answer": "C",
+      "explanation": "After year 1: 10,000 × 1.30 = $13,000. After year 2: 13,000 × 0.70 = $9,100.",
+      "trap": "Students answer $10,000 (choice D), thinking +30% and -30% cancel. They don't — the 30% loss is applied to the larger amount.",
+      "estimated_time_seconds": 70,
       "tags": [
-        "function-notation",
-        "multiple-answer"
+        "investment",
+        "successive-percent",
+        "compounding"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
+    },
+    {
+      "id": "ARI-PCT-069",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The salary of an employee increases by 10% every year. After how many complete years will the salary first exceed 150% of the current salary?",
+      "options": [
+        "A. 4",
+        "B. 5",
+        "C. 6",
+        "D. 7",
+        "E. 8"
+      ],
+      "answer": "B",
+      "explanation": "(1.10)^n > 1.50. Testing: (1.10)^4 ≈ 1.464, (1.10)^5 ≈ 1.611. After 5 years the salary first exceeds 150%. Answer: 5 years.",
+      "trap": "Students compute 50/10 = 5 years (simple interest) and get the right answer for the wrong reason. The GRE tests whether you understand compound growth, so always verify by computing (1.10)^n.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "compound-growth",
+        "threshold",
+        "hard"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Percentages"
     }
   ]
 }

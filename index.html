@@ -343,14 +343,14 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
 <!-- ─── NAV ─────────────────────────────────────────────── -->
 <nav>
   <div class="nav-inner">
-    <a href="https://tinyurl.com/grequantpro" class="nav-logo">GRE<span>Quant</span> Pro</a>
+    <a href="https://grequantpro.com/" class="nav-logo">GRE Quant Pro <span class="logo-badge">Beta</span></a>
     <div class="nav-links">
       <a href="#how">How it works</a>
       <a href="#mock">Free Mock</a>
       <a href="#bank">Question Bank</a>
       <a href="#plans">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a href="https://adityagoenka24.github.io/gre-adi/gre_practice_logger_free.html">Try Free</a>
+      <a href="https://grequantpro.com/gre_practice_logger_free.html">Try Free</a>
       <a href="https://tinyurl.com/grequantpro-pro" class="nav-cta-ghost">Log in →</a>
       <a href="#plans" class="nav-cta-solid btn">Get Pro — ₹999</a>
     </div>
@@ -365,7 +365,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
   <a href="#bank">Question Bank</a>
   <a href="#plans">Pricing</a>
   <a href="#faq">FAQ</a>
-  <a href="https://adityagoenka24.github.io/gre-adi/gre_practice_logger_free.html">Try Free App</a>
+  <a href="https://grequantpro.com/gre_practice_logger_free.html">Try Free App</a>
   <a href="https://tinyurl.com/grequantpro-pro">Log in to Pro</a>
   <a href="#plans" style="color:var(--accent);font-weight:700">Get Pro — ₹999 →</a>
 </div>
@@ -383,7 +383,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
   </div>
   <div class="hero-btns">
     <a href="#plans" class="btn btn-primary">Get Pro — ₹999 Lifetime →</a>
-    <a href="https://adityagoenka24.github.io/gre-adi/gre_practice_logger_free.html" class="btn btn-secondary">Try Free First (no card)</a>
+    <a href="https://grequantpro.com/gre_practice_logger_free.html" class="btn btn-secondary">Try Free First (no card)</a>
   </div>
   <p class="hero-note">One payment · Lifetime access · All 88 subtopics · All future questions included</p>
 </section>
@@ -392,7 +392,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
 <section class="event-doorway fade-in" id="mock">
   <div class="event-doorway-content">
     <div class="event-doorway-kicker">Free live diagnostic</div>
-    <h2 id="mockTitle">Stop Guessing. Take the free GRE Quant mock.</h2>
+    <h2 id="mockTitle">Take the free GRE Quant mock before you buy.</h2>
     <p id="mockDescription">Use the mock as a diagnostic: take a timed paper, see the traps that cost you marks, and use that pain map to decide whether Pro is worth it.</p>
     <div class="event-doorway-actions">
       <a href="events/mock_test.html" class="btn btn-primary" id="mockStartLink">Start Free Mock →</a>
@@ -607,7 +607,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
     <div class="cta-strip-sub">2 subtopics · Practice Mode + Exam Mode · No credit card · Access in 30 seconds</div>
   </div>
   <div class="cta-strip-btns">
-    <a href="https://adityagoenka24.github.io/gre-adi/gre_practice_logger_free.html" class="btn btn-secondary">Try Free App →</a>
+    <a href="https://grequantpro.com/gre_practice_logger_free.html" class="btn btn-secondary">Try Free App →</a>
     <a href="#plans" class="btn btn-primary">See Pro Plans</a>
   </div>
 </div>
@@ -631,7 +631,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
       <div class="price-wrap"><span class="price-currency">₹</span><span class="price-amount">0</span></div>
       <div class="price-note">Always free. No credit card.</div>
       <div class="price-vs">&nbsp;</div>
-      <a href="https://adityagoenka24.github.io/gre-adi/gre_practice_logger_free.html" class="plan-cta free-cta">Open Free App →</a>
+      <a href="https://grequantpro.com/gre_practice_logger_free.html" class="plan-cta free-cta">Open Free App →</a>
       <div class="features-label">What's included</div>
       <ul class="feature-list">
         <li><span class="f-check">✓</span> Manual session logger — unlimited</li>
@@ -876,7 +876,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
   </div>
   <div class="cta-strip-btns">
     <a href="https://rzp.io/rzp/ORSwVJu" class="btn btn-primary" target="_blank" rel="noopener">Get Pro — ₹999 →</a>
-    <a href="https://adityagoenka24.github.io/gre-adi/gre_practice_logger_free.html" class="btn btn-secondary">Try Free First</a>
+    <a href="https://grequantpro.com/gre_practice_logger_free.html" class="btn btn-secondary">Try Free First</a>
   </div>
 </div>
 
@@ -1050,7 +1050,7 @@ async function initMockDoorway(){
     const name=document.getElementById("mockEventName");
     const format=document.getElementById("mockEventFormat");
     const time=document.getElementById("mockEventTime");
-    if(title)title.textContent=`Stop Guessing. Take ${config.event_name || "the free GRE Quant mock"}.`;
+    if(title)title.textContent=`Take ${config.event_name || "the free GRE Quant mock"} before you buy.`;
     if(description)description.textContent="Use this free event as a diagnostic: take the timed paper, see which traps cost you marks, then decide whether Pro is worth unlocking for targeted practice.";
     if(name)name.textContent=config.event_name || "GRE Quant Pro Mock";
     if(format)format.textContent=`${count} question${count===1?"":"s"}`;
@@ -1076,46 +1076,7 @@ if(feature){
   document.body.appendChild(banner);
   setTimeout(()=>banner.remove(),5000);
 }
-
-async function trackUniqueDailyVisitors() {
-    try {
-        // 1. Establish today's date string (Format: YYYY-MM-DD)
-        const today = new Date().toISOString().split('T')[0];
-        
-        // 2. Generate a clean ID matching your Hostinger domain
-        const siteDomain = window.location.hostname.replace(/\./g, '-');
-        
-        // 3. Define the storage key to check in the user's browser
-        const storageKey = `visited_${siteDomain}_${today}`;
-        
-        // Base API URL for your unique daily counter path
-        const apiUrl = `https://counterapi.dev{siteDomain}/${today}`;
-
-        // 4. Check if the user has already loaded this page today
-        if (localStorage.getItem(storageKey)) {
-            // User already counted today. Just fetch the current total without incrementing.
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-            console.log(`📊 Total unique visitors today (${today}): ${data.value} (You were already counted)`);
-        } else {
-            // First time visit today. Increment the counter.
-            const response = await fetch(`${apiUrl}/up`);
-            const data = await response.json();
-            
-            // Mark the user's browser so they aren't counted on refresh
-            localStorage.setItem(storageKey, "true");
-            console.log(`📊 Total unique visitors today (${today}): ${data.value} (New visit registered!)`);
-        }
-    } catch (error) {
-        console.error("Counter error:", error);
-    }
-}
-
-// Fire the counter on page load
-trackUniqueDailyVisitors();
-
-
-  
 </script>
+<script src="analytics.js"></script>
 </body>
 </html>

@@ -10,6 +10,7 @@
 <!-- EmailJS CDN — commented out until ready to use
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 -->
+<script src="analytics.js"></script>
 <style>
 :root {
   --bg:#0a0a0f; --surface:#12121a; --surface2:#1a1a28; --surface3:#22223a; --border:#2a2a45;
@@ -593,7 +594,7 @@ tr:hover td{background:rgba(108,99,255,0.04);}
       <p>by Coach Aditya Goenka</p>
     </div>
     <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
-      <a href="index.html" style="display:inline-block;background:linear-gradient(135deg,var(--accent),#a89aff);color:white;text-decoration:none;padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;font-family:var(--font-body);letter-spacing:0.3px;box-shadow:0 2px 10px rgba(108,99,255,0.35);">⚡ Upgrade to Pro</a>
+      <a href="https://grequantpro.com/#plans" style="display:inline-block;background:linear-gradient(135deg,var(--accent),#a89aff);color:white;text-decoration:none;padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;font-family:var(--font-body);letter-spacing:0.3px;box-shadow:0 2px 10px rgba(108,99,255,0.35);">⚡ Upgrade to Pro</a>
       <a href="mailto:goenka.aditya.kol@gmail.com" style="font-family:var(--font-mono);font-size:11px;color:var(--accent);text-decoration:none;opacity:0.75;">goenka.aditya.kol@gmail.com</a>
     </div>
   </div>
@@ -1722,7 +1723,7 @@ function bankSubtopicChanged(){
   }
   el.innerHTML = meta.count + ' questions available in this subtopic'
     + (isFreeTier()
-      ? ' &nbsp;<a href="index.html" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">8,410+ practice questions in Pro across 88 subtopics →</a>'
+      ? ' &nbsp;<a href="https://grequantpro.com/#plans" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">8,410+ practice questions in Pro across 88 subtopics →</a>'
       : '');
   el.style.color='var(--success)';
   bankUpdateSummary();
@@ -2178,7 +2179,7 @@ function applyFreeModeLimitations() {
     banner.style.cssText = 'background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:8px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;';
     banner.innerHTML = `
       <span style="font-size:13px;color:var(--text2);">🎓 <strong>Free Tier</strong> — 2 subtopics · Easy & Medium only · up to 20 questions/session</span>
-      <a href="index.html" style="font-size:12px;font-family:var(--font-mono);color:var(--accent);text-decoration:none;white-space:nowrap;">Upgrade to Pro →</a>`;
+      <a href="https://grequantpro.com/#plans" style="font-size:12px;font-family:var(--font-mono);color:var(--accent);text-decoration:none;white-space:nowrap;">Upgrade to Pro →</a>`;
     setupCard.insertBefore(banner, setupCard.firstChild);
   }
 
@@ -2187,7 +2188,7 @@ function applyFreeModeLimitations() {
   if (setupCardSession) {
     const banner2 = document.createElement('div');
     banner2.style.cssText = 'background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:12px;color:var(--text2);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;';
-    banner2.innerHTML = `<span>🎓 Free Tier — Manual session logging is always free</span><a href="index.html" style="color:var(--accent);text-decoration:none;font-family:var(--font-mono);font-size:11px;">See Pricing →</a>`;
+    banner2.innerHTML = `<span>🎓 Free Tier — Manual session logging is always free</span><a href="https://grequantpro.com/#plans" style="color:var(--accent);text-decoration:none;font-family:var(--font-mono);font-size:11px;">See Pricing →</a>`;
     setupCardSession.insertBefore(banner2, setupCardSession.firstChild);
   }
 }
@@ -2278,12 +2279,12 @@ function showUpgradePrompt(feature) {
         <span style="color:var(--text3);font-size:12px;font-family:var(--font-mono);">One payment · Lifetime access · Questions keep growing</span>
       </div>
 
-      <a href="pricing.html?feature=${encodeURIComponent(feature)}" target="_blank"
+      <a href="https://grequantpro.com/?feature=${encodeURIComponent(feature)}#plans" target="_blank"
         style="display:block;background:linear-gradient(135deg,var(--accent),#a89aff);color:white;text-decoration:none;padding:14px 28px;border-radius:10px;font-weight:700;font-size:15px;margin-bottom:10px;box-shadow:0 4px 20px rgba(108,99,255,0.4);">
         Get Pro — ₹999 →
       </a>
 
-      <a href="pricing.html?feature=${encodeURIComponent(feature)}" target="_blank"
+      <a href="https://grequantpro.com/?feature=${encodeURIComponent(feature)}#plans" target="_blank"
         style="display:block;background:linear-gradient(135deg,#f5c842,#f97316);color:#0a0a0f;text-decoration:none;padding:12px 28px;border-radius:10px;font-weight:700;font-size:14px;margin-bottom:18px;">
         🎓 Pro + Tutor — ₹1,499/mo
       </a>
@@ -3608,7 +3609,7 @@ function showTutorTeaserExam() {
     <div class="tutor-teaser" style="margin-bottom:24px;">
       <strong>📧 Want Coach Aditya to review this exam?</strong><br>
       With Pro, your full exam report — every question, your answer, the trap you fell for, and your time per question — is compiled and sent to Coach Aditya in one click. He reviews it before your next session.
-      <br><a href="index.html" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — ₹999 →</a>
+      <br><a href="https://grequantpro.com/#plans" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — ₹999 →</a>
     </div>`;
 }
 
@@ -3621,7 +3622,7 @@ function showTutorTeaser() {
     <div class="tutor-teaser">
       <strong>📧 Want Coach Aditya to review this session?</strong><br>
       With Pro, your full session report — every question, your answer, and the exact trap you fell for — is compiled and sent to Coach Aditya automatically. He reviews it before your next session.
-      <br><a href="index.html" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — ₹999 →</a>
+      <br><a href="https://grequantpro.com/#plans" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — ₹999 →</a>
     </div>`;
 }
 
