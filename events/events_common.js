@@ -1,4 +1,5 @@
 const Events = (() => {
+  const SUBMISSION_ENDPOINT = "https://gre-auth.goenka-aditya-kol.workers.dev/mock/submission";
   const $ = (id) => document.getElementById(id);
   const state = { config: null, current: 0, answers: [], qTimes: [], qStartedAt: 0, startedAt: null, submitted: false, timer: null, remaining: 0 };
 
@@ -728,6 +729,18 @@ const Events = (() => {
 };
   }
 
+  async function saveAttempt(result) {
+    try {
+      await fetch(SUBMISSION_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ result })
+      });
+    } catch (error) {
+      console.warn("Could not save mock attempt", error);
+    }
+  }
+
   function submitEvent(timedOut = false) {
     if (state.submitted) return;
     setQuestionTime(state.current);
@@ -741,6 +754,7 @@ const Events = (() => {
     const team = $("studentTeam") ? $("studentTeam").value : null;
     const result = buildResult(student, team);
     renderResults(result, timedOut);
+    saveAttempt(result);
   }
 
   async function initStudentPage({ teamMode = false } = {}) {
