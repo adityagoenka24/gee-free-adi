@@ -568,6 +568,47 @@ const Events = (() => {
     </div>`;
   }
 
+  function resultIcon(item) {
+    if (item.correct) return "Correct";
+    if (item.skipped) return "Skipped";
+    return "Incorrect";
+  }
+
+  function renderQuestionReference(result) {
+    const items = result.results || [];
+    if (!items.length) return "";
+    return `<details class="question-reference">
+      <summary>Show full question list (${items.length})</summary>
+      <div class="question-reference-list">
+        ${items.map((r, i) => {
+          const correctAnswer = Array.isArray(r.correct_answer) ? r.correct_answer.join(", ") : r.correct_answer;
+          const studentAnswer = r.skipped ? "(no answer)" : Array.isArray(r.student_answer) ? r.student_answer.join(", ") : r.student_answer;
+          const status = resultIcon(r);
+          return `<div class="reference-q-card ${r.correct ? "correct" : r.skipped ? "skipped" : "incorrect"}">
+            <div class="wrong-q-header">
+              <span class="pq-badge ${escapeHtml(r.difficulty)}">${escapeHtml(difficultyLabel(r.difficulty))}</span>
+              <span class="pq-type-badge">${escapeHtml(typeLabel(r.type))}</span>
+              <span style="font-size:12px;color:var(--text3);font-family:var(--font-mono);">Q${i + 1} · ${escapeHtml(r.question_id)}</span>
+              <span class="reference-status">${escapeHtml(status)}</span>
+            </div>
+            <div class="wrong-q-body">
+              <div class="wrong-q-text">${escapeHtml(r.question_text)}</div>
+              <div class="wrong-q-answers">
+                <span class="${r.correct ? "wrong-q-correct" : "wrong-q-your"}">Your answer: ${escapeHtml(studentAnswer)}</span>
+                <span style="color:var(--text3);">·</span>
+                <span class="wrong-q-correct">Correct: ${escapeHtml(correctAnswer)}</span>
+                <span style="color:var(--text3);">·</span>
+                <span style="color:var(--text3);">Time: ${formatTime(r.time_taken_seconds || 0)}</span>
+              </div>
+              ${r.explanation ? `<div class="wrong-q-explanation">${escapeHtml(r.explanation)}</div>` : ""}
+              ${r.trap ? `<div class="wrong-q-trap">Trap: ${escapeHtml(r.trap)}</div>` : ""}
+            </div>
+          </div>`;
+        }).join("")}
+      </div>
+    </details>`;
+  }
+
   function renderSmartDiagnosis(result) {
     const diagnosis = result.diagnosis || buildDiagnosis(result);
     const band = diagnosis.band || performanceBand(result.accuracy);
@@ -670,7 +711,7 @@ const Events = (() => {
     renderAnalysisBars(result);
     renderTimeTable(result);
     if ($("proCta")) $("proCta").innerHTML = renderSmartDiagnosis(result) + renderProCta(result);
-    $("exam-wrong-section").innerHTML = renderWrongReview(result);
+    $("exam-wrong-section").innerHTML = renderQuestionReference(result) + renderWrongReview(result);
     $("downloadResultBtn").onclick = () => downloadJson(`${slug(result.event_id)}_${slug(result.student.name)}_result.json`, result);
     document.getElementById("emailResultBtn").onclick = async () => {
   const subject = encodeURIComponent(`GRE Quant Pro Event Result - ${result.event_name} - ${result.student.name}`);

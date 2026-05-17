@@ -236,6 +236,14 @@ pre{background:#07070b;border:1px solid var(--border);border-radius:var(--radius
 .wrong-q-correct{color:var(--success)}
 .wrong-q-explanation{font-size:13px;color:var(--text2);line-height:1.65;padding:12px 14px;background:var(--surface2);border-radius:6px;margin-bottom:10px}
 .wrong-q-trap{font-size:12px;color:var(--warning);padding:10px 14px;background:rgba(247,151,30,.07);border:1px solid rgba(247,151,30,.2);border-radius:6px}
+.question-reference{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:24px}
+.question-reference summary{cursor:pointer;font-family:var(--font-display);font-size:20px;color:var(--text)}
+.question-reference-list{display:flex;flex-direction:column;gap:14px;margin-top:18px}
+.reference-q-card{background:rgba(10,10,15,.28);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.reference-q-card.correct{border-color:rgba(62,207,142,.26)}
+.reference-q-card.incorrect{border-color:rgba(255,101,132,.22)}
+.reference-q-card.skipped{border-color:rgba(255,255,255,.12)}
+.reference-status{font-family:var(--font-mono);font-size:11px;color:var(--text2);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:4px 8px}
 .smart-diagnosis{background:linear-gradient(135deg,rgba(62,207,142,.09),rgba(108,99,255,.08)),var(--surface);border:1px solid rgba(108,99,255,.28);border-radius:var(--radius);padding:24px;margin-bottom:24px}
 .diagnosis-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:start;margin-bottom:18px}
 .diagnosis-eyebrow{font-family:var(--font-mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
